@@ -235,6 +235,8 @@ GEM
       sprockets-rails
       tilt
     sexp_processor (4.14.1)
+    shoulda-matchers (4.3.0)
+      activesupport (>= 4.2.0)
     sorbet (0.5.5510)
       sorbet-static (= 0.5.5510)
     sorbet-coerce (0.2.5)
@@ -309,6 +311,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   sass-rails (>= 6)
+  shoulda-matchers
   sorbet
   sorbet-rails
   sorbet-runtime

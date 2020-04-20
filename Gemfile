@@ -31,6 +31,7 @@ group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "rspec-rails"
   gem "factory_bot_rails"
+  gem "shoulda-matchers"
 
   gem "rubocop", "~> 0.80.1"
   gem "rubocop-rails", require: false
