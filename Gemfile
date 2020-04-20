@@ -56,6 +56,11 @@ gem "haml-rails"
 
 gem "devise"
 
+# Sorbet gems
 gem "sorbet", group: :development
 gem "sorbet-runtime"
 gem "sorbet-rails"
+
+# GraphQL gems
+gem "graphql"
+gem "graphiql-rails", group: :development
