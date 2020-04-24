@@ -1,3 +1,4 @@
+# typed: strict
 class TurnipValuation < ApplicationRecord
   belongs_to :turnip_market
 

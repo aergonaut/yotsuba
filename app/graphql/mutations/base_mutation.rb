@@ -1,3 +1,4 @@
+# typed: false
 module Mutations
   class BaseMutation < GraphQL::Schema::RelayClassicMutation
     argument_class Types::BaseArgument

@@ -6257,7 +6257,11 @@ class ActionDispatch::Routing::RouteSet::Generator
 end
 
 module ActionDispatch::Routing::RouteSet::MountedHelpers
+  def _graphiql_rails(); end
+
   def _main_app(); end
+
+  def graphiql_rails(); end
 
   def main_app(); end
 end
@@ -7234,6 +7238,12 @@ class ActionMailer::Base
 
   def javascripts_dir=(value); end
 
+  def letter_opener_settings(); end
+
+  def letter_opener_settings=(val); end
+
+  def letter_opener_settings?(); end
+
   def logger(); end
 
   def logger=(value); end
@@ -7449,6 +7459,12 @@ class ActionMailer::Base
   def self.javascripts_dir(); end
 
   def self.javascripts_dir=(value); end
+
+  def self.letter_opener_settings(); end
+
+  def self.letter_opener_settings=(val); end
+
+  def self.letter_opener_settings?(); end
 
   def self.logger(); end
 
@@ -12688,7 +12704,6 @@ end
 class ActiveRecord::Base
   include ::ActiveRecord::Core
   include ::ActiveRecord::ReadonlyAttributes
-  include ::ActiveRecord::ModelSchema
   include ::ActiveRecord::AttributeAssignment
   include ::ActiveModel::AttributeAssignment
   include ::ActiveModel::ForbiddenAttributesProtection
@@ -16721,9 +16736,6 @@ class ActiveRecord::MismatchedForeignKey
 end
 
 module ActiveRecord::ModelSchema
-end
-
-module ActiveRecord::ModelSchema
   extend ::ActiveSupport::Concern
   def self.derive_join_table_name(first_table, second_table); end
 end
@@ -20368,15 +20380,11 @@ class ActiveSupport::Duration
 
   def after(time=T.unsafe(nil)); end
 
-  def ago(time=T.unsafe(nil)); end
-
   def before(time=T.unsafe(nil)); end
 
   def coerce(other); end
 
   def encode_with(coder); end
-
-  def from_now(time=T.unsafe(nil)); end
 
   def init_with(coder); end
 
@@ -22189,37 +22197,19 @@ end
 class ActiveSupport::TimeWithZone
   include ::DateAndTime::Compatibility
   include ::Comparable
-  def +(other); end
-
-  def -(other); end
-
   def acts_like_time?(); end
 
   def advance(options); end
 
   def after?(_); end
 
-  def ago(other); end
-
   def before?(_); end
-
-  def between?(min, max); end
 
   def change(options); end
 
   def comparable_time(); end
 
-  def day(); end
-
-  def dst?(); end
-
   def encode_with(coder); end
-
-  def eql?(other); end
-
-  def formatted_offset(colon=T.unsafe(nil), alternate_utc_string=T.unsafe(nil)); end
-
-  def future?(); end
 
   def getgm(); end
 
@@ -22235,13 +22225,7 @@ class ActiveSupport::TimeWithZone
 
   def gmtoff(); end
 
-  def hour(); end
-
-  def httpdate(); end
-
   def in(other); end
-
-  def in_time_zone(new_zone=T.unsafe(nil)); end
 
   def init_with(coder); end
 
@@ -22255,85 +22239,27 @@ class ActiveSupport::TimeWithZone
 
   def kind_of?(klass); end
 
-  def localtime(utc_offset=T.unsafe(nil)); end
-
   def marshal_dump(); end
 
   def marshal_load(variables); end
 
-  def mday(); end
-
   def method_missing(sym, *args, &block); end
 
-  def min(); end
-
-  def mon(); end
-
-  def month(); end
-
-  def nsec(); end
-
-  def past?(); end
-
-  def period(); end
-
   def respond_to?(sym, include_priv=T.unsafe(nil)); end
-
-  def rfc2822(); end
 
   def rfc3339(fraction_digits=T.unsafe(nil)); end
 
   def rfc822(); end
 
-  def sec(); end
-
   def since(other); end
-
-  def strftime(format); end
-
-  def time(); end
 
   def time_zone(); end
 
-  def to_a(); end
-
   def to_date(); end
-
-  def to_datetime(); end
-
-  def to_f(); end
 
   def to_formatted_s(format=T.unsafe(nil)); end
 
-  def to_i(); end
-
-  def to_r(); end
-
-  def to_s(format=T.unsafe(nil)); end
-
-  def to_time(); end
-
-  def today?(); end
-
   def tv_sec(); end
-
-  def usec(); end
-
-  def utc(); end
-
-  def utc?(); end
-
-  def utc_offset(); end
-
-  def wday(); end
-
-  def xmlschema(fraction_digits=T.unsafe(nil)); end
-
-  def yday(); end
-
-  def year(); end
-
-  def zone(); end
   PRECISIONS = ::T.let(nil, ::T.untyped)
 end
 
@@ -22353,13 +22279,9 @@ class ActiveSupport::TimeZone
 
   def iso8601(str); end
 
-  def local(*args); end
-
   def local_to_utc(time, dst=T.unsafe(nil)); end
 
   def name(); end
-
-  def now(); end
 
   def parse(str, now=T.unsafe(nil)); end
 
@@ -22373,28 +22295,16 @@ class ActiveSupport::TimeZone
 
   def strptime(str, format, now=T.unsafe(nil)); end
 
-  def today(); end
-
-  def tomorrow(); end
-
   def tzinfo(); end
 
   def utc_offset(); end
 
   def utc_to_local(time); end
-
-  def yesterday(); end
   MAPPING = ::T.let(nil, ::T.untyped)
 end
 
 class ActiveSupport::TimeZone
-  def self.[](arg); end
-
-  def self.all(); end
-
   def self.clear(); end
-
-  def self.country_zones(country_code); end
 
   def self.create(*_); end
 
@@ -22403,8 +22313,6 @@ class ActiveSupport::TimeZone
   def self.new(name); end
 
   def self.seconds_to_utc_offset(seconds, colon=T.unsafe(nil)); end
-
-  def self.us_zones(); end
 end
 
 module ActiveSupport::ToJsonWithActiveSupportEncoder
@@ -22533,6 +22441,313 @@ module ActiveSupport
   def self.use_standard_json_time_format=(arg); end
 
   def self.version(); end
+end
+
+module Addressable
+end
+
+module Addressable::IDNA
+  ACE_MAX_LENGTH = ::T.let(nil, ::T.untyped)
+  ACE_PREFIX = ::T.let(nil, ::T.untyped)
+  COMPOSITION_TABLE = ::T.let(nil, ::T.untyped)
+  HANGUL_LBASE = ::T.let(nil, ::T.untyped)
+  HANGUL_LCOUNT = ::T.let(nil, ::T.untyped)
+  HANGUL_NCOUNT = ::T.let(nil, ::T.untyped)
+  HANGUL_SBASE = ::T.let(nil, ::T.untyped)
+  HANGUL_SCOUNT = ::T.let(nil, ::T.untyped)
+  HANGUL_TBASE = ::T.let(nil, ::T.untyped)
+  HANGUL_TCOUNT = ::T.let(nil, ::T.untyped)
+  HANGUL_VBASE = ::T.let(nil, ::T.untyped)
+  HANGUL_VCOUNT = ::T.let(nil, ::T.untyped)
+  PUNYCODE_BASE = ::T.let(nil, ::T.untyped)
+  PUNYCODE_DAMP = ::T.let(nil, ::T.untyped)
+  PUNYCODE_DELIMITER = ::T.let(nil, ::T.untyped)
+  PUNYCODE_INITIAL_BIAS = ::T.let(nil, ::T.untyped)
+  PUNYCODE_INITIAL_N = ::T.let(nil, ::T.untyped)
+  PUNYCODE_MAXINT = ::T.let(nil, ::T.untyped)
+  PUNYCODE_PRINT_ASCII = ::T.let(nil, ::T.untyped)
+  PUNYCODE_SKEW = ::T.let(nil, ::T.untyped)
+  PUNYCODE_TMAX = ::T.let(nil, ::T.untyped)
+  PUNYCODE_TMIN = ::T.let(nil, ::T.untyped)
+  UNICODE_DATA = ::T.let(nil, ::T.untyped)
+  UNICODE_DATA_CANONICAL = ::T.let(nil, ::T.untyped)
+  UNICODE_DATA_COMBINING_CLASS = ::T.let(nil, ::T.untyped)
+  UNICODE_DATA_COMPATIBILITY = ::T.let(nil, ::T.untyped)
+  UNICODE_DATA_EXCLUSION = ::T.let(nil, ::T.untyped)
+  UNICODE_DATA_LOWERCASE = ::T.let(nil, ::T.untyped)
+  UNICODE_DATA_TITLECASE = ::T.let(nil, ::T.untyped)
+  UNICODE_DATA_UPPERCASE = ::T.let(nil, ::T.untyped)
+  UNICODE_MAX_LENGTH = ::T.let(nil, ::T.untyped)
+  UNICODE_TABLE = ::T.let(nil, ::T.untyped)
+  UTF8_REGEX = ::T.let(nil, ::T.untyped)
+  UTF8_REGEX_MULTIBYTE = ::T.let(nil, ::T.untyped)
+end
+
+class Addressable::IDNA::PunycodeBadInput
+end
+
+class Addressable::IDNA::PunycodeBadInput
+end
+
+class Addressable::IDNA::PunycodeBigOutput
+end
+
+class Addressable::IDNA::PunycodeBigOutput
+end
+
+class Addressable::IDNA::PunycodeOverflow
+end
+
+class Addressable::IDNA::PunycodeOverflow
+end
+
+module Addressable::IDNA
+  def self.to_ascii(input); end
+
+  def self.to_unicode(input); end
+
+  def self.unicode_normalize_kc(input); end
+end
+
+class Addressable::URI
+  def +(uri); end
+
+  def ==(uri); end
+
+  def ===(uri); end
+
+  def absolute?(); end
+
+  def authority(); end
+
+  def authority=(new_authority); end
+
+  def basename(); end
+
+  def default_port(); end
+
+  def defer_validation(); end
+
+  def display_uri(); end
+
+  def domain(); end
+
+  def empty?(); end
+
+  def eql?(uri); end
+
+  def extname(); end
+
+  def fragment(); end
+
+  def fragment=(new_fragment); end
+
+  def host(); end
+
+  def host=(new_host); end
+
+  def hostname(); end
+
+  def hostname=(new_hostname); end
+
+  def inferred_port(); end
+
+  def initialize(options=T.unsafe(nil)); end
+
+  def ip_based?(); end
+
+  def join(uri); end
+
+  def join!(uri); end
+
+  def merge(hash); end
+
+  def merge!(uri); end
+
+  def normalize(); end
+
+  def normalize!(); end
+
+  def normalized_authority(); end
+
+  def normalized_fragment(); end
+
+  def normalized_host(); end
+
+  def normalized_password(); end
+
+  def normalized_path(); end
+
+  def normalized_port(); end
+
+  def normalized_query(*flags); end
+
+  def normalized_scheme(); end
+
+  def normalized_site(); end
+
+  def normalized_user(); end
+
+  def normalized_userinfo(); end
+
+  def omit(*components); end
+
+  def omit!(*components); end
+
+  def origin(); end
+
+  def origin=(new_origin); end
+
+  def password(); end
+
+  def password=(new_password); end
+
+  def path(); end
+
+  def path=(new_path); end
+
+  def port(); end
+
+  def port=(new_port); end
+
+  def query(); end
+
+  def query=(new_query); end
+
+  def query_values(return_type=T.unsafe(nil)); end
+
+  def query_values=(new_query_values); end
+
+  def relative?(); end
+
+  def remove_composite_values(); end
+
+  def replace_self(uri); end
+
+  def request_uri(); end
+
+  def request_uri=(new_request_uri); end
+
+  def route_from(uri); end
+
+  def route_to(uri); end
+
+  def scheme(); end
+
+  def scheme=(new_scheme); end
+
+  def site(); end
+
+  def site=(new_site); end
+
+  def split_path(path); end
+
+  def tld(); end
+
+  def tld=(new_tld); end
+
+  def to_hash(); end
+
+  def to_str(); end
+
+  def user(); end
+
+  def user=(new_user); end
+
+  def userinfo(); end
+
+  def userinfo=(new_userinfo); end
+
+  def validate(); end
+  EMPTY_STR = ::T.let(nil, ::T.untyped)
+  NORMPATH = ::T.let(nil, ::T.untyped)
+  PARENT = ::T.let(nil, ::T.untyped)
+  PORT_MAPPING = ::T.let(nil, ::T.untyped)
+  RULE_2A = ::T.let(nil, ::T.untyped)
+  RULE_2B_2C = ::T.let(nil, ::T.untyped)
+  RULE_2D = ::T.let(nil, ::T.untyped)
+  RULE_PREFIXED_PARENT = ::T.let(nil, ::T.untyped)
+  SELF_REF = ::T.let(nil, ::T.untyped)
+  SEQUENCE_ENCODING_TABLE = ::T.let(nil, ::T.untyped)
+  SEQUENCE_UPCASED_PERCENT_ENCODING_TABLE = ::T.let(nil, ::T.untyped)
+  SLASH = ::T.let(nil, ::T.untyped)
+  URIREGEX = ::T.let(nil, ::T.untyped)
+end
+
+module Addressable::URI::CharacterClasses
+  ALPHA = ::T.let(nil, ::T.untyped)
+  AUTHORITY = ::T.let(nil, ::T.untyped)
+  DIGIT = ::T.let(nil, ::T.untyped)
+  FRAGMENT = ::T.let(nil, ::T.untyped)
+  GEN_DELIMS = ::T.let(nil, ::T.untyped)
+  HOST = ::T.let(nil, ::T.untyped)
+  PATH = ::T.let(nil, ::T.untyped)
+  PCHAR = ::T.let(nil, ::T.untyped)
+  QUERY = ::T.let(nil, ::T.untyped)
+  RESERVED = ::T.let(nil, ::T.untyped)
+  SCHEME = ::T.let(nil, ::T.untyped)
+  SUB_DELIMS = ::T.let(nil, ::T.untyped)
+  UNRESERVED = ::T.let(nil, ::T.untyped)
+end
+
+module Addressable::URI::CharacterClasses
+end
+
+class Addressable::URI::InvalidURIError
+end
+
+class Addressable::URI::InvalidURIError
+end
+
+class Addressable::URI
+  def self.convert_path(path); end
+
+  def self.encode(uri, return_type=T.unsafe(nil)); end
+
+  def self.encode_component(component, character_class=T.unsafe(nil), upcase_encoded=T.unsafe(nil)); end
+
+  def self.escape(uri, return_type=T.unsafe(nil)); end
+
+  def self.form_encode(form_values, sort=T.unsafe(nil)); end
+
+  def self.form_unencode(encoded_value); end
+
+  def self.heuristic_parse(uri, hints=T.unsafe(nil)); end
+
+  def self.ip_based_schemes(); end
+
+  def self.join(*uris); end
+
+  def self.normalize_component(component, character_class=T.unsafe(nil), leave_encoded=T.unsafe(nil)); end
+
+  def self.normalize_path(path); end
+
+  def self.normalized_encode(uri, return_type=T.unsafe(nil)); end
+
+  def self.parse(uri); end
+
+  def self.port_mapping(); end
+
+  def self.unencode(uri, return_type=T.unsafe(nil), leave_encoded=T.unsafe(nil)); end
+
+  def self.unencode_component(uri, return_type=T.unsafe(nil), leave_encoded=T.unsafe(nil)); end
+
+  def self.unescape(uri, return_type=T.unsafe(nil), leave_encoded=T.unsafe(nil)); end
+
+  def self.unescape_component(uri, return_type=T.unsafe(nil), leave_encoded=T.unsafe(nil)); end
+end
+
+module Addressable::VERSION
+  MAJOR = ::T.let(nil, ::T.untyped)
+  MINOR = ::T.let(nil, ::T.untyped)
+  STRING = ::T.let(nil, ::T.untyped)
+  TINY = ::T.let(nil, ::T.untyped)
+end
+
+module Addressable::VERSION
+end
+
+module Addressable
 end
 
 class Addrinfo
@@ -24459,6 +24674,14 @@ class BCrypt::Password
 end
 
 module BCrypt
+end
+
+module Base64Bp
+end
+
+module Base64Bp
+  extend ::Base64
+  def self.urlsafe_encode64(bin, padding:); end
 end
 
 class BasicObject
@@ -37965,6 +38188,14 @@ module GeneratedUrlHelpers
 
   def default_url_options=(obj); end
 
+  def graphiql_rails_path(*args); end
+
+  def graphiql_rails_url(*args); end
+
+  def graphql_path(*args); end
+
+  def graphql_url(*args); end
+
   def rails_info_path(*args); end
 
   def rails_info_properties_path(*args); end
@@ -38095,6 +38326,8040 @@ class GlobalID
   def self.find(gid, options=T.unsafe(nil)); end
 
   def self.parse(gid, options=T.unsafe(nil)); end
+end
+
+module GraphQL
+  BOOLEAN_TYPE = ::T.let(nil, ::T.untyped)
+  FLOAT_TYPE = ::T.let(nil, ::T.untyped)
+  ID_TYPE = ::T.let(nil, ::T.untyped)
+  INT_TYPE = ::T.let(nil, ::T.untyped)
+  STRING_TYPE = ::T.let(nil, ::T.untyped)
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+module GraphQL::Analysis
+end
+
+module GraphQL::Analysis::AST
+end
+
+class GraphQL::Analysis::AST::Analyzer
+  def analyze?(); end
+
+  def initialize(subject); end
+
+  def multiplex(); end
+
+  def on_enter_abstract_node(node, parent, visitor); end
+
+  def on_enter_argument(node, parent, visitor); end
+
+  def on_enter_directive(node, parent, visitor); end
+
+  def on_enter_document(node, parent, visitor); end
+
+  def on_enter_enum(node, parent, visitor); end
+
+  def on_enter_field(node, parent, visitor); end
+
+  def on_enter_fragment_spread(node, parent, visitor); end
+
+  def on_enter_inline_fragment(node, parent, visitor); end
+
+  def on_enter_input_object(node, parent, visitor); end
+
+  def on_enter_list_type(node, parent, visitor); end
+
+  def on_enter_non_null_type(node, parent, visitor); end
+
+  def on_enter_null_value(node, parent, visitor); end
+
+  def on_enter_operation_definition(node, parent, visitor); end
+
+  def on_enter_type_name(node, parent, visitor); end
+
+  def on_enter_variable_definition(node, parent, visitor); end
+
+  def on_enter_variable_identifier(node, parent, visitor); end
+
+  def on_leave_abstract_node(node, parent, visitor); end
+
+  def on_leave_argument(node, parent, visitor); end
+
+  def on_leave_directive(node, parent, visitor); end
+
+  def on_leave_document(node, parent, visitor); end
+
+  def on_leave_enum(node, parent, visitor); end
+
+  def on_leave_field(node, parent, visitor); end
+
+  def on_leave_fragment_spread(node, parent, visitor); end
+
+  def on_leave_inline_fragment(node, parent, visitor); end
+
+  def on_leave_input_object(node, parent, visitor); end
+
+  def on_leave_list_type(node, parent, visitor); end
+
+  def on_leave_non_null_type(node, parent, visitor); end
+
+  def on_leave_null_value(node, parent, visitor); end
+
+  def on_leave_operation_definition(node, parent, visitor); end
+
+  def on_leave_type_name(node, parent, visitor); end
+
+  def on_leave_variable_definition(node, parent, visitor); end
+
+  def on_leave_variable_identifier(node, parent, visitor); end
+
+  def query(); end
+
+  def result(); end
+
+  def subject(); end
+end
+
+class GraphQL::Analysis::AST::Analyzer
+end
+
+class GraphQL::Analysis::AST::FieldUsage
+  def initialize(query); end
+end
+
+class GraphQL::Analysis::AST::FieldUsage
+end
+
+class GraphQL::Analysis::AST::MaxQueryComplexity
+end
+
+class GraphQL::Analysis::AST::MaxQueryComplexity
+end
+
+class GraphQL::Analysis::AST::MaxQueryDepth
+end
+
+class GraphQL::Analysis::AST::MaxQueryDepth
+end
+
+class GraphQL::Analysis::AST::QueryComplexity
+  def initialize(query); end
+end
+
+class GraphQL::Analysis::AST::QueryComplexity::ScopedTypeComplexity
+  def field_definition(); end
+
+  def initialize(node, field_definition, query, response_path); end
+
+  def own_complexity(child_complexity); end
+
+  def query(); end
+
+  def response_path(); end
+
+  def scoped_children(); end
+
+  def terminal?(); end
+  HASH_CHILDREN = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Analysis::AST::QueryComplexity::ScopedTypeComplexity
+end
+
+class GraphQL::Analysis::AST::QueryComplexity
+end
+
+class GraphQL::Analysis::AST::QueryDepth
+  def initialize(query); end
+end
+
+class GraphQL::Analysis::AST::QueryDepth
+end
+
+class GraphQL::Analysis::AST::Visitor
+  def argument_definition(); end
+
+  def arguments_for(ast_node, field_definition); end
+
+  def directive_definition(); end
+
+  def field_definition(); end
+
+  def initialize(query:, analyzers:); end
+
+  def object_types(); end
+
+  def parent_type_definition(); end
+
+  def previous_argument_definition(); end
+
+  def previous_field_definition(); end
+
+  def query(); end
+
+  def response_path(); end
+
+  def skipping?(); end
+
+  def type_definition(); end
+
+  def visiting_fragment_definition?(); end
+end
+
+class GraphQL::Analysis::AST::Visitor
+end
+
+module GraphQL::Analysis::AST
+  def self.analysis_errors(results); end
+
+  def self.analyze_multiplex(multiplex, analyzers); end
+
+  def self.analyze_query(query, analyzers, multiplex_analyzers: T.unsafe(nil)); end
+
+  def self.use(schema_class); end
+end
+
+class GraphQL::Analysis::FieldUsage
+  def call(memo, visit_type, irep_node); end
+
+  def final_value(memo); end
+
+  def initial_value(query); end
+
+  def initialize(&block); end
+end
+
+class GraphQL::Analysis::FieldUsage
+end
+
+class GraphQL::Analysis::MaxQueryComplexity
+  def initialize(max_complexity); end
+end
+
+class GraphQL::Analysis::MaxQueryComplexity
+end
+
+class GraphQL::Analysis::MaxQueryDepth
+  def initialize(max_depth); end
+end
+
+class GraphQL::Analysis::MaxQueryDepth
+end
+
+class GraphQL::Analysis::QueryComplexity
+  def call(memo, visit_type, irep_node); end
+
+  def final_value(reduced_value); end
+
+  def initial_value(target); end
+
+  def initialize(&block); end
+end
+
+class GraphQL::Analysis::QueryComplexity::TypeComplexity
+  def max_possible_complexity(); end
+
+  def merge(type_defn, complexity); end
+end
+
+class GraphQL::Analysis::QueryComplexity::TypeComplexity
+end
+
+class GraphQL::Analysis::QueryComplexity
+end
+
+class GraphQL::Analysis::QueryDepth
+  def call(memo, visit_type, irep_node); end
+
+  def final_value(memo); end
+
+  def initial_value(query); end
+
+  def initialize(&block); end
+end
+
+class GraphQL::Analysis::QueryDepth
+end
+
+class GraphQL::Analysis::ReducerState
+  def call(visit_type, irep_node); end
+
+  def errors(); end
+
+  def errors=(errors); end
+
+  def finalize_reducer(); end
+
+  def initialize(reducer, query); end
+
+  def memo(); end
+
+  def memo=(memo); end
+
+  def reducer(); end
+end
+
+class GraphQL::Analysis::ReducerState
+end
+
+module GraphQL::Analysis
+  def self.analysis_errors(results); end
+
+  def self.analyze_multiplex(multiplex, analyzers); end
+
+  def self.analyze_query(query, analyzers, multiplex_states: T.unsafe(nil)); end
+
+  def self.reduce_node(irep_node, reducer_states); end
+
+  def self.visit_analyzers(visit_type, irep_node, reducer_states); end
+end
+
+class GraphQL::AnalysisError
+end
+
+class GraphQL::AnalysisError
+end
+
+class GraphQL::Argument
+  include ::GraphQL::Define::InstanceDefinable
+  def as(); end
+
+  def as=(as); end
+
+  def ast_node(); end
+
+  def ast_node=(ast_node); end
+
+  def default_value(); end
+
+  def default_value=(new_default_value); end
+
+  def default_value?(); end
+
+  def description(); end
+
+  def description=(description); end
+
+  def expose_as(); end
+
+  def graphql_name(); end
+
+  def keyword(); end
+
+  def method_access(); end
+
+  def method_access=(method_access); end
+
+  def method_access?(); end
+
+  def name(); end
+
+  def name=(name); end
+
+  def prepare(value, ctx); end
+
+  def prepare=(prepare_proc); end
+
+  def type(); end
+
+  def type=(new_input_type); end
+
+  def type_class(); end
+  NO_DEFAULT_VALUE = ::T.let(nil, ::T.untyped)
+end
+
+module GraphQL::Argument::DefaultPrepare
+end
+
+module GraphQL::Argument::DefaultPrepare
+  def self.call(value, ctx); end
+end
+
+class GraphQL::Argument
+  def self.deep_stringify(val); end
+
+  def self.from_dsl(name, type_or_argument=T.unsafe(nil), description=T.unsafe(nil), default_value: T.unsafe(nil), as: T.unsafe(nil), prepare: T.unsafe(nil), **kwargs, &block); end
+end
+
+module GraphQL::Authorization
+end
+
+module GraphQL::Authorization::Analyzer
+end
+
+module GraphQL::Authorization::Analyzer
+  def self.call(memo, visit_type, irep_node); end
+
+  def self.final_value(memo); end
+
+  def self.initial_value(query); end
+end
+
+class GraphQL::Authorization::InaccessibleFieldsError
+  def context(); end
+
+  def fields(); end
+
+  def initialize(fields:, irep_nodes:, context:); end
+
+  def irep_nodes(); end
+end
+
+class GraphQL::Authorization::InaccessibleFieldsError
+end
+
+module GraphQL::Authorization
+end
+
+class GraphQL::Backtrace
+  include ::Enumerable
+  def [](*args, &block); end
+
+  def each(*args, &block); end
+
+  def initialize(context, value: T.unsafe(nil)); end
+
+  def to_a(); end
+end
+
+module GraphQL::Backtrace::InspectResult
+end
+
+module GraphQL::Backtrace::InspectResult
+  def self.inspect_result(obj); end
+
+  def self.inspect_truncated(obj); end
+end
+
+class GraphQL::Backtrace::Table
+  def initialize(context, value:); end
+
+  def to_backtrace(); end
+
+  def to_table(); end
+  HEADERS = ::T.let(nil, ::T.untyped)
+  MAX_COL_WIDTH = ::T.let(nil, ::T.untyped)
+  MIN_COL_WIDTH = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Backtrace::Table
+end
+
+class GraphQL::Backtrace::TracedError
+  def context(); end
+
+  def graphql_backtrace(); end
+
+  def initialize(err, current_ctx); end
+  CAUSE_BACKTRACE_PREVIEW_LENGTH = ::T.let(nil, ::T.untyped)
+  MESSAGE_TEMPLATE = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Backtrace::TracedError
+end
+
+module GraphQL::Backtrace::Tracer
+end
+
+module GraphQL::Backtrace::Tracer
+  def self.trace(key, metadata); end
+end
+
+class GraphQL::Backtrace
+  extend ::Forwardable
+  def self.disable(); end
+
+  def self.enable(); end
+
+  def self.use(schema_defn); end
+end
+
+module GraphQL::BackwardsCompatibility
+end
+
+class GraphQL::BackwardsCompatibility::FirstArgumentsWrapper
+  def call(*args); end
+
+  def initialize(callable, old_arity); end
+end
+
+class GraphQL::BackwardsCompatibility::FirstArgumentsWrapper
+end
+
+class GraphQL::BackwardsCompatibility::LastArgumentsWrapper
+end
+
+class GraphQL::BackwardsCompatibility::LastArgumentsWrapper
+end
+
+module GraphQL::BackwardsCompatibility
+  def self.get_arity(callable); end
+
+  def self.wrap_arity(callable, from:, to:, name:, last: T.unsafe(nil)); end
+end
+
+class GraphQL::BaseType
+  include ::GraphQL::Define::NonNullWithBang
+  include ::GraphQL::Define::InstanceDefinable
+  include ::GraphQL::Relay::TypeExtensions
+  def ==(other); end
+
+  def ast_node(); end
+
+  def ast_node=(ast_node); end
+
+  def coerce_input(value, ctx=T.unsafe(nil)); end
+
+  def coerce_isolated_input(value); end
+
+  def coerce_isolated_result(value); end
+
+  def coerce_result(value, ctx); end
+
+  def default_relay=(default_relay); end
+
+  def default_relay?(); end
+
+  def default_scalar=(default_scalar); end
+
+  def default_scalar?(); end
+
+  def description(); end
+
+  def description=(description); end
+
+  def get_field(name); end
+
+  def graphql_definition(); end
+
+  def graphql_name(); end
+
+  def introspection=(introspection); end
+
+  def introspection?(); end
+
+  def list?(); end
+
+  def name(); end
+
+  def name=(name); end
+
+  def non_null?(); end
+
+  def resolve_type(value, ctx); end
+
+  def to_definition(schema, printer: T.unsafe(nil), **args); end
+
+  def to_list_type(); end
+
+  def to_non_null_type(); end
+
+  def to_type_signature(); end
+
+  def type_class(); end
+
+  def unwrap(); end
+
+  def valid_input?(value, ctx=T.unsafe(nil)); end
+
+  def valid_isolated_input?(value); end
+
+  def validate_input(value, ctx=T.unsafe(nil)); end
+
+  def validate_isolated_input(value); end
+end
+
+module GraphQL::BaseType::ModifiesAnotherType
+  def ==(other); end
+
+  def unwrap(); end
+end
+
+module GraphQL::BaseType::ModifiesAnotherType
+end
+
+class GraphQL::BaseType
+  def self.resolve_related_type(type_arg); end
+end
+
+class GraphQL::CoercionError
+  def extensions(); end
+
+  def extensions=(extensions); end
+
+  def initialize(message, extensions: T.unsafe(nil)); end
+end
+
+class GraphQL::CoercionError
+end
+
+module GraphQL::Compatibility
+end
+
+module GraphQL::Compatibility::ExecutionSpecification
+end
+
+module GraphQL::Compatibility::ExecutionSpecification::CounterSchema
+end
+
+module GraphQL::Compatibility::ExecutionSpecification::CounterSchema
+  def self.build(execution_strategy); end
+end
+
+module GraphQL::Compatibility::ExecutionSpecification::SpecificationSchema
+  BOGUS_NODE = ::T.let(nil, ::T.untyped)
+  DATA = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Compatibility::ExecutionSpecification::SpecificationSchema::CustomCollection
+  def each(&blk); end
+
+  def initialize(storage); end
+end
+
+class GraphQL::Compatibility::ExecutionSpecification::SpecificationSchema::CustomCollection
+end
+
+module GraphQL::Compatibility::ExecutionSpecification::SpecificationSchema::TestMiddleware
+end
+
+module GraphQL::Compatibility::ExecutionSpecification::SpecificationSchema::TestMiddleware
+  def self.call(parent_type, parent_object, field_definition, field_args, query_context, &next_middleware); end
+end
+
+module GraphQL::Compatibility::ExecutionSpecification::SpecificationSchema
+  def self.build(execution_strategy); end
+end
+
+module GraphQL::Compatibility::ExecutionSpecification
+  def self.build_suite(execution_strategy); end
+end
+
+module GraphQL::Compatibility::LazyExecutionSpecification
+end
+
+module GraphQL::Compatibility::LazyExecutionSpecification::LazySchema
+end
+
+module GraphQL::Compatibility::LazyExecutionSpecification::LazySchema::LazyInstrumentation
+end
+
+module GraphQL::Compatibility::LazyExecutionSpecification::LazySchema::LazyInstrumentation
+  def self.instrument(type, field); end
+end
+
+class GraphQL::Compatibility::LazyExecutionSpecification::LazySchema::LazyPush
+  def initialize(ctx, value); end
+
+  def push(); end
+
+  def value(); end
+end
+
+class GraphQL::Compatibility::LazyExecutionSpecification::LazySchema::LazyPush
+end
+
+class GraphQL::Compatibility::LazyExecutionSpecification::LazySchema::LazyPushCollection
+  def initialize(ctx, values); end
+
+  def push(); end
+
+  def value(); end
+end
+
+class GraphQL::Compatibility::LazyExecutionSpecification::LazySchema::LazyPushCollection
+end
+
+module GraphQL::Compatibility::LazyExecutionSpecification::LazySchema
+  def self.build(execution_strategy); end
+end
+
+module GraphQL::Compatibility::LazyExecutionSpecification
+  def self.build_suite(execution_strategy); end
+end
+
+module GraphQL::Compatibility::QueryParserSpecification
+  QUERY_STRING = ::T.let(nil, ::T.untyped)
+end
+
+module GraphQL::Compatibility::QueryParserSpecification::ParseErrorSpecification
+  def assert_raises_parse_error(query_string); end
+
+  def assert_rejects_character(char); end
+
+  def test_it_includes_line_and_column(); end
+
+  def test_it_rejects_bad_unicode(); end
+
+  def test_it_rejects_blank_queries(); end
+
+  def test_it_rejects_empty_inline_fragments(); end
+
+  def test_it_rejects_invalid_characters(); end
+
+  def test_it_rejects_unexpected_ends(); end
+
+  def test_it_rejects_unterminated_strings(); end
+
+  def test_it_restricts_on(); end
+end
+
+module GraphQL::Compatibility::QueryParserSpecification::ParseErrorSpecification
+end
+
+module GraphQL::Compatibility::QueryParserSpecification::QueryAssertions
+  def assert_valid_directive(directive); end
+
+  def assert_valid_field(field); end
+
+  def assert_valid_fragment(fragment_def); end
+
+  def assert_valid_fragment_spread(fragment_spread); end
+
+  def assert_valid_literal_argument(argument); end
+
+  def assert_valid_query(query); end
+
+  def assert_valid_typed_inline_fragment(inline_fragment); end
+
+  def assert_valid_typeless_inline_fragment(inline_fragment); end
+
+  def assert_valid_variable(variable); end
+
+  def assert_valid_variable_argument(argument); end
+end
+
+module GraphQL::Compatibility::QueryParserSpecification::QueryAssertions
+end
+
+module GraphQL::Compatibility::QueryParserSpecification
+  def self.build_suite(&block); end
+end
+
+module GraphQL::Compatibility::SchemaParserSpecification
+  SCHEMA_DEFINITION_STRING = ::T.let(nil, ::T.untyped)
+end
+
+module GraphQL::Compatibility::SchemaParserSpecification
+  def self.build_suite(&block); end
+end
+
+module GraphQL::Compatibility
+end
+
+module GraphQL::Define
+end
+
+module GraphQL::Define::AssignArgument
+end
+
+module GraphQL::Define::AssignArgument
+  def self.call(target, *args, **kwargs, &block); end
+end
+
+module GraphQL::Define::AssignConnection
+end
+
+module GraphQL::Define::AssignConnection
+  def self.call(type_defn, *field_args, max_page_size: T.unsafe(nil), **field_kwargs, &field_block); end
+end
+
+module GraphQL::Define::AssignEnumValue
+end
+
+module GraphQL::Define::AssignEnumValue
+  def self.call(enum_type, name, desc=T.unsafe(nil), deprecation_reason: T.unsafe(nil), value: T.unsafe(nil), &block); end
+end
+
+module GraphQL::Define::AssignGlobalIdField
+end
+
+module GraphQL::Define::AssignGlobalIdField
+  def self.call(type_defn, field_name); end
+end
+
+module GraphQL::Define::AssignMutationFunction
+end
+
+class GraphQL::Define::AssignMutationFunction::ResultProxy
+  def client_mutation_id(); end
+
+  def initialize(target, client_mutation_id); end
+  RUBYGEMS_ACTIVATION_MONITOR = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Define::AssignMutationFunction::ResultProxy
+end
+
+module GraphQL::Define::AssignMutationFunction
+  def self.call(target, function); end
+end
+
+module GraphQL::Define::AssignObjectField
+end
+
+module GraphQL::Define::AssignObjectField
+  def self.call(owner_type, name, type_or_field=T.unsafe(nil), desc=T.unsafe(nil), function: T.unsafe(nil), field: T.unsafe(nil), relay_mutation_function: T.unsafe(nil), **kwargs, &block); end
+end
+
+class GraphQL::Define::DefinedObjectProxy
+  def initialize(target); end
+
+  def method_missing(name, *args, &block); end
+
+  def target(); end
+
+  def types(); end
+
+  def use(plugin, **kwargs); end
+end
+
+class GraphQL::Define::DefinedObjectProxy
+  extend ::GraphQL::Ruby2Keywords
+end
+
+module GraphQL::Define::InstanceDefinable
+  def define(**kwargs, &block); end
+
+  def metadata(); end
+
+  def redefine(**kwargs, &block); end
+end
+
+module GraphQL::Define::InstanceDefinable
+  def self.included(base); end
+end
+
+class GraphQL::Define::NoDefinitionError
+end
+
+class GraphQL::Define::NoDefinitionError
+end
+
+module GraphQL::Define::NonNullWithBang
+  def !(); end
+end
+
+module GraphQL::Define::NonNullWithBang
+end
+
+class GraphQL::Define::TypeDefiner
+  include ::Singleton
+  def Boolean(); end
+
+  def Float(); end
+
+  def ID(); end
+
+  def Int(); end
+
+  def String(); end
+
+  def [](type); end
+end
+
+class GraphQL::Define::TypeDefiner
+  extend ::Singleton::SingletonClassMethods
+end
+
+module GraphQL::Define
+  def self.assign_metadata_key(key); end
+end
+
+module GraphQL::DeprecatedDSL
+  TYPE_CLASSES = ::T.let(nil, ::T.untyped)
+end
+
+module GraphQL::DeprecatedDSL::Methods
+  def !(); end
+end
+
+module GraphQL::DeprecatedDSL::Methods
+end
+
+module GraphQL::DeprecatedDSL
+  def self.activate(); end
+end
+
+module GraphQL::Dig
+  def dig(own_key, *rest_keys); end
+end
+
+module GraphQL::Dig
+end
+
+class GraphQL::Directive
+  include ::GraphQL::Define::InstanceDefinable
+  def arguments(); end
+
+  def arguments=(arguments); end
+
+  def arguments_class(); end
+
+  def arguments_class=(arguments_class); end
+
+  def ast_node(); end
+
+  def ast_node=(ast_node); end
+
+  def default_directive=(default_directive); end
+
+  def default_directive?(); end
+
+  def description(); end
+
+  def description=(description); end
+
+  def graphql_definition(); end
+
+  def graphql_name(); end
+
+  def locations(); end
+
+  def locations=(locations); end
+
+  def name(); end
+
+  def name=(name); end
+
+  def on_field?(); end
+
+  def on_fragment?(); end
+
+  def on_operation?(); end
+
+  def type_class(); end
+  ARGUMENT_DEFINITION = ::T.let(nil, ::T.untyped)
+  DeprecatedDirective = ::T.let(nil, ::T.untyped)
+  ENUM = ::T.let(nil, ::T.untyped)
+  ENUM_VALUE = ::T.let(nil, ::T.untyped)
+  FIELD = ::T.let(nil, ::T.untyped)
+  FIELD_DEFINITION = ::T.let(nil, ::T.untyped)
+  FRAGMENT_DEFINITION = ::T.let(nil, ::T.untyped)
+  FRAGMENT_SPREAD = ::T.let(nil, ::T.untyped)
+  INLINE_FRAGMENT = ::T.let(nil, ::T.untyped)
+  INPUT_FIELD_DEFINITION = ::T.let(nil, ::T.untyped)
+  INPUT_OBJECT = ::T.let(nil, ::T.untyped)
+  INTERFACE = ::T.let(nil, ::T.untyped)
+  IncludeDirective = ::T.let(nil, ::T.untyped)
+  LOCATIONS = ::T.let(nil, ::T.untyped)
+  LOCATION_DESCRIPTIONS = ::T.let(nil, ::T.untyped)
+  MUTATION = ::T.let(nil, ::T.untyped)
+  OBJECT = ::T.let(nil, ::T.untyped)
+  QUERY = ::T.let(nil, ::T.untyped)
+  SCALAR = ::T.let(nil, ::T.untyped)
+  SCHEMA = ::T.let(nil, ::T.untyped)
+  SUBSCRIPTION = ::T.let(nil, ::T.untyped)
+  SkipDirective = ::T.let(nil, ::T.untyped)
+  UNION = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Directive
+end
+
+class GraphQL::EnumType
+  def add_value(enum_value); end
+
+  def coerce_result(value, ctx=T.unsafe(nil)); end
+
+  def kind(); end
+
+  def values(); end
+
+  def values=(new_values); end
+end
+
+class GraphQL::EnumType::EnumValue
+  include ::GraphQL::Define::InstanceDefinable
+  def ast_node(); end
+
+  def ast_node=(ast_node); end
+
+  def deprecation_reason(); end
+
+  def deprecation_reason=(deprecation_reason); end
+
+  def description(); end
+
+  def description=(description); end
+
+  def graphql_name(); end
+
+  def name(); end
+
+  def name=(new_name); end
+
+  def type_class(); end
+
+  def value(); end
+
+  def value=(value); end
+  ATTRIBUTES = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::EnumType::EnumValue
+end
+
+class GraphQL::EnumType::UnresolvedValueError
+end
+
+class GraphQL::EnumType::UnresolvedValueError
+end
+
+class GraphQL::EnumType
+end
+
+class GraphQL::Error
+end
+
+class GraphQL::Error
+end
+
+module GraphQL::Execution
+end
+
+module GraphQL::Execution::DirectiveChecks
+  INCLUDE = ::T.let(nil, ::T.untyped)
+  SKIP = ::T.let(nil, ::T.untyped)
+end
+
+module GraphQL::Execution::DirectiveChecks
+  def self.include?(directive_ast_nodes, query); end
+end
+
+class GraphQL::Execution::Errors
+  def initialize(schema); end
+
+  def with_error_handling(ctx); end
+end
+
+class GraphQL::Execution::Errors::NullErrorHandler
+end
+
+class GraphQL::Execution::Errors::NullErrorHandler
+  def self.with_error_handling(_ctx); end
+end
+
+class GraphQL::Execution::Errors
+  def self.use(schema); end
+end
+
+class GraphQL::Execution::Execute
+  include ::GraphQL::Execution::Execute::ExecutionFunctions
+  def execute(ast_operation, root_type, query); end
+  PROPAGATE_NULL = ::T.let(nil, ::T.untyped)
+  SKIP = ::T.let(nil, ::T.untyped)
+end
+
+module GraphQL::Execution::Execute::ExecutionFunctions
+end
+
+module GraphQL::Execution::Execute::ExecutionFunctions
+  def self.continue_or_wait(raw_value, field_type, field_ctx); end
+
+  def self.continue_resolve_field(raw_value, field_type, field_ctx); end
+
+  def self.lazy_resolve_root_selection(result, query: T.unsafe(nil), multiplex: T.unsafe(nil)); end
+
+  def self.resolve_field(object, field_ctx); end
+
+  def self.resolve_root_selection(query); end
+
+  def self.resolve_selection(object, current_type, current_ctx, mutation: T.unsafe(nil)); end
+
+  def self.resolve_value(value, field_type, field_ctx); end
+end
+
+module GraphQL::Execution::Execute::FieldResolveStep
+end
+
+module GraphQL::Execution::Execute::FieldResolveStep
+  def self.call(_parent_type, parent_object, field_definition, field_args, context, _next=T.unsafe(nil)); end
+end
+
+class GraphQL::Execution::Execute::PropagateNull
+end
+
+class GraphQL::Execution::Execute::PropagateNull
+end
+
+class GraphQL::Execution::Execute::Skip
+end
+
+class GraphQL::Execution::Execute::Skip
+end
+
+class GraphQL::Execution::Execute
+  def self.begin_multiplex(_multiplex); end
+
+  def self.begin_query(query, _multiplex); end
+
+  def self.finish_multiplex(results, multiplex); end
+
+  def self.finish_query(query, _multiplex); end
+end
+
+module GraphQL::Execution::Flatten
+end
+
+module GraphQL::Execution::Flatten
+  def self.call(ctx); end
+end
+
+module GraphQL::Execution::Instrumentation
+end
+
+module GraphQL::Execution::Instrumentation
+  def self.apply_instrumenters(multiplex); end
+end
+
+class GraphQL::Execution::Interpreter
+  def evaluate(query); end
+
+  def execute(_operation, _root_type, query); end
+
+  def sync_lazies(query: T.unsafe(nil), multiplex: T.unsafe(nil)); end
+end
+
+class GraphQL::Execution::Interpreter::ArgumentsCache
+  def fetch(ast_node, argument_owner, parent_object); end
+
+  def initialize(query); end
+  NO_VALUE_GIVEN = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Execution::Interpreter::ArgumentsCache
+end
+
+class GraphQL::Execution::Interpreter::ExecutionErrors
+  def add(err_or_msg); end
+
+  def initialize(ctx, ast_node, path); end
+end
+
+class GraphQL::Execution::Interpreter::ExecutionErrors
+end
+
+module GraphQL::Execution::Interpreter::HandlesRawValue
+  def raw_value(obj); end
+end
+
+module GraphQL::Execution::Interpreter::HandlesRawValue
+end
+
+class GraphQL::Execution::Interpreter::HashResponse
+  def final_value(); end
+
+  def write(path, value); end
+end
+
+class GraphQL::Execution::Interpreter::HashResponse
+end
+
+class GraphQL::Execution::Interpreter::ListResultFailedError
+  def initialize(value:, path:, field:); end
+end
+
+class GraphQL::Execution::Interpreter::ListResultFailedError
+end
+
+class GraphQL::Execution::Interpreter::RawValue
+  def initialize(obj=T.unsafe(nil)); end
+
+  def resolve(); end
+end
+
+class GraphQL::Execution::Interpreter::RawValue
+end
+
+module GraphQL::Execution::Interpreter::Resolve
+end
+
+module GraphQL::Execution::Interpreter::Resolve
+  def self.resolve(results); end
+
+  def self.resolve_all(results); end
+end
+
+class GraphQL::Execution::Interpreter::Runtime
+  def add_dead_path(path); end
+
+  def after_lazy(lazy_obj, owner:, field:, path:, scoped_context:, owner_object:, arguments:, eager: T.unsafe(nil), trace: T.unsafe(nil)); end
+
+  def arguments(graphql_object, arg_owner, ast_node); end
+
+  def authorized_new(type, value, context, path); end
+
+  def context(); end
+
+  def continue_field(path, value, field, type, ast_node, next_selections, is_non_null, owner_object, arguments); end
+
+  def continue_value(path, value, field, is_non_null, ast_node); end
+
+  def dead_path?(path); end
+
+  def directives_include?(node, graphql_object, parent_type); end
+
+  def evaluate_selections(path, scoped_context, owner_object, owner_type, selections, root_operation_type: T.unsafe(nil)); end
+
+  def final_value(); end
+
+  def gather_selections(owner_object, owner_type, selections, selections_by_name); end
+
+  def initialize(query:, response:); end
+
+  def query(); end
+
+  def resolve_type(type, value, path); end
+
+  def resolve_with_directives(object, ast_node); end
+
+  def run_directive(object, ast_node, idx); end
+
+  def run_eager(); end
+
+  def schema(); end
+
+  def set_type_at_path(path, type); end
+
+  def type_at(path); end
+
+  def write_execution_errors_in_response(path, errors); end
+
+  def write_in_response(path, value); end
+
+  def write_invalid_null_in_response(path, invalid_null_error); end
+  HALT = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Execution::Interpreter::Runtime
+end
+
+class GraphQL::Execution::Interpreter
+  def self.begin_multiplex(multiplex); end
+
+  def self.begin_query(query, multiplex); end
+
+  def self.finish_multiplex(_results, multiplex); end
+
+  def self.finish_query(query, _multiplex); end
+
+  def self.use(schema_class); end
+end
+
+class GraphQL::Execution::Lazy
+  def field(); end
+
+  def initialize(path: T.unsafe(nil), field: T.unsafe(nil), &get_value_func); end
+
+  def path(); end
+
+  def value(); end
+  NullResult = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Execution::Lazy::LazyMethodMap
+  def each(&blk); end
+
+  def get(value); end
+
+  def initialize(use_concurrent: T.unsafe(nil)); end
+
+  def set(lazy_class, lazy_value_method); end
+
+  def storage(); end
+end
+
+class GraphQL::Execution::Lazy::LazyMethodMap::ConcurrentishMap
+  def []=(key, value); end
+
+  def compute_if_absent(key); end
+
+  def copy_storage(); end
+
+  def each_pair(*args, &block); end
+
+  def size(*args, &block); end
+end
+
+class GraphQL::Execution::Lazy::LazyMethodMap::ConcurrentishMap
+  extend ::Forwardable
+end
+
+class GraphQL::Execution::Lazy::LazyMethodMap
+end
+
+module GraphQL::Execution::Lazy::Resolve
+end
+
+module GraphQL::Execution::Lazy::Resolve::NullAccumulator
+end
+
+module GraphQL::Execution::Lazy::Resolve::NullAccumulator
+  def self.<<(item); end
+
+  def self.empty?(); end
+end
+
+module GraphQL::Execution::Lazy::Resolve
+  def self.deep_sync(val); end
+
+  def self.each_lazy(acc, value); end
+
+  def self.resolve(value); end
+
+  def self.resolve_in_place(value); end
+end
+
+class GraphQL::Execution::Lazy
+  def self.all(lazies); end
+
+  def self.resolve(val); end
+end
+
+class GraphQL::Execution::Lookahead
+  def arguments(); end
+
+  def ast_nodes(); end
+
+  def field(); end
+
+  def initialize(query:, ast_nodes:, field: T.unsafe(nil), root_type: T.unsafe(nil), owner_type: T.unsafe(nil)); end
+
+  def name(); end
+
+  def owner_type(); end
+
+  def selected?(); end
+
+  def selection(field_name, selected_type: T.unsafe(nil), arguments: T.unsafe(nil)); end
+
+  def selections(arguments: T.unsafe(nil)); end
+
+  def selects?(field_name, arguments: T.unsafe(nil)); end
+  NULL_LOOKAHEAD = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Execution::Lookahead::NullLookahead
+  def initialize(); end
+
+  def selection(*_); end
+
+  def selections(*_); end
+
+  def selects?(*_); end
+end
+
+class GraphQL::Execution::Lookahead::NullLookahead
+end
+
+class GraphQL::Execution::Lookahead
+end
+
+class GraphQL::Execution::Multiplex
+  include ::GraphQL::Tracing::Traceable
+  def context(); end
+
+  def initialize(schema:, queries:, context:, max_complexity:); end
+
+  def max_complexity(); end
+
+  def queries(); end
+
+  def schema(); end
+  NO_OPERATION = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Execution::Multiplex
+  def self.run_all(schema, query_options, **kwargs); end
+
+  def self.run_queries(schema, queries, context: T.unsafe(nil), max_complexity: T.unsafe(nil)); end
+end
+
+module GraphQL::Execution::Typecast
+end
+
+module GraphQL::Execution::Typecast
+  def self.subtype?(parent_type, child_type); end
+end
+
+module GraphQL::Execution
+end
+
+class GraphQL::ExecutionError
+  def ast_node(); end
+
+  def ast_node=(ast_node); end
+
+  def extensions(); end
+
+  def extensions=(extensions); end
+
+  def initialize(message, ast_node: T.unsafe(nil), options: T.unsafe(nil), extensions: T.unsafe(nil)); end
+
+  def options(); end
+
+  def options=(options); end
+
+  def path(); end
+
+  def path=(path); end
+
+  def to_h(); end
+end
+
+class GraphQL::ExecutionError
+end
+
+class GraphQL::Field
+  include ::GraphQL::Define::InstanceDefinable
+  def arguments(); end
+
+  def arguments=(arguments); end
+
+  def arguments_class(); end
+
+  def arguments_class=(arguments_class); end
+
+  def ast_node(); end
+
+  def ast_node=(ast_node); end
+
+  def complexity(); end
+
+  def complexity=(complexity); end
+
+  def connection=(connection); end
+
+  def connection?(); end
+
+  def connection_max_page_size(); end
+
+  def connection_max_page_size=(connection_max_page_size); end
+
+  def deprecation_reason(); end
+
+  def deprecation_reason=(deprecation_reason); end
+
+  def description(); end
+
+  def description=(description); end
+
+  def edge_class(); end
+
+  def edge_class=(edge_class); end
+
+  def edges?(); end
+
+  def function(); end
+
+  def function=(function); end
+
+  def graphql_definition(); end
+
+  def graphql_name(); end
+
+  def hash_key(); end
+
+  def hash_key=(new_hash_key); end
+
+  def introspection=(introspection); end
+
+  def introspection?(); end
+
+  def lazy_resolve(obj, args, ctx); end
+
+  def lazy_resolve=(new_lazy_resolve_proc); end
+
+  def lazy_resolve_proc(); end
+
+  def mutation(); end
+
+  def mutation=(mutation); end
+
+  def name(); end
+
+  def name=(new_name); end
+
+  def prepare_lazy(obj, args, ctx); end
+
+  def property(); end
+
+  def property=(new_property); end
+
+  def relay_node_field(); end
+
+  def relay_node_field=(relay_node_field); end
+
+  def relay_nodes_field(); end
+
+  def relay_nodes_field=(relay_nodes_field); end
+
+  def resolve(object, arguments, context); end
+
+  def resolve=(new_resolve_proc); end
+
+  def resolve_proc(); end
+
+  def subscription_scope(); end
+
+  def subscription_scope=(subscription_scope); end
+
+  def trace(); end
+
+  def trace=(trace); end
+
+  def type(); end
+
+  def type=(new_return_type); end
+
+  def type_class(); end
+end
+
+module GraphQL::Field::DefaultLazyResolve
+end
+
+module GraphQL::Field::DefaultLazyResolve
+  def self.call(obj, args, ctx); end
+end
+
+module GraphQL::Field::Resolve
+end
+
+class GraphQL::Field::Resolve::BuiltInResolve
+end
+
+class GraphQL::Field::Resolve::BuiltInResolve
+end
+
+class GraphQL::Field::Resolve::HashKeyResolve
+  def call(obj, args, ctx); end
+
+  def initialize(hash_key); end
+end
+
+class GraphQL::Field::Resolve::HashKeyResolve
+end
+
+class GraphQL::Field::Resolve::MethodResolve
+  def call(obj, args, ctx); end
+
+  def initialize(field); end
+end
+
+class GraphQL::Field::Resolve::MethodResolve
+end
+
+class GraphQL::Field::Resolve::NameResolve
+  def call(obj, args, ctx); end
+
+  def initialize(field); end
+end
+
+class GraphQL::Field::Resolve::NameResolve
+end
+
+module GraphQL::Field::Resolve
+  def self.create_proc(field); end
+end
+
+class GraphQL::Field
+end
+
+class GraphQL::Filter
+  def call(member, ctx); end
+
+  def initialize(only: T.unsafe(nil), except: T.unsafe(nil)); end
+
+  def merge(only: T.unsafe(nil), except: T.unsafe(nil)); end
+end
+
+class GraphQL::Filter::MergedExcept
+end
+
+class GraphQL::Filter::MergedExcept
+end
+
+class GraphQL::Filter::MergedOnly
+  def call(member, ctx); end
+
+  def initialize(first, second); end
+end
+
+class GraphQL::Filter::MergedOnly
+  def self.build(onlies); end
+end
+
+class GraphQL::Filter
+end
+
+class GraphQL::Function
+  def arguments(); end
+
+  def call(obj, args, ctx); end
+
+  def complexity(); end
+
+  def deprecation_reason(); end
+
+  def description(); end
+
+  def type(); end
+end
+
+class GraphQL::Function
+  def self.argument(*args, **kwargs, &block); end
+
+  def self.arguments(); end
+
+  def self.build_field(function); end
+
+  def self.complexity(new_value=T.unsafe(nil)); end
+
+  def self.deprecation_reason(new_value=T.unsafe(nil)); end
+
+  def self.description(new_value=T.unsafe(nil)); end
+
+  def self.type(premade_type=T.unsafe(nil), &block); end
+
+  def self.types(); end
+end
+
+class GraphQL::InputObjectType
+  def arguments(); end
+
+  def arguments=(arguments); end
+
+  def arguments_class(); end
+
+  def arguments_class=(arguments_class); end
+
+  def coerce_result(value, ctx=T.unsafe(nil)); end
+
+  def input_fields(); end
+
+  def kind(); end
+
+  def mutation(); end
+
+  def mutation=(mutation); end
+  INVALID_OBJECT_MESSAGE = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::InputObjectType
+end
+
+class GraphQL::IntegerEncodingError
+  def initialize(value); end
+
+  def integer_value(); end
+end
+
+class GraphQL::IntegerEncodingError
+end
+
+class GraphQL::InterfaceType
+  def all_fields(); end
+
+  def fields(); end
+
+  def fields=(fields); end
+
+  def get_field(field_name); end
+
+  def get_possible_type(type_name, ctx); end
+
+  def kind(); end
+
+  def orphan_types(); end
+
+  def orphan_types=(orphan_types); end
+
+  def possible_type?(type, ctx); end
+
+  def resolve_type=(resolve_type_callable); end
+
+  def resolve_type_proc(); end
+
+  def resolve_type_proc=(resolve_type_proc); end
+
+  def type_membership_class(); end
+
+  def type_membership_class=(type_membership_class); end
+end
+
+class GraphQL::InterfaceType
+end
+
+module GraphQL::InternalRepresentation
+end
+
+class GraphQL::InternalRepresentation::Document
+  def [](key); end
+
+  def each(&block); end
+
+  def fragment_definitions(); end
+
+  def operation_definitions(); end
+end
+
+class GraphQL::InternalRepresentation::Document
+end
+
+class GraphQL::InternalRepresentation::Node
+  def ==(other); end
+
+  def arguments(); end
+
+  def ast_node(); end
+
+  def ast_nodes(); end
+
+  def deep_merge_node(new_parent, scope: T.unsafe(nil), merge_self: T.unsafe(nil)); end
+
+  def definition(); end
+
+  def definition_name(); end
+
+  def definitions(); end
+
+  def initialize(name:, owner_type:, query:, return_type:, parent:, ast_nodes: T.unsafe(nil), definitions: T.unsafe(nil)); end
+
+  def name(); end
+
+  def owner_type(); end
+
+  def owner_type=(owner_type); end
+
+  def parent(); end
+
+  def parent=(parent); end
+
+  def query(); end
+
+  def return_type(); end
+
+  def scoped_children(); end
+
+  def subscription_topic(); end
+
+  def typed_children(); end
+  DEFAULT_TYPED_CHILDREN = ::T.let(nil, ::T.untyped)
+  NO_TYPED_CHILDREN = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::InternalRepresentation::Node
+end
+
+module GraphQL::InternalRepresentation::Print
+end
+
+module GraphQL::InternalRepresentation::Print
+  def self.print(schema, query_string); end
+
+  def self.print_node(node, indent: T.unsafe(nil)); end
+end
+
+module GraphQL::InternalRepresentation::Rewrite
+  include ::GraphQL::Language
+  def initialize(*_); end
+
+  def on_field(ast_node, ast_parent); end
+
+  def on_fragment_definition(ast_node, parent); end
+
+  def on_fragment_spread(ast_node, ast_parent); end
+
+  def on_inline_fragment(node, parent); end
+
+  def on_operation_definition(ast_node, parent); end
+
+  def operations(); end
+
+  def push_root_node(ast_node, definitions); end
+
+  def rewrite_document(); end
+
+  def skip?(ast_node); end
+  NO_DIRECTIVES = ::T.let(nil, ::T.untyped)
+end
+
+module GraphQL::InternalRepresentation::Rewrite
+end
+
+class GraphQL::InternalRepresentation::Scope
+  def each(&blk); end
+
+  def enter(other_type_defn); end
+
+  def initialize(query, type_defn); end
+  NO_TYPES = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::InternalRepresentation::Scope
+end
+
+module GraphQL::InternalRepresentation::Visit
+end
+
+module GraphQL::InternalRepresentation::Visit
+  def self.each_node(node); end
+
+  def self.visit_each_node(operations, handlers); end
+end
+
+module GraphQL::InternalRepresentation
+end
+
+module GraphQL::Introspection
+  INTROSPECTION_QUERY = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Introspection::BaseObject
+end
+
+class GraphQL::Introspection::BaseObject
+end
+
+class GraphQL::Introspection::DirectiveLocationEnum
+end
+
+class GraphQL::Introspection::DirectiveLocationEnum
+end
+
+class GraphQL::Introspection::DirectiveType
+  def args(); end
+end
+
+class GraphQL::Introspection::DirectiveType
+end
+
+class GraphQL::Introspection::DynamicFields
+  def __typename(irep_node: T.unsafe(nil)); end
+end
+
+class GraphQL::Introspection::DynamicFields
+end
+
+class GraphQL::Introspection::EntryPoints
+  def __schema(); end
+
+  def __type(name:); end
+end
+
+class GraphQL::Introspection::EntryPoints
+end
+
+class GraphQL::Introspection::EnumValueType
+  def is_deprecated(); end
+
+  def name(); end
+end
+
+class GraphQL::Introspection::EnumValueType
+end
+
+class GraphQL::Introspection::FieldType
+  def args(); end
+
+  def is_deprecated(); end
+end
+
+class GraphQL::Introspection::FieldType
+end
+
+class GraphQL::Introspection::InputValueType
+  def default_value(); end
+end
+
+class GraphQL::Introspection::InputValueType
+end
+
+class GraphQL::Introspection::SchemaType
+  def directives(); end
+
+  def mutation_type(); end
+
+  def query_type(); end
+
+  def subscription_type(); end
+
+  def types(); end
+end
+
+class GraphQL::Introspection::SchemaType
+end
+
+class GraphQL::Introspection::TypeKindEnum
+end
+
+class GraphQL::Introspection::TypeKindEnum
+end
+
+class GraphQL::Introspection::TypeType
+  def enum_values(include_deprecated:); end
+
+  def fields(include_deprecated:); end
+
+  def input_fields(); end
+
+  def interfaces(); end
+
+  def kind(); end
+
+  def name(); end
+
+  def of_type(); end
+
+  def possible_types(); end
+end
+
+class GraphQL::Introspection::TypeType
+end
+
+module GraphQL::Introspection
+end
+
+class GraphQL::InvalidNameError
+  def initialize(name, valid_regex); end
+
+  def name(); end
+
+  def valid_regex(); end
+end
+
+class GraphQL::InvalidNameError
+end
+
+class GraphQL::InvalidNullError
+  def field(); end
+
+  def initialize(parent_type, field, value); end
+
+  def parent_error?(); end
+
+  def parent_type(); end
+
+  def to_h(); end
+
+  def value(); end
+end
+
+class GraphQL::InvalidNullError
+end
+
+module GraphQL::Language
+end
+
+module GraphQL::Language::BlockString
+end
+
+module GraphQL::Language::BlockString
+  def self.break_line(line, length); end
+
+  def self.print(str, indent: T.unsafe(nil)); end
+
+  def self.trim_whitespace(str); end
+end
+
+module GraphQL::Language::DefinitionSlice
+  def slice(document, name); end
+end
+
+class GraphQL::Language::DefinitionSlice::DependencyVisitor
+  def initialize(doc, definitions, names); end
+end
+
+class GraphQL::Language::DefinitionSlice::DependencyVisitor
+  def self.find_definition_dependencies(definitions, name, names); end
+end
+
+module GraphQL::Language::DefinitionSlice
+  extend ::GraphQL::Language::DefinitionSlice
+end
+
+class GraphQL::Language::DocumentFromSchemaDefinition
+  def build_argument_node(argument); end
+
+  def build_argument_nodes(arguments); end
+
+  def build_default_value(default_value, type); end
+
+  def build_definition_nodes(); end
+
+  def build_directive_location_node(location); end
+
+  def build_directive_location_nodes(locations); end
+
+  def build_directive_node(directive); end
+
+  def build_directive_nodes(directives); end
+
+  def build_enum_type_node(enum_type); end
+
+  def build_enum_value_node(enum_value); end
+
+  def build_field_node(field); end
+
+  def build_field_nodes(fields); end
+
+  def build_input_object_node(input_object); end
+
+  def build_interface_type_node(interface_type); end
+
+  def build_object_type_node(object_type); end
+
+  def build_scalar_type_node(scalar_type); end
+
+  def build_schema_node(); end
+
+  def build_type_definition_node(type); end
+
+  def build_type_definition_nodes(types); end
+
+  def build_type_name_node(type); end
+
+  def build_union_type_node(union_type); end
+
+  def document(); end
+
+  def initialize(schema, context: T.unsafe(nil), only: T.unsafe(nil), except: T.unsafe(nil), include_introspection_types: T.unsafe(nil), include_built_in_directives: T.unsafe(nil), include_built_in_scalars: T.unsafe(nil), always_include_schema: T.unsafe(nil)); end
+end
+
+class GraphQL::Language::DocumentFromSchemaDefinition
+end
+
+module GraphQL::Language::Generation
+  def generate(node, indent: T.unsafe(nil), printer: T.unsafe(nil)); end
+end
+
+module GraphQL::Language::Generation
+  extend ::GraphQL::Language::Generation
+end
+
+module GraphQL::Language::Lexer
+  ESCAPES = ::T.let(nil, ::T.untyped)
+  ESCAPES_REPLACE = ::T.let(nil, ::T.untyped)
+  PACK_DIRECTIVE = ::T.let(nil, ::T.untyped)
+  UTF_8 = ::T.let(nil, ::T.untyped)
+  UTF_8_ENCODING = ::T.let(nil, ::T.untyped)
+  UTF_8_REPLACE = ::T.let(nil, ::T.untyped)
+  VALID_STRING = ::T.let(nil, ::T.untyped)
+end
+
+module GraphQL::Language::Lexer
+  def self.emit(token_name, ts, te, meta, token_value=T.unsafe(nil)); end
+
+  def self.emit_string(ts, te, meta, block:); end
+
+  def self.graphql_lexer_en_main(); end
+
+  def self.graphql_lexer_en_main=(graphql_lexer_en_main); end
+
+  def self.graphql_lexer_en_str(); end
+
+  def self.graphql_lexer_en_str=(graphql_lexer_en_str); end
+
+  def self.graphql_lexer_error(); end
+
+  def self.graphql_lexer_error=(graphql_lexer_error); end
+
+  def self.graphql_lexer_first_final(); end
+
+  def self.graphql_lexer_first_final=(graphql_lexer_first_final); end
+
+  def self.graphql_lexer_start(); end
+
+  def self.graphql_lexer_start=(graphql_lexer_start); end
+
+  def self.record_comment(ts, te, meta); end
+
+  def self.replace_escaped_characters_in_place(raw_string); end
+
+  def self.run_lexer(query_string); end
+
+  def self.tokenize(query_string); end
+end
+
+module GraphQL::Language::Nodes
+end
+
+class GraphQL::Language::Nodes::AbstractNode
+  def ==(other); end
+
+  def children(); end
+
+  def children_method_name(); end
+
+  def col(); end
+
+  def delete_child(previous_child); end
+
+  def filename(); end
+
+  def initialize(options=T.unsafe(nil)); end
+
+  def line(); end
+
+  def merge(new_options); end
+
+  def merge!(new_options); end
+
+  def position(); end
+
+  def replace_child(previous_child, new_child); end
+
+  def scalars(); end
+
+  def to_query_string(printer: T.unsafe(nil)); end
+  NO_CHILDREN = ::T.let(nil, ::T.untyped)
+end
+
+module GraphQL::Language::Nodes::AbstractNode::DefinitionNode
+  def definition_line(); end
+
+  def initialize(options=T.unsafe(nil)); end
+end
+
+module GraphQL::Language::Nodes::AbstractNode::DefinitionNode
+end
+
+class GraphQL::Language::Nodes::AbstractNode
+  def self.inherited(child_class); end
+end
+
+class GraphQL::Language::Nodes::Argument
+  def initialize_node(name: T.unsafe(nil), value: T.unsafe(nil)); end
+
+  def name(); end
+
+  def value(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::Argument
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::Directive
+  def arguments(); end
+
+  def initialize_node(name: T.unsafe(nil), arguments: T.unsafe(nil)); end
+
+  def merge_argument(node_opts); end
+
+  def name(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::Directive
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::DirectiveDefinition
+  include ::GraphQL::Language::Nodes::AbstractNode::DefinitionNode
+  def arguments(); end
+
+  def description(); end
+
+  def initialize_node(name: T.unsafe(nil), description: T.unsafe(nil), locations: T.unsafe(nil), arguments: T.unsafe(nil)); end
+
+  def locations(); end
+
+  def merge_argument(node_opts); end
+
+  def merge_location(node_opts); end
+
+  def name(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::DirectiveDefinition
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::DirectiveLocation
+end
+
+class GraphQL::Language::Nodes::DirectiveLocation
+end
+
+class GraphQL::Language::Nodes::Document
+  def definitions(); end
+
+  def initialize_node(definitions: T.unsafe(nil)); end
+
+  def slice_definition(name); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::Document
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::Enum
+end
+
+class GraphQL::Language::Nodes::Enum
+end
+
+class GraphQL::Language::Nodes::EnumTypeDefinition
+  include ::GraphQL::Language::Nodes::AbstractNode::DefinitionNode
+  def description(); end
+
+  def directives(); end
+
+  def initialize_node(name: T.unsafe(nil), description: T.unsafe(nil), directives: T.unsafe(nil), values: T.unsafe(nil)); end
+
+  def merge_directive(node_opts); end
+
+  def merge_value(node_opts); end
+
+  def name(); end
+
+  def values(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::EnumTypeDefinition
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::EnumTypeExtension
+  def directives(); end
+
+  def initialize_node(name: T.unsafe(nil), directives: T.unsafe(nil), values: T.unsafe(nil)); end
+
+  def merge_directive(node_opts); end
+
+  def merge_value(node_opts); end
+
+  def name(); end
+
+  def values(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::EnumTypeExtension
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::EnumValueDefinition
+  include ::GraphQL::Language::Nodes::AbstractNode::DefinitionNode
+  def description(); end
+
+  def directives(); end
+
+  def initialize_node(name: T.unsafe(nil), description: T.unsafe(nil), directives: T.unsafe(nil)); end
+
+  def merge_directive(node_opts); end
+
+  def name(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::EnumValueDefinition
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::Field
+  def alias(); end
+
+  def arguments(); end
+
+  def directives(); end
+
+  def initialize_node(attributes); end
+
+  def merge_argument(node_opts); end
+
+  def merge_directive(node_opts); end
+
+  def merge_selection(node_opts); end
+
+  def name(); end
+
+  def selections(); end
+
+  def visit_method(); end
+  NONE = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Language::Nodes::Field
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::FieldDefinition
+  include ::GraphQL::Language::Nodes::AbstractNode::DefinitionNode
+  def arguments(); end
+
+  def description(); end
+
+  def directives(); end
+
+  def fields(); end
+
+  def initialize_node(name: T.unsafe(nil), type: T.unsafe(nil), description: T.unsafe(nil), directives: T.unsafe(nil), arguments: T.unsafe(nil)); end
+
+  def merge_argument(node_opts); end
+
+  def merge_directive(node_opts); end
+
+  def name(); end
+
+  def type(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::FieldDefinition
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::FragmentDefinition
+  def directives(); end
+
+  def initialize_node(name: T.unsafe(nil), type: T.unsafe(nil), directives: T.unsafe(nil), selections: T.unsafe(nil)); end
+
+  def merge_directive(node_opts); end
+
+  def merge_selection(node_opts); end
+
+  def name(); end
+
+  def selections(); end
+
+  def type(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::FragmentDefinition
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::FragmentSpread
+  def directives(); end
+
+  def initialize_node(name: T.unsafe(nil), directives: T.unsafe(nil)); end
+
+  def merge_directive(node_opts); end
+
+  def name(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::FragmentSpread
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::InlineFragment
+  def directives(); end
+
+  def initialize_node(type: T.unsafe(nil), selections: T.unsafe(nil), directives: T.unsafe(nil)); end
+
+  def merge_directive(node_opts); end
+
+  def merge_selection(node_opts); end
+
+  def selections(); end
+
+  def type(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::InlineFragment
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::InputObject
+  def arguments(); end
+
+  def initialize_node(arguments: T.unsafe(nil)); end
+
+  def merge_argument(node_opts); end
+
+  def to_h(options=T.unsafe(nil)); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::InputObject
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::InputObjectTypeDefinition
+  include ::GraphQL::Language::Nodes::AbstractNode::DefinitionNode
+  def description(); end
+
+  def directives(); end
+
+  def fields(); end
+
+  def initialize_node(name: T.unsafe(nil), description: T.unsafe(nil), directives: T.unsafe(nil), fields: T.unsafe(nil)); end
+
+  def merge_directive(node_opts); end
+
+  def merge_field(node_opts); end
+
+  def name(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::InputObjectTypeDefinition
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::InputObjectTypeExtension
+  def directives(); end
+
+  def fields(); end
+
+  def initialize_node(name: T.unsafe(nil), directives: T.unsafe(nil), fields: T.unsafe(nil)); end
+
+  def merge_directive(node_opts); end
+
+  def merge_field(node_opts); end
+
+  def name(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::InputObjectTypeExtension
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::InputValueDefinition
+  include ::GraphQL::Language::Nodes::AbstractNode::DefinitionNode
+  def default_value(); end
+
+  def description(); end
+
+  def directives(); end
+
+  def initialize_node(name: T.unsafe(nil), type: T.unsafe(nil), default_value: T.unsafe(nil), description: T.unsafe(nil), directives: T.unsafe(nil)); end
+
+  def merge_directive(node_opts); end
+
+  def name(); end
+
+  def type(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::InputValueDefinition
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::InterfaceTypeDefinition
+  include ::GraphQL::Language::Nodes::AbstractNode::DefinitionNode
+  def description(); end
+
+  def directives(); end
+
+  def fields(); end
+
+  def initialize_node(name: T.unsafe(nil), description: T.unsafe(nil), directives: T.unsafe(nil), fields: T.unsafe(nil)); end
+
+  def merge_directive(node_opts); end
+
+  def merge_field(node_opts); end
+
+  def name(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::InterfaceTypeDefinition
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::InterfaceTypeExtension
+  def directives(); end
+
+  def fields(); end
+
+  def initialize_node(name: T.unsafe(nil), directives: T.unsafe(nil), fields: T.unsafe(nil)); end
+
+  def merge_directive(node_opts); end
+
+  def merge_field(node_opts); end
+
+  def name(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::InterfaceTypeExtension
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::ListType
+end
+
+class GraphQL::Language::Nodes::ListType
+end
+
+class GraphQL::Language::Nodes::NameOnlyNode
+  def initialize_node(name: T.unsafe(nil)); end
+
+  def name(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::NameOnlyNode
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::NonNullType
+end
+
+class GraphQL::Language::Nodes::NonNullType
+end
+
+class GraphQL::Language::Nodes::NullValue
+end
+
+class GraphQL::Language::Nodes::NullValue
+end
+
+class GraphQL::Language::Nodes::ObjectTypeDefinition
+  include ::GraphQL::Language::Nodes::AbstractNode::DefinitionNode
+  def description(); end
+
+  def directives(); end
+
+  def fields(); end
+
+  def initialize_node(name: T.unsafe(nil), interfaces: T.unsafe(nil), description: T.unsafe(nil), directives: T.unsafe(nil), fields: T.unsafe(nil)); end
+
+  def interfaces(); end
+
+  def merge_directive(node_opts); end
+
+  def merge_field(node_opts); end
+
+  def name(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::ObjectTypeDefinition
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::ObjectTypeExtension
+  def directives(); end
+
+  def fields(); end
+
+  def initialize_node(name: T.unsafe(nil), interfaces: T.unsafe(nil), directives: T.unsafe(nil), fields: T.unsafe(nil)); end
+
+  def interfaces(); end
+
+  def merge_directive(node_opts); end
+
+  def merge_field(node_opts); end
+
+  def name(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::ObjectTypeExtension
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::OperationDefinition
+  def directives(); end
+
+  def initialize_node(operation_type: T.unsafe(nil), name: T.unsafe(nil), variables: T.unsafe(nil), selections: T.unsafe(nil), directives: T.unsafe(nil)); end
+
+  def merge_directive(node_opts); end
+
+  def merge_selection(node_opts); end
+
+  def merge_variable(node_opts); end
+
+  def name(); end
+
+  def operation_type(); end
+
+  def selections(); end
+
+  def variables(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::OperationDefinition
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::ScalarTypeDefinition
+  include ::GraphQL::Language::Nodes::AbstractNode::DefinitionNode
+  def description(); end
+
+  def directives(); end
+
+  def initialize_node(name: T.unsafe(nil), description: T.unsafe(nil), directives: T.unsafe(nil)); end
+
+  def merge_directive(node_opts); end
+
+  def name(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::ScalarTypeDefinition
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::ScalarTypeExtension
+  def directives(); end
+
+  def initialize_node(name: T.unsafe(nil), directives: T.unsafe(nil)); end
+
+  def merge_directive(node_opts); end
+
+  def name(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::ScalarTypeExtension
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::SchemaDefinition
+  include ::GraphQL::Language::Nodes::AbstractNode::DefinitionNode
+  def directives(); end
+
+  def initialize_node(query: T.unsafe(nil), mutation: T.unsafe(nil), subscription: T.unsafe(nil), directives: T.unsafe(nil)); end
+
+  def merge_directive(node_opts); end
+
+  def mutation(); end
+
+  def query(); end
+
+  def subscription(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::SchemaDefinition
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::SchemaExtension
+  def directives(); end
+
+  def initialize_node(query: T.unsafe(nil), mutation: T.unsafe(nil), subscription: T.unsafe(nil), directives: T.unsafe(nil)); end
+
+  def merge_directive(node_opts); end
+
+  def mutation(); end
+
+  def query(); end
+
+  def subscription(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::SchemaExtension
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::TypeName
+end
+
+class GraphQL::Language::Nodes::TypeName
+end
+
+class GraphQL::Language::Nodes::UnionTypeDefinition
+  include ::GraphQL::Language::Nodes::AbstractNode::DefinitionNode
+  def description(); end
+
+  def directives(); end
+
+  def initialize_node(name: T.unsafe(nil), types: T.unsafe(nil), description: T.unsafe(nil), directives: T.unsafe(nil)); end
+
+  def merge_directive(node_opts); end
+
+  def name(); end
+
+  def types(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::UnionTypeDefinition
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::UnionTypeExtension
+  def directives(); end
+
+  def initialize_node(name: T.unsafe(nil), types: T.unsafe(nil), directives: T.unsafe(nil)); end
+
+  def merge_directive(node_opts); end
+
+  def name(); end
+
+  def types(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::UnionTypeExtension
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::VariableDefinition
+  def default_value(); end
+
+  def initialize_node(name: T.unsafe(nil), type: T.unsafe(nil), default_value: T.unsafe(nil)); end
+
+  def name(); end
+
+  def type(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::VariableDefinition
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+class GraphQL::Language::Nodes::VariableIdentifier
+end
+
+class GraphQL::Language::Nodes::VariableIdentifier
+end
+
+class GraphQL::Language::Nodes::WrapperType
+  def initialize_node(of_type: T.unsafe(nil)); end
+
+  def of_type(); end
+
+  def visit_method(); end
+end
+
+class GraphQL::Language::Nodes::WrapperType
+  def self.children_method_name(); end
+
+  def self.children_method_name=(children_method_name); end
+end
+
+module GraphQL::Language::Nodes
+end
+
+class GraphQL::Language::Parser
+  def _reduce_10(val, _values, result); end
+
+  def _reduce_100(val, _values, result); end
+
+  def _reduce_101(val, _values, result); end
+
+  def _reduce_102(val, _values, result); end
+
+  def _reduce_103(val, _values, result); end
+
+  def _reduce_104(val, _values, result); end
+
+  def _reduce_105(val, _values, result); end
+
+  def _reduce_106(val, _values, result); end
+
+  def _reduce_107(val, _values, result); end
+
+  def _reduce_11(val, _values, result); end
+
+  def _reduce_112(val, _values, result); end
+
+  def _reduce_114(val, _values, result); end
+
+  def _reduce_115(val, _values, result); end
+
+  def _reduce_12(val, _values, result); end
+
+  def _reduce_124(val, _values, result); end
+
+  def _reduce_125(val, _values, result); end
+
+  def _reduce_132(val, _values, result); end
+
+  def _reduce_133(val, _values, result); end
+
+  def _reduce_134(val, _values, result); end
+
+  def _reduce_135(val, _values, result); end
+
+  def _reduce_136(val, _values, result); end
+
+  def _reduce_137(val, _values, result); end
+
+  def _reduce_138(val, _values, result); end
+
+  def _reduce_139(val, _values, result); end
+
+  def _reduce_140(val, _values, result); end
+
+  def _reduce_141(val, _values, result); end
+
+  def _reduce_142(val, _values, result); end
+
+  def _reduce_143(val, _values, result); end
+
+  def _reduce_144(val, _values, result); end
+
+  def _reduce_148(val, _values, result); end
+
+  def _reduce_149(val, _values, result); end
+
+  def _reduce_150(val, _values, result); end
+
+  def _reduce_152(val, _values, result); end
+
+  def _reduce_153(val, _values, result); end
+
+  def _reduce_154(val, _values, result); end
+
+  def _reduce_155(val, _values, result); end
+
+  def _reduce_156(val, _values, result); end
+
+  def _reduce_157(val, _values, result); end
+
+  def _reduce_158(val, _values, result); end
+
+  def _reduce_159(val, _values, result); end
+
+  def _reduce_16(val, _values, result); end
+
+  def _reduce_160(val, _values, result); end
+
+  def _reduce_161(val, _values, result); end
+
+  def _reduce_162(val, _values, result); end
+
+  def _reduce_163(val, _values, result); end
+
+  def _reduce_164(val, _values, result); end
+
+  def _reduce_165(val, _values, result); end
+
+  def _reduce_166(val, _values, result); end
+
+  def _reduce_167(val, _values, result); end
+
+  def _reduce_168(val, _values, result); end
+
+  def _reduce_169(val, _values, result); end
+
+  def _reduce_170(val, _values, result); end
+
+  def _reduce_171(val, _values, result); end
+
+  def _reduce_172(val, _values, result); end
+
+  def _reduce_173(val, _values, result); end
+
+  def _reduce_174(val, _values, result); end
+
+  def _reduce_175(val, _values, result); end
+
+  def _reduce_176(val, _values, result); end
+
+  def _reduce_18(val, _values, result); end
+
+  def _reduce_19(val, _values, result); end
+
+  def _reduce_2(val, _values, result); end
+
+  def _reduce_20(val, _values, result); end
+
+  def _reduce_21(val, _values, result); end
+
+  def _reduce_22(val, _values, result); end
+
+  def _reduce_23(val, _values, result); end
+
+  def _reduce_24(val, _values, result); end
+
+  def _reduce_25(val, _values, result); end
+
+  def _reduce_26(val, _values, result); end
+
+  def _reduce_27(val, _values, result); end
+
+  def _reduce_28(val, _values, result); end
+
+  def _reduce_29(val, _values, result); end
+
+  def _reduce_3(val, _values, result); end
+
+  def _reduce_30(val, _values, result); end
+
+  def _reduce_31(val, _values, result); end
+
+  def _reduce_32(val, _values, result); end
+
+  def _reduce_33(val, _values, result); end
+
+  def _reduce_37(val, _values, result); end
+
+  def _reduce_38(val, _values, result); end
+
+  def _reduce_4(val, _values, result); end
+
+  def _reduce_61(val, _values, result); end
+
+  def _reduce_62(val, _values, result); end
+
+  def _reduce_63(val, _values, result); end
+
+  def _reduce_64(val, _values, result); end
+
+  def _reduce_65(val, _values, result); end
+
+  def _reduce_66(val, _values, result); end
+
+  def _reduce_67(val, _values, result); end
+
+  def _reduce_68(val, _values, result); end
+
+  def _reduce_69(val, _values, result); end
+
+  def _reduce_70(val, _values, result); end
+
+  def _reduce_71(val, _values, result); end
+
+  def _reduce_72(val, _values, result); end
+
+  def _reduce_73(val, _values, result); end
+
+  def _reduce_81(val, _values, result); end
+
+  def _reduce_82(val, _values, result); end
+
+  def _reduce_83(val, _values, result); end
+
+  def _reduce_84(val, _values, result); end
+
+  def _reduce_85(val, _values, result); end
+
+  def _reduce_86(val, _values, result); end
+
+  def _reduce_87(val, _values, result); end
+
+  def _reduce_88(val, _values, result); end
+
+  def _reduce_89(val, _values, result); end
+
+  def _reduce_90(val, _values, result); end
+
+  def _reduce_91(val, _values, result); end
+
+  def _reduce_92(val, _values, result); end
+
+  def _reduce_93(val, _values, result); end
+
+  def _reduce_94(val, _values, result); end
+
+  def _reduce_95(val, _values, result); end
+
+  def _reduce_96(val, _values, result); end
+
+  def _reduce_97(val, _values, result); end
+
+  def _reduce_98(val, _values, result); end
+
+  def _reduce_none(val, _values, result); end
+
+  def initialize(query_string, filename:, tracer: T.unsafe(nil)); end
+
+  def parse_document(); end
+  EMPTY_ARRAY = ::T.let(nil, ::T.untyped)
+  Racc_arg = ::T.let(nil, ::T.untyped)
+  Racc_debug_parser = ::T.let(nil, ::T.untyped)
+  Racc_token_to_s_table = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Language::Parser
+  def self.parse(query_string, filename: T.unsafe(nil), tracer: T.unsafe(nil)); end
+end
+
+class GraphQL::Language::Printer
+  def print(node, indent: T.unsafe(nil)); end
+
+  def print_argument(argument); end
+
+  def print_arguments(arguments, indent: T.unsafe(nil)); end
+
+  def print_description(node, indent: T.unsafe(nil), first_in_block: T.unsafe(nil)); end
+
+  def print_directive(directive); end
+
+  def print_directive_definition(directive); end
+
+  def print_directives(directives); end
+
+  def print_document(document); end
+
+  def print_enum(enum); end
+
+  def print_enum_type_definition(enum_type); end
+
+  def print_enum_value_definition(enum_value); end
+
+  def print_field(field, indent: T.unsafe(nil)); end
+
+  def print_field_definition(field); end
+
+  def print_field_definitions(fields); end
+
+  def print_fragment_definition(fragment_def, indent: T.unsafe(nil)); end
+
+  def print_fragment_spread(fragment_spread, indent: T.unsafe(nil)); end
+
+  def print_inline_fragment(inline_fragment, indent: T.unsafe(nil)); end
+
+  def print_input_object(input_object); end
+
+  def print_input_object_type_definition(input_object_type); end
+
+  def print_input_value_definition(input_value); end
+
+  def print_interface_type_definition(interface_type); end
+
+  def print_list_type(list_type); end
+
+  def print_node(node, indent: T.unsafe(nil)); end
+
+  def print_non_null_type(non_null_type); end
+
+  def print_null_value(); end
+
+  def print_object_type_definition(object_type); end
+
+  def print_operation_definition(operation_definition, indent: T.unsafe(nil)); end
+
+  def print_scalar_type_definition(scalar_type); end
+
+  def print_schema_definition(schema); end
+
+  def print_selections(selections, indent: T.unsafe(nil)); end
+
+  def print_type_name(type_name); end
+
+  def print_union_type_definition(union_type); end
+
+  def print_variable_definition(variable_definition); end
+
+  def print_variable_identifier(variable_identifier); end
+end
+
+class GraphQL::Language::Printer
+end
+
+class GraphQL::Language::SanitizedPrinter
+  def initialize(query); end
+
+  def print_variable_identifier(variable_id); end
+
+  def sanitized_query_string(); end
+  REDACTED = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Language::SanitizedPrinter
+end
+
+class GraphQL::Language::Token
+  def col(); end
+
+  def initialize(name, value, line, col, prev_token); end
+
+  def line(); end
+
+  def line_and_column(); end
+
+  def name(); end
+
+  def prev_token(); end
+
+  def to_f(); end
+
+  def to_i(); end
+
+  def value(); end
+end
+
+class GraphQL::Language::Token
+end
+
+class GraphQL::Language::Visitor
+  def [](node_class); end
+
+  def initialize(document); end
+
+  def on_abstract_node(node, parent); end
+
+  def on_argument(node, parent); end
+
+  def on_directive(node, parent); end
+
+  def on_directive_definition(node, parent); end
+
+  def on_directive_location(node, parent); end
+
+  def on_document(node, parent); end
+
+  def on_enum(node, parent); end
+
+  def on_enum_type_definition(node, parent); end
+
+  def on_enum_type_extension(node, parent); end
+
+  def on_enum_value_definition(node, parent); end
+
+  def on_field(node, parent); end
+
+  def on_field_definition(node, parent); end
+
+  def on_fragment_definition(node, parent); end
+
+  def on_fragment_spread(node, parent); end
+
+  def on_inline_fragment(node, parent); end
+
+  def on_input_object(node, parent); end
+
+  def on_input_object_type_definition(node, parent); end
+
+  def on_input_object_type_extension(node, parent); end
+
+  def on_input_value_definition(node, parent); end
+
+  def on_interface_type_definition(node, parent); end
+
+  def on_interface_type_extension(node, parent); end
+
+  def on_list_type(node, parent); end
+
+  def on_non_null_type(node, parent); end
+
+  def on_null_value(node, parent); end
+
+  def on_object_type_definition(node, parent); end
+
+  def on_object_type_extension(node, parent); end
+
+  def on_operation_definition(node, parent); end
+
+  def on_scalar_type_definition(node, parent); end
+
+  def on_scalar_type_extension(node, parent); end
+
+  def on_schema_definition(node, parent); end
+
+  def on_schema_extension(node, parent); end
+
+  def on_type_name(node, parent); end
+
+  def on_union_type_definition(node, parent); end
+
+  def on_union_type_extension(node, parent); end
+
+  def on_variable_definition(node, parent); end
+
+  def on_variable_identifier(node, parent); end
+
+  def result(); end
+
+  def visit(); end
+
+  def visit_node(node, parent); end
+  DELETE_NODE = ::T.let(nil, ::T.untyped)
+  SKIP = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Language::Visitor
+  def self.apply_hooks(hooks, node, parent); end
+
+  def self.make_visit_method(node_method); end
+end
+
+module GraphQL::Language
+  def self.serialize(value); end
+end
+
+class GraphQL::ListType
+  include ::GraphQL::BaseType::ModifiesAnotherType
+  def coerce_result(value, ctx=T.unsafe(nil)); end
+
+  def initialize(of_type:); end
+
+  def kind(); end
+
+  def of_type(); end
+end
+
+class GraphQL::ListType
+end
+
+class GraphQL::LoadApplicationObjectFailedError
+  def argument(); end
+
+  def id(); end
+
+  def initialize(argument:, id:, object:); end
+
+  def object(); end
+end
+
+class GraphQL::LoadApplicationObjectFailedError
+end
+
+class GraphQL::NameValidator
+  VALID_NAME_REGEX = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::NameValidator
+  def self.valid?(name); end
+
+  def self.validate!(name); end
+end
+
+class GraphQL::NonNullType
+  include ::GraphQL::BaseType::ModifiesAnotherType
+  def coerce_input(*args, &block); end
+
+  def coerce_result(*args, &block); end
+
+  def initialize(of_type:); end
+
+  def kind(); end
+
+  def list?(*args, &block); end
+
+  def of_type(); end
+
+  def valid_input?(value, ctx); end
+
+  def validate_input(value, ctx); end
+end
+
+class GraphQL::NonNullType
+  extend ::Forwardable
+end
+
+class GraphQL::ObjectType
+  def all_fields(); end
+
+  def fields(); end
+
+  def fields=(fields); end
+
+  def get_field(field_name); end
+
+  def implements(interfaces, inherit: T.unsafe(nil), **options); end
+
+  def inherited_interface_type_memberships(); end
+
+  def interfaces(ctx=T.unsafe(nil)); end
+
+  def interfaces=(new_interfaces); end
+
+  def kind(); end
+
+  def mutation(); end
+
+  def mutation=(mutation); end
+
+  def relay_node_type(); end
+
+  def relay_node_type=(relay_node_type); end
+
+  def resolve_type_proc(); end
+
+  def structural_interface_type_memberships(); end
+
+  def structural_interface_type_memberships=(structural_interface_type_memberships); end
+end
+
+class GraphQL::ObjectType
+end
+
+module GraphQL::Pagination
+end
+
+class GraphQL::Pagination::ActiveRecordRelationConnection
+end
+
+class GraphQL::Pagination::ActiveRecordRelationConnection
+end
+
+class GraphQL::Pagination::ArrayConnection
+end
+
+class GraphQL::Pagination::ArrayConnection
+end
+
+class GraphQL::Pagination::Connection
+  def after(); end
+
+  def after_value(); end
+
+  def after_value=(after_value); end
+
+  def before(); end
+
+  def before_value(); end
+
+  def before_value=(before_value); end
+
+  def context(); end
+
+  def context=(context); end
+
+  def cursor_for(item); end
+
+  def edge_nodes(); end
+
+  def edges(); end
+
+  def end_cursor(); end
+
+  def first(); end
+
+  def first=(first); end
+
+  def first_value(); end
+
+  def first_value=(first_value); end
+
+  def has_max_page_size_override?(); end
+
+  def has_next_page(); end
+
+  def has_previous_page(); end
+
+  def initialize(items, context: T.unsafe(nil), first: T.unsafe(nil), after: T.unsafe(nil), max_page_size: T.unsafe(nil), last: T.unsafe(nil), before: T.unsafe(nil)); end
+
+  def items(); end
+
+  def last(); end
+
+  def last=(last); end
+
+  def last_value(); end
+
+  def last_value=(last_value); end
+
+  def max_page_size(); end
+
+  def max_page_size=(new_value); end
+
+  def nodes(); end
+
+  def page_info(); end
+
+  def start_cursor(); end
+end
+
+class GraphQL::Pagination::Connection::Edge
+  def cursor(); end
+
+  def initialize(item, connection); end
+
+  def node(); end
+end
+
+class GraphQL::Pagination::Connection::Edge
+end
+
+class GraphQL::Pagination::Connection::PaginationImplementationMissingError
+end
+
+class GraphQL::Pagination::Connection::PaginationImplementationMissingError
+end
+
+class GraphQL::Pagination::Connection
+  def self.edge_class(); end
+end
+
+class GraphQL::Pagination::Connections
+  def add(nodes_class, implementation); end
+
+  def all_wrappers(); end
+
+  def delete(nodes_class); end
+
+  def initialize(schema:); end
+
+  def wrap(field, object, arguments, context, wrappers: T.unsafe(nil)); end
+
+  def wrappers(); end
+end
+
+class GraphQL::Pagination::Connections::ImplementationMissingError
+end
+
+class GraphQL::Pagination::Connections::ImplementationMissingError
+end
+
+class GraphQL::Pagination::Connections
+  def self.use(schema_defn); end
+end
+
+class GraphQL::Pagination::MongoidRelationConnection
+end
+
+class GraphQL::Pagination::MongoidRelationConnection
+end
+
+class GraphQL::Pagination::RelationConnection
+end
+
+class GraphQL::Pagination::RelationConnection
+end
+
+class GraphQL::Pagination::SequelDatasetConnection
+end
+
+class GraphQL::Pagination::SequelDatasetConnection
+end
+
+module GraphQL::Pagination
+end
+
+class GraphQL::ParseError
+  def col(); end
+
+  def initialize(message, line, col, query, filename: T.unsafe(nil)); end
+
+  def line(); end
+
+  def query(); end
+
+  def to_h(); end
+end
+
+class GraphQL::ParseError
+end
+
+class GraphQL::Query
+  include ::GraphQL::Tracing::Traceable
+  def analysis_errors(); end
+
+  def analysis_errors=(analysis_errors); end
+
+  def analyzers(*args, &block); end
+
+  def arguments_for(ast_node, definition, parent_object: T.unsafe(nil)); end
+
+  def ast_analyzers(*args, &block); end
+
+  def context(); end
+
+  def document(); end
+
+  def executed?(); end
+
+  def fingerprint(); end
+
+  def fragments(); end
+
+  def get_field(*args, &block); end
+
+  def get_type(*args, &block); end
+
+  def initialize(schema, query_string=T.unsafe(nil), query: T.unsafe(nil), document: T.unsafe(nil), context: T.unsafe(nil), variables: T.unsafe(nil), validate: T.unsafe(nil), subscription_topic: T.unsafe(nil), operation_name: T.unsafe(nil), root_value: T.unsafe(nil), max_depth: T.unsafe(nil), max_complexity: T.unsafe(nil), except: T.unsafe(nil), only: T.unsafe(nil), warden: T.unsafe(nil)); end
+
+  def internal_representation(*args, &block); end
+
+  def interpreter?(*args, &block); end
+
+  def irep_selection(); end
+
+  def lookahead(); end
+
+  def max_complexity(*args, &block); end
+
+  def max_depth(*args, &block); end
+
+  def merge_filters(only: T.unsafe(nil), except: T.unsafe(nil)); end
+
+  def mutation?(); end
+
+  def operation_fingerprint(); end
+
+  def operation_name(); end
+
+  def operation_name=(operation_name); end
+
+  def operations(); end
+
+  def possible_types(*args, &block); end
+
+  def provided_variables(); end
+
+  def query?(); end
+
+  def query_string(); end
+
+  def query_string=(query_string); end
+
+  def resolve_type(abstract_type, value=T.unsafe(nil)); end
+
+  def result(); end
+
+  def result_values(); end
+
+  def result_values=(result_hash); end
+
+  def root_type_for_operation(*args, &block); end
+
+  def root_value(); end
+
+  def root_value=(root_value); end
+
+  def sanitized_query_string(); end
+
+  def schema(); end
+
+  def selected_operation(); end
+
+  def selected_operation_name(); end
+
+  def static_errors(); end
+
+  def subscription?(); end
+
+  def subscription_topic(); end
+
+  def subscription_update?(); end
+
+  def tracers(); end
+
+  def valid?(); end
+
+  def validate(); end
+
+  def validate=(validate); end
+
+  def validation_errors(*args, &block); end
+
+  def validation_pipeline(); end
+
+  def variables(); end
+
+  def variables_fingerprint(); end
+
+  def warden(); end
+
+  def with_error_handling(); end
+end
+
+class GraphQL::Query::Arguments
+  include ::GraphQL::Dig
+  def [](key); end
+
+  def any?(*args, &block); end
+
+  def argument_values(); end
+
+  def default_used?(key); end
+
+  def each(*args, &block); end
+
+  def each_value(); end
+
+  def initialize(values, context:, defaults_used:); end
+
+  def key?(key); end
+
+  def keys(*args, &block); end
+
+  def prepare(); end
+
+  def to_h(); end
+
+  def to_hash(); end
+
+  def to_kwargs(); end
+
+  def values(*args, &block); end
+  NO_ARGS = ::T.let(nil, ::T.untyped)
+  NULL_ARGUMENT_VALUE = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Query::Arguments::ArgumentValue
+  def default_used=(default_used); end
+
+  def default_used?(); end
+
+  def definition(); end
+
+  def initialize(key, value, definition, default_used); end
+
+  def key(); end
+
+  def value(); end
+end
+
+class GraphQL::Query::Arguments::ArgumentValue
+end
+
+class GraphQL::Query::Arguments::NoArguments
+end
+
+class GraphQL::Query::Arguments::NoArguments
+end
+
+class GraphQL::Query::Arguments
+  extend ::Forwardable
+  def self.argument_definitions(); end
+
+  def self.argument_definitions=(argument_definitions); end
+
+  def self.argument_owner(); end
+
+  def self.argument_owner=(argument_owner); end
+
+  def self.construct_arguments_class(argument_owner); end
+end
+
+module GraphQL::Query::ArgumentsCache
+end
+
+module GraphQL::Query::ArgumentsCache
+  def self.build(query); end
+end
+
+class GraphQL::Query::Context
+  include ::GraphQL::Query::Context::SharedMethods
+  def [](key); end
+
+  def []=(*args, &block); end
+
+  def ast_node(); end
+
+  def dig(*args, &block); end
+
+  def errors(); end
+
+  def execution_strategy(); end
+
+  def execution_strategy=(new_strategy); end
+
+  def fetch(*args, &block); end
+
+  def initialize(query:, values:, object:, schema: T.unsafe(nil)); end
+
+  def interpreter=(interpreter); end
+
+  def interpreter?(*args, &block); end
+
+  def irep_node(); end
+
+  def key?(key); end
+
+  def namespace(ns); end
+
+  def path(); end
+
+  def query(); end
+
+  def received_null_child(); end
+
+  def schema(); end
+
+  def scoped_context(); end
+
+  def scoped_context=(scoped_context); end
+
+  def scoped_merge!(hash); end
+
+  def scoped_set!(key, value); end
+
+  def strategy(); end
+
+  def to_h(); end
+
+  def to_hash(); end
+
+  def trace(*args, &block); end
+
+  def value=(value); end
+
+  def warden(); end
+end
+
+class GraphQL::Query::Context::ExecutionErrors
+  def >>(err_or_msg); end
+
+  def add(err_or_msg); end
+
+  def initialize(ctx); end
+
+  def push(err_or_msg); end
+end
+
+class GraphQL::Query::Context::ExecutionErrors
+end
+
+class GraphQL::Query::Context::FieldResolutionContext
+  include ::GraphQL::Query::Context::SharedMethods
+  include ::GraphQL::Tracing::Traceable
+  def [](*args, &block); end
+
+  def []=(*args, &block); end
+
+  def ast_node(); end
+
+  def dig(*args, &block); end
+
+  def errors(*args, &block); end
+
+  def execution_strategy(*args, &block); end
+
+  def fetch(*args, &block); end
+
+  def field(); end
+
+  def initialize(context, key, irep_node, parent, object); end
+
+  def interpreter?(*args, &block); end
+
+  def irep_node(); end
+
+  def key(); end
+
+  def key?(*args, &block); end
+
+  def namespace(*args, &block); end
+
+  def parent(); end
+
+  def parent_type(); end
+
+  def path(); end
+
+  def query(); end
+
+  def received_null_child(); end
+
+  def schema(); end
+
+  def selection(); end
+
+  def spawn(*args, &block); end
+
+  def strategy(*args, &block); end
+
+  def to_h(*args, &block); end
+
+  def type(); end
+
+  def value=(new_value); end
+
+  def warden(*args, &block); end
+
+  def wrapped_connection(); end
+
+  def wrapped_connection=(wrapped_connection); end
+
+  def wrapped_object(); end
+
+  def wrapped_object=(wrapped_object); end
+end
+
+class GraphQL::Query::Context::FieldResolutionContext
+  extend ::Forwardable
+end
+
+module GraphQL::Query::Context::SharedMethods
+  def add_error(error); end
+
+  def backtrace(); end
+
+  def delete(child_ctx); end
+
+  def execution_errors(); end
+
+  def invalid_null?(); end
+
+  def lookahead(); end
+
+  def object(); end
+
+  def object=(object); end
+
+  def skip(); end
+
+  def skipped(); end
+
+  def skipped=(skipped); end
+
+  def skipped?(); end
+
+  def spawn_child(key:, irep_node:, object:); end
+
+  def value(); end
+end
+
+module GraphQL::Query::Context::SharedMethods
+end
+
+class GraphQL::Query::Context
+  extend ::Forwardable
+end
+
+class GraphQL::Query::Executor
+  def initialize(query); end
+
+  def query(); end
+
+  def result(); end
+end
+
+class GraphQL::Query::Executor::PropagateNull
+end
+
+class GraphQL::Query::Executor::PropagateNull
+end
+
+class GraphQL::Query::Executor
+end
+
+module GraphQL::Query::Fingerprint
+end
+
+module GraphQL::Query::Fingerprint
+  def self.generate(input_str); end
+end
+
+class GraphQL::Query::InputValidationResult
+  def add_problem(explanation, path=T.unsafe(nil), extensions: T.unsafe(nil), message: T.unsafe(nil)); end
+
+  def initialize(valid: T.unsafe(nil), problems: T.unsafe(nil)); end
+
+  def merge_result!(path, inner_result); end
+
+  def problems(); end
+
+  def problems=(problems); end
+
+  def valid?(); end
+end
+
+class GraphQL::Query::InputValidationResult
+end
+
+class GraphQL::Query::LiteralInput
+end
+
+class GraphQL::Query::LiteralInput
+  def self.coerce(type, ast_node, variables); end
+
+  def self.from_arguments(ast_arguments, argument_owner, variables); end
+end
+
+class GraphQL::Query::NullContext
+  def [](key); end
+
+  def interpreter?(); end
+
+  def query(); end
+
+  def schema(); end
+
+  def warden(); end
+end
+
+class GraphQL::Query::NullContext::NullWarden
+  def visible?(t); end
+
+  def visible_field?(t); end
+
+  def visible_type?(t); end
+end
+
+class GraphQL::Query::NullContext::NullWarden
+end
+
+class GraphQL::Query::NullContext
+  def self.[](key); end
+
+  def self.instance(); end
+
+  def self.interpreter?(*args, &block); end
+
+  def self.query(*args, &block); end
+
+  def self.schema(*args, &block); end
+
+  def self.warden(*args, &block); end
+end
+
+class GraphQL::Query::OperationNameMissingError
+  def initialize(name); end
+end
+
+class GraphQL::Query::OperationNameMissingError
+end
+
+class GraphQL::Query::Result
+  def ==(other); end
+
+  def [](*args, &block); end
+
+  def as_json(*args, &block); end
+
+  def context(*args, &block); end
+
+  def initialize(query:, values:); end
+
+  def keys(*args, &block); end
+
+  def method_missing(method_name, *args, &block); end
+
+  def mutation?(*args, &block); end
+
+  def query(); end
+
+  def query?(*args, &block); end
+
+  def subscription?(*args, &block); end
+
+  def to_h(); end
+
+  def to_json(*args, &block); end
+
+  def values(*args, &block); end
+end
+
+class GraphQL::Query::Result
+  extend ::Forwardable
+end
+
+class GraphQL::Query::SerialExecution
+  def execute(ast_operation, root_type, query_object); end
+
+  def field_resolution(); end
+
+  def operation_resolution(); end
+
+  def selection_resolution(); end
+end
+
+class GraphQL::Query::SerialExecution::FieldResolution
+  def arguments(); end
+
+  def execution_context(); end
+
+  def field(); end
+
+  def initialize(selection, parent_type, target, query_ctx); end
+
+  def irep_node(); end
+
+  def parent_type(); end
+
+  def query(); end
+
+  def result(); end
+
+  def target(); end
+end
+
+class GraphQL::Query::SerialExecution::FieldResolution
+end
+
+module GraphQL::Query::SerialExecution::OperationResolution
+end
+
+module GraphQL::Query::SerialExecution::OperationResolution
+  def self.resolve(selection, target, query); end
+end
+
+module GraphQL::Query::SerialExecution::SelectionResolution
+end
+
+module GraphQL::Query::SerialExecution::SelectionResolution
+  def self.resolve(target, current_type, selection, query_ctx); end
+end
+
+module GraphQL::Query::SerialExecution::ValueResolution
+end
+
+module GraphQL::Query::SerialExecution::ValueResolution
+  def self.resolve(parent_type, field_defn, field_type, value, selection, query_ctx); end
+end
+
+class GraphQL::Query::SerialExecution
+end
+
+class GraphQL::Query::ValidationPipeline
+  def analyzers(); end
+
+  def initialize(query:, validate:, parse_error:, operation_name_error:, max_depth:, max_complexity:); end
+
+  def internal_representation(); end
+
+  def max_complexity(); end
+
+  def max_depth(); end
+
+  def valid?(); end
+
+  def validation_errors(); end
+end
+
+class GraphQL::Query::ValidationPipeline
+end
+
+class GraphQL::Query::VariableValidationError
+  def initialize(variable_ast, type, value, validation_result); end
+
+  def validation_result(); end
+
+  def validation_result=(validation_result); end
+
+  def value(); end
+
+  def value=(value); end
+end
+
+class GraphQL::Query::VariableValidationError
+end
+
+class GraphQL::Query::Variables
+  def [](*args, &block); end
+
+  def context(); end
+
+  def errors(); end
+
+  def fetch(*args, &block); end
+
+  def initialize(ctx, ast_variables, provided_variables); end
+
+  def key?(*args, &block); end
+
+  def length(*args, &block); end
+
+  def to_h(*args, &block); end
+end
+
+class GraphQL::Query::Variables
+  extend ::Forwardable
+end
+
+class GraphQL::Query
+  extend ::Forwardable
+end
+
+class GraphQL::Railtie
+end
+
+class GraphQL::Railtie
+end
+
+module GraphQL::Relay
+  PageInfo = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Relay::ArrayConnection
+  def cursor_from_node(item); end
+end
+
+class GraphQL::Relay::ArrayConnection
+end
+
+class GraphQL::Relay::BaseConnection
+  def after(); end
+
+  def arguments(); end
+
+  def before(); end
+
+  def context(); end
+
+  def cursor_from_node(object); end
+
+  def decode(data); end
+
+  def edge_nodes(); end
+
+  def encode(data); end
+
+  def end_cursor(); end
+
+  def field(); end
+
+  def first(); end
+
+  def has_next_page(); end
+
+  def has_previous_page(); end
+
+  def initialize(nodes, arguments, field: T.unsafe(nil), max_page_size: T.unsafe(nil), parent: T.unsafe(nil), context: T.unsafe(nil)); end
+
+  def last(); end
+
+  def max_page_size(); end
+
+  def nodes(); end
+
+  def page_info(); end
+
+  def parent(); end
+
+  def start_cursor(); end
+  CONNECTION_IMPLEMENTATIONS = ::T.let(nil, ::T.untyped)
+  CURSOR_SEPARATOR = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Relay::BaseConnection
+  def self.connection_for_nodes(nodes); end
+
+  def self.register_connection_implementation(nodes_class, connection_class); end
+end
+
+module GraphQL::Relay::ConnectionInstrumentation
+end
+
+module GraphQL::Relay::ConnectionInstrumentation
+  def self.default_arguments(); end
+
+  def self.instrument(type, field); end
+end
+
+class GraphQL::Relay::ConnectionResolve
+  def call(obj, args, ctx); end
+
+  def initialize(field, underlying_resolve); end
+end
+
+class GraphQL::Relay::ConnectionResolve
+end
+
+module GraphQL::Relay::ConnectionType
+end
+
+module GraphQL::Relay::ConnectionType
+  def self.bidirectional_pagination(); end
+
+  def self.bidirectional_pagination=(bidirectional_pagination); end
+
+  def self.create_type(wrapped_type, edge_type: T.unsafe(nil), edge_class: T.unsafe(nil), nodes_field: T.unsafe(nil), &block); end
+
+  def self.default_nodes_field(); end
+
+  def self.default_nodes_field=(default_nodes_field); end
+end
+
+class GraphQL::Relay::Edge
+  def connection(); end
+
+  def cursor(); end
+
+  def initialize(node, connection); end
+
+  def node(); end
+
+  def parent(); end
+end
+
+class GraphQL::Relay::Edge
+end
+
+module GraphQL::Relay::EdgeType
+end
+
+module GraphQL::Relay::EdgeType
+  def self.create_type(wrapped_type, name: T.unsafe(nil), &block); end
+end
+
+module GraphQL::Relay::EdgesInstrumentation
+end
+
+class GraphQL::Relay::EdgesInstrumentation::EdgesResolve
+  def call(obj, args, ctx); end
+
+  def initialize(edge_class:, resolve:); end
+end
+
+class GraphQL::Relay::EdgesInstrumentation::EdgesResolve
+end
+
+module GraphQL::Relay::EdgesInstrumentation
+  def self.instrument(type, field); end
+end
+
+class GraphQL::Relay::GlobalIdResolve
+  def call(obj, args, ctx); end
+
+  def initialize(type:); end
+end
+
+class GraphQL::Relay::GlobalIdResolve
+end
+
+class GraphQL::Relay::MongoRelationConnection
+end
+
+class GraphQL::Relay::MongoRelationConnection
+end
+
+class GraphQL::Relay::Mutation
+  include ::GraphQL::Define::InstanceDefinable
+  def arguments(); end
+
+  def arguments=(arguments); end
+
+  def description(); end
+
+  def description=(description); end
+
+  def field(); end
+
+  def fields(); end
+
+  def fields=(fields); end
+
+  def has_generated_return_type?(); end
+
+  def input_fields(); end
+
+  def input_type(); end
+
+  def name(); end
+
+  def name=(name); end
+
+  def resolve=(new_resolve_proc); end
+
+  def result_class(); end
+
+  def return_fields(); end
+
+  def return_interfaces(); end
+
+  def return_interfaces=(return_interfaces); end
+
+  def return_type(); end
+
+  def return_type=(return_type); end
+end
+
+module GraphQL::Relay::Mutation::Instrumentation
+end
+
+module GraphQL::Relay::Mutation::Instrumentation
+  def self.instrument(type, field); end
+end
+
+class GraphQL::Relay::Mutation::Resolve
+  def call(obj, args, ctx); end
+
+  def initialize(mutation, resolve); end
+end
+
+class GraphQL::Relay::Mutation::Resolve
+end
+
+class GraphQL::Relay::Mutation::Result
+  def client_mutation_id(); end
+
+  def initialize(client_mutation_id:, result:); end
+end
+
+class GraphQL::Relay::Mutation::Result
+  def self.define_subclass(mutation_defn); end
+
+  def self.mutation(); end
+
+  def self.mutation=(mutation); end
+end
+
+class GraphQL::Relay::Mutation
+end
+
+module GraphQL::Relay::Node
+end
+
+module GraphQL::Relay::Node
+  def self.field(**kwargs, &block); end
+
+  def self.interface(); end
+
+  def self.plural_field(**kwargs, &block); end
+end
+
+class GraphQL::Relay::RangeAdd
+  def connection(); end
+
+  def edge(); end
+
+  def initialize(collection:, item:, parent: T.unsafe(nil), context: T.unsafe(nil), edge_class: T.unsafe(nil)); end
+
+  def parent(); end
+end
+
+class GraphQL::Relay::RangeAdd
+end
+
+class GraphQL::Relay::RelationConnection
+  def cursor_from_node(item); end
+end
+
+class GraphQL::Relay::RelationConnection
+end
+
+module GraphQL::Relay::TypeExtensions
+  def connection_type(); end
+
+  def define_connection(**kwargs, &block); end
+
+  def define_edge(**kwargs, &block); end
+
+  def edge_type(); end
+end
+
+module GraphQL::Relay::TypeExtensions
+end
+
+module GraphQL::Relay
+end
+
+class GraphQL::RequiredImplementationMissingError
+end
+
+class GraphQL::RequiredImplementationMissingError
+end
+
+module GraphQL::Ruby2Keywords
+end
+
+module GraphQL::Ruby2Keywords
+end
+
+class GraphQL::RuntimeTypeError
+end
+
+class GraphQL::RuntimeTypeError
+end
+
+class GraphQL::ScalarType
+  def coerce=(proc); end
+
+  def coerce_input=(coerce_input_fn); end
+
+  def coerce_result(value, ctx=T.unsafe(nil)); end
+
+  def coerce_result=(coerce_result_fn); end
+
+  def kind(); end
+end
+
+module GraphQL::ScalarType::NoOpCoerce
+end
+
+module GraphQL::ScalarType::NoOpCoerce
+  def self.call(val, ctx); end
+end
+
+class GraphQL::ScalarType
+end
+
+class GraphQL::Schema
+  include ::GraphQL::Define::InstanceDefinable
+  include ::GraphQL::Schema::LazyHandlingMethods
+  def _schema_class(); end
+
+  def accessible?(member, context); end
+
+  def analysis_engine(); end
+
+  def analysis_engine=(analysis_engine); end
+
+  def as_json(only: T.unsafe(nil), except: T.unsafe(nil), context: T.unsafe(nil)); end
+
+  def ast_node(); end
+
+  def ast_node=(ast_node); end
+
+  def call_on_type_class(member, method_name, context, default:); end
+
+  def check_resolved_type(type, object, ctx=T.unsafe(nil)); end
+
+  def connections(); end
+
+  def connections=(connections); end
+
+  def context_class(); end
+
+  def context_class=(context_class); end
+
+  def cursor_encoder(); end
+
+  def cursor_encoder=(cursor_encoder); end
+
+  def default_filter(); end
+
+  def default_mask(); end
+
+  def default_mask=(default_mask); end
+
+  def default_max_page_size(); end
+
+  def default_max_page_size=(default_max_page_size); end
+
+  def directive(*args, &block); end
+
+  def directives(); end
+
+  def directives=(directives); end
+
+  def disable_introspection_entry_points(); end
+
+  def disable_introspection_entry_points=(disable_introspection_entry_points); end
+
+  def disable_introspection_entry_points?(); end
+
+  def disable_schema_introspection_entry_point(); end
+
+  def disable_schema_introspection_entry_point=(disable_schema_introspection_entry_point); end
+
+  def disable_schema_introspection_entry_point?(); end
+
+  def disable_type_introspection_entry_point(); end
+
+  def disable_type_introspection_entry_point=(disable_type_introspection_entry_point); end
+
+  def disable_type_introspection_entry_point?(); end
+
+  def error_bubbling(); end
+
+  def error_bubbling=(error_bubbling); end
+
+  def error_handler(*args, &block); end
+
+  def execute(query_str=T.unsafe(nil), **kwargs); end
+
+  def execution_strategy_for_operation(operation); end
+
+  def find(path); end
+
+  def get_field(parent_type, field_name); end
+
+  def get_fields(type); end
+
+  def get_type(type_name); end
+
+  def graphql_definition(); end
+
+  def id_from_object(object, type, ctx); end
+
+  def id_from_object=(new_proc); end
+
+  def id_from_object_proc(); end
+
+  def inaccessible_fields(*args, &block); end
+
+  def instrument(instrumentation_type, instrumenter); end
+
+  def instrumenters(); end
+
+  def instrumenters=(instrumenters); end
+
+  def interpreter=(interpreter); end
+
+  def interpreter?(); end
+
+  def introspection_namespace(); end
+
+  def introspection_namespace=(introspection_namespace); end
+
+  def introspection_system(); end
+
+  def lazy_methods(); end
+
+  def lazy_methods=(lazy_methods); end
+
+  def max_complexity(); end
+
+  def max_complexity=(max_complexity); end
+
+  def max_depth(); end
+
+  def max_depth=(max_depth); end
+
+  def middleware(); end
+
+  def middleware=(middleware); end
+
+  def multiplex(queries, **kwargs); end
+
+  def multiplex_analyzers(); end
+
+  def multiplex_analyzers=(multiplex_analyzers); end
+
+  def mutation(); end
+
+  def mutation=(mutation); end
+
+  def mutation_execution_strategy(); end
+
+  def mutation_execution_strategy=(mutation_execution_strategy); end
+
+  def new_connections?(); end
+
+  def object_from_id(id, ctx); end
+
+  def object_from_id=(new_proc); end
+
+  def object_from_id_proc(); end
+
+  def orphan_types(); end
+
+  def orphan_types=(orphan_types); end
+
+  def parse_error(err, ctx); end
+
+  def parse_error=(new_proc); end
+
+  def possible_types(type_defn, context=T.unsafe(nil)); end
+
+  def query(); end
+
+  def query=(query); end
+
+  def query_analyzers(); end
+
+  def query_analyzers=(query_analyzers); end
+
+  def query_execution_strategy(); end
+
+  def query_execution_strategy=(query_execution_strategy); end
+
+  def raise_definition_error(); end
+
+  def raise_definition_error=(raise_definition_error); end
+
+  def references_to(type_name=T.unsafe(nil)); end
+
+  def remove_handler(*args, &block); end
+
+  def rescue_from(*args, &block); end
+
+  def rescue_middleware(); end
+
+  def rescues?(); end
+
+  def resolve_type(type, object, ctx=T.unsafe(nil)); end
+
+  def resolve_type=(new_resolve_type_proc); end
+
+  def resolve_type_proc(); end
+
+  def root_type_for_operation(operation); end
+
+  def root_types(); end
+
+  def static_validator(); end
+
+  def subscription(); end
+
+  def subscription=(subscription); end
+
+  def subscription_execution_strategy(); end
+
+  def subscription_execution_strategy=(subscription_execution_strategy); end
+
+  def subscriptions(); end
+
+  def subscriptions=(subscriptions); end
+
+  def to_definition(only: T.unsafe(nil), except: T.unsafe(nil), context: T.unsafe(nil)); end
+
+  def to_document(only: T.unsafe(nil), except: T.unsafe(nil), context: T.unsafe(nil)); end
+
+  def to_json(*args); end
+
+  def tracers(); end
+
+  def type_error(err, ctx); end
+
+  def type_error=(new_proc); end
+
+  def type_from_ast(ast_node, context:); end
+
+  def types(); end
+
+  def unauthorized_field(*args, &block); end
+
+  def unauthorized_object(*args, &block); end
+
+  def union_memberships(type); end
+
+  def using_ast_analysis?(); end
+
+  def validate(string_or_document, rules: T.unsafe(nil), context: T.unsafe(nil)); end
+
+  def visible?(member, context); end
+  BUILT_IN_TYPES = ::T.let(nil, ::T.untyped)
+  DYNAMIC_FIELDS = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Schema::Argument
+  include ::GraphQL::Schema::Member::CachedGraphQLDefinition
+  include ::GraphQL::Schema::Member::AcceptsDefinition
+  include ::GraphQL::Schema::Member::HasPath
+  include ::GraphQL::Schema::Member::HasAstNode
+  include ::GraphQL::Schema::Member::AcceptsDefinition::ToGraphQLExtension
+  include ::GraphQL::Schema::Member::AcceptsDefinition::InitializeExtension
+  def accessible?(context); end
+
+  def authorized?(obj, value, ctx); end
+
+  def authorized_as_type?(obj, value, ctx, as_type:); end
+
+  def default_value(); end
+
+  def default_value?(); end
+
+  def description(text=T.unsafe(nil)); end
+
+  def description=(description); end
+
+  def from_resolver?(); end
+
+  def graphql_name(); end
+
+  def keyword(); end
+
+  def loads(); end
+
+  def name(); end
+
+  def owner(); end
+
+  def prepare(); end
+
+  def prepare_value(obj, value, context: T.unsafe(nil)); end
+
+  def type(); end
+
+  def type=(type); end
+
+  def visible?(context); end
+  NO_DEFAULT = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Schema::Argument
+  extend ::GraphQL::Schema::Member::AcceptsDefinition::AcceptsDefinitionDefinitionMethods
+end
+
+module GraphQL::Schema::Base64Encoder
+end
+
+module GraphQL::Schema::Base64Encoder
+  def self.decode(encoded_text, nonce: T.unsafe(nil)); end
+
+  def self.encode(unencoded_text, nonce: T.unsafe(nil)); end
+end
+
+module GraphQL::Schema::BuildFromDefinition
+end
+
+GraphQL::Schema::BuildFromDefinition::DefaultParser = GraphQL::Language::Parser
+
+class GraphQL::Schema::BuildFromDefinition::ResolveMap
+  def call(type, field, obj, args, ctx); end
+
+  def coerce_input(type, value, ctx); end
+
+  def coerce_result(type, value, ctx); end
+
+  def initialize(user_resolve_hash); end
+end
+
+class GraphQL::Schema::BuildFromDefinition::ResolveMap::DefaultResolve
+  def call(obj, args, ctx); end
+
+  def initialize(field_map, field_name); end
+end
+
+class GraphQL::Schema::BuildFromDefinition::ResolveMap::DefaultResolve
+end
+
+module GraphQL::Schema::BuildFromDefinition::ResolveMap::NullScalarCoerce
+end
+
+module GraphQL::Schema::BuildFromDefinition::ResolveMap::NullScalarCoerce
+  def self.call(val, _ctx); end
+end
+
+class GraphQL::Schema::BuildFromDefinition::ResolveMap
+end
+
+module GraphQL::Schema::BuildFromDefinition
+  def self.from_definition(definition_string, default_resolve:, using: T.unsafe(nil), relay: T.unsafe(nil), interpreter: T.unsafe(nil), parser: T.unsafe(nil)); end
+end
+
+module GraphQL::Schema::CatchallMiddleware
+  MESSAGE = ::T.let(nil, ::T.untyped)
+end
+
+module GraphQL::Schema::CatchallMiddleware
+  def self.call(parent_type, parent_object, field_definition, field_args, query_context); end
+end
+
+class GraphQL::Schema::CyclicalDefinitionError
+end
+
+class GraphQL::Schema::CyclicalDefinitionError
+end
+
+module GraphQL::Schema::DefaultParseError
+end
+
+module GraphQL::Schema::DefaultParseError
+  def self.call(parse_error, ctx); end
+end
+
+module GraphQL::Schema::DefaultTypeError
+end
+
+module GraphQL::Schema::DefaultTypeError
+  def self.call(type_error, ctx); end
+end
+
+class GraphQL::Schema::Directive
+  include ::GraphQL::Schema::Member::HasArguments::ArgumentObjectLoader
+  ARGUMENT_DEFINITION = ::T.let(nil, ::T.untyped)
+  DEFAULT_DEPRECATION_REASON = ::T.let(nil, ::T.untyped)
+  ENUM = ::T.let(nil, ::T.untyped)
+  ENUM_VALUE = ::T.let(nil, ::T.untyped)
+  FIELD = ::T.let(nil, ::T.untyped)
+  FIELD_DEFINITION = ::T.let(nil, ::T.untyped)
+  FRAGMENT_DEFINITION = ::T.let(nil, ::T.untyped)
+  FRAGMENT_SPREAD = ::T.let(nil, ::T.untyped)
+  INLINE_FRAGMENT = ::T.let(nil, ::T.untyped)
+  INPUT_FIELD_DEFINITION = ::T.let(nil, ::T.untyped)
+  INPUT_OBJECT = ::T.let(nil, ::T.untyped)
+  INTERFACE = ::T.let(nil, ::T.untyped)
+  LOCATIONS = ::T.let(nil, ::T.untyped)
+  LOCATION_DESCRIPTIONS = ::T.let(nil, ::T.untyped)
+  MUTATION = ::T.let(nil, ::T.untyped)
+  OBJECT = ::T.let(nil, ::T.untyped)
+  QUERY = ::T.let(nil, ::T.untyped)
+  SCALAR = ::T.let(nil, ::T.untyped)
+  SCHEMA = ::T.let(nil, ::T.untyped)
+  SUBSCRIPTION = ::T.let(nil, ::T.untyped)
+  UNION = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Schema::Directive::Deprecated
+end
+
+class GraphQL::Schema::Directive::Deprecated
+end
+
+class GraphQL::Schema::Directive::Feature
+end
+
+class GraphQL::Schema::Directive::Feature
+  def self.enabled?(flag_name, object, context); end
+
+  def self.include?(object, arguments, context); end
+end
+
+class GraphQL::Schema::Directive::Include
+end
+
+class GraphQL::Schema::Directive::Include
+  def self.static_include?(args, ctx); end
+end
+
+class GraphQL::Schema::Directive::Skip
+end
+
+class GraphQL::Schema::Directive::Skip
+  def self.static_include?(args, ctx); end
+end
+
+class GraphQL::Schema::Directive::Transform
+  TRANSFORMS = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Schema::Directive::Transform
+end
+
+class GraphQL::Schema::Directive
+  extend ::GraphQL::Schema::Member::HasArguments
+  def self.default_directive(new_default_directive=T.unsafe(nil)); end
+
+  def self.default_directive?(); end
+
+  def self.include?(_object, arguments, context); end
+
+  def self.locations(*new_locations); end
+
+  def self.on_field?(); end
+
+  def self.on_fragment?(); end
+
+  def self.on_operation?(); end
+
+  def self.resolve(object, arguments, context); end
+
+  def self.static_include?(_arguments, _context); end
+end
+
+class GraphQL::Schema::DuplicateTypeNamesError
+  def initialize(type_name:, first_definition:, second_definition:, path:); end
+end
+
+class GraphQL::Schema::DuplicateTypeNamesError
+end
+
+class GraphQL::Schema::Enum
+  extend ::GraphQL::Schema::Member::AcceptsDefinition
+  extend ::GraphQL::Schema::Member::AcceptsDefinition::AcceptsDefinitionDefinitionMethods
+  extend ::GraphQL::Schema::Member::ValidatesInput
+  extend ::GraphQL::Schema::Member::AcceptsDefinition::ToGraphQLExtension
+  def self.coerce_input(value_name, ctx); end
+
+  def self.coerce_result(value, ctx); end
+
+  def self.enum_value_class(new_enum_value_class=T.unsafe(nil)); end
+
+  def self.validate_non_null_input(value_name, ctx); end
+
+  def self.values(); end
+end
+
+class GraphQL::Schema::EnumValue
+  include ::GraphQL::Schema::Member::CachedGraphQLDefinition
+  include ::GraphQL::Schema::Member::AcceptsDefinition
+  include ::GraphQL::Schema::Member::HasPath
+  include ::GraphQL::Schema::Member::HasAstNode
+  include ::GraphQL::Schema::Member::AcceptsDefinition::ToGraphQLExtension
+  include ::GraphQL::Schema::Member::AcceptsDefinition::InitializeExtension
+  def accessible?(_ctx); end
+
+  def authorized?(_ctx); end
+
+  def deprecation_reason(); end
+
+  def deprecation_reason=(deprecation_reason); end
+
+  def description(new_desc=T.unsafe(nil)); end
+
+  def graphql_name(); end
+
+  def owner(); end
+
+  def value(new_val=T.unsafe(nil)); end
+
+  def visible?(_ctx); end
+end
+
+class GraphQL::Schema::EnumValue
+  extend ::GraphQL::Schema::Member::AcceptsDefinition::AcceptsDefinitionDefinitionMethods
+end
+
+class GraphQL::Schema::Field
+  include ::GraphQL::Schema::Member::CachedGraphQLDefinition
+  include ::GraphQL::Schema::Member::AcceptsDefinition
+  include ::GraphQL::Schema::Member::HasArguments
+  include ::GraphQL::Schema::Member::HasArguments::ArgumentObjectLoader
+  include ::GraphQL::Schema::Member::HasAstNode
+  include ::GraphQL::Schema::Member::HasPath
+  include ::GraphQL::Schema::FindInheritedValue::EmptyObjects
+  include ::GraphQL::Schema::Member::AcceptsDefinition::ToGraphQLExtension
+  include ::GraphQL::Schema::Member::AcceptsDefinition::InitializeExtension
+  def accessible?(context); end
+
+  def authorized?(object, args, context); end
+
+  def complexity(new_complexity=T.unsafe(nil)); end
+
+  def connection?(); end
+
+  def deprecation_reason(); end
+
+  def deprecation_reason=(deprecation_reason); end
+
+  def description(text=T.unsafe(nil)); end
+
+  def description=(description); end
+
+  def extension(extension, options=T.unsafe(nil)); end
+
+  def extensions(new_extensions=T.unsafe(nil)); end
+
+  def extras(new_extras=T.unsafe(nil)); end
+
+  def fetch_extra(extra_name, ctx); end
+
+  def graphql_name(); end
+
+  def has_max_page_size?(); end
+
+  def max_page_size(); end
+
+  def method_conflict_warning?(); end
+
+  def method_str(); end
+
+  def method_sym(); end
+
+  def mutation(); end
+
+  def name(); end
+
+  def original_name(); end
+
+  def owner(); end
+
+  def owner=(owner); end
+
+  def relay_node_field(); end
+
+  def resolve(object, args, ctx); end
+
+  def resolve_field(obj, args, ctx); end
+
+  def resolve_field_method(obj, ruby_kwargs, ctx); end
+
+  def resolver(); end
+
+  def resolver_method(); end
+
+  def scoped?(); end
+
+  def subscription_scope(); end
+
+  def subscription_scope=(subscription_scope); end
+
+  def trace(); end
+
+  def type(); end
+
+  def type=(type); end
+
+  def visible?(context); end
+  NO_ARGS = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Schema::Field::ConnectionExtension
+  def after_resolve(value:, object:, arguments:, context:, memo:); end
+end
+
+class GraphQL::Schema::Field::ConnectionExtension
+end
+
+class GraphQL::Schema::Field::ScopeExtension
+  def after_resolve(value:, context:, **rest); end
+end
+
+class GraphQL::Schema::Field::ScopeExtension
+end
+
+class GraphQL::Schema::Field
+  extend ::GraphQL::Schema::Member::AcceptsDefinition::AcceptsDefinitionDefinitionMethods
+  extend ::GraphQL::Schema::FindInheritedValue
+  extend ::GraphQL::Schema::FindInheritedValue::EmptyObjects
+  def self.connection_extension(new_extension_class=T.unsafe(nil)); end
+
+  def self.from_options(name=T.unsafe(nil), type=T.unsafe(nil), desc=T.unsafe(nil), resolver: T.unsafe(nil), mutation: T.unsafe(nil), subscription: T.unsafe(nil), **kwargs, &block); end
+end
+
+class GraphQL::Schema::FieldExtension
+  def after_resolve(object:, arguments:, context:, value:, memo:); end
+
+  def apply(); end
+
+  def field(); end
+
+  def initialize(field:, options:); end
+
+  def options(); end
+
+  def resolve(object:, arguments:, context:); end
+end
+
+class GraphQL::Schema::FieldExtension
+end
+
+module GraphQL::Schema::FindInheritedValue
+end
+
+module GraphQL::Schema::FindInheritedValue::EmptyObjects
+  EMPTY_ARRAY = ::T.let(nil, ::T.untyped)
+  EMPTY_HASH = ::T.let(nil, ::T.untyped)
+end
+
+module GraphQL::Schema::FindInheritedValue::EmptyObjects
+end
+
+module GraphQL::Schema::FindInheritedValue
+  def self.extended(child_cls); end
+
+  def self.included(child_cls); end
+end
+
+class GraphQL::Schema::Finder
+  def find(path); end
+
+  def initialize(schema); end
+end
+
+class GraphQL::Schema::Finder::MemberNotFoundError
+end
+
+class GraphQL::Schema::Finder::MemberNotFoundError
+end
+
+class GraphQL::Schema::Finder
+end
+
+class GraphQL::Schema::InputObject
+  include ::GraphQL::Schema::Member::HasArguments::ArgumentObjectLoader
+  include ::GraphQL::Dig
+  def [](key); end
+
+  def any?(*args, &block); end
+
+  def arguments(); end
+
+  def context(); end
+
+  def each(*args, &block); end
+
+  def empty?(*args, &block); end
+
+  def initialize(values=T.unsafe(nil), context:, defaults_used:, ruby_kwargs: T.unsafe(nil)); end
+
+  def key?(key); end
+
+  def keys(*args, &block); end
+
+  def map(*args, &block); end
+
+  def prepare(); end
+
+  def to_h(); end
+
+  def to_hash(); end
+
+  def to_kwargs(); end
+
+  def unwrap_value(value); end
+
+  def values(*args, &block); end
+end
+
+class GraphQL::Schema::InputObject
+  extend ::GraphQL::Schema::Member::AcceptsDefinition
+  extend ::GraphQL::Schema::Member::AcceptsDefinition::AcceptsDefinitionDefinitionMethods
+  extend ::Forwardable
+  extend ::GraphQL::Schema::Member::HasArguments
+  extend ::GraphQL::Schema::Member::HasArguments::ArgumentObjectLoader
+  extend ::GraphQL::Schema::Member::ValidatesInput
+  extend ::GraphQL::Schema::Member::AcceptsDefinition::ToGraphQLExtension
+  def self.arguments_class(); end
+
+  def self.arguments_class=(arguments_class); end
+
+  def self.coerce_input(value, ctx); end
+
+  def self.coerce_result(value, ctx); end
+
+  def self.validate_non_null_input(input, ctx); end
+end
+
+module GraphQL::Schema::Interface
+  include ::GraphQL::Schema::Member::GraphQLTypeNames
+  def unwrap(); end
+end
+
+module GraphQL::Schema::Interface::DefinitionMethods
+  include ::GraphQL::Schema::Member::CachedGraphQLDefinition
+  include ::GraphQL::Relay::TypeExtensions
+  include ::GraphQL::Schema::Member::BaseDSLMethods
+  include ::GraphQL::Schema::FindInheritedValue
+  include ::GraphQL::Schema::FindInheritedValue::EmptyObjects
+  include ::GraphQL::Schema::Member::TypeSystemHelpers
+  include ::GraphQL::Schema::Member::HasFields
+  include ::GraphQL::Schema::Member::HasPath
+  include ::GraphQL::Schema::Member::RelayShortcuts
+  include ::GraphQL::Schema::Member::Scoped
+  include ::GraphQL::Schema::Member::HasAstNode
+  include ::GraphQL::Schema::Member::AcceptsDefinition::AcceptsDefinitionDefinitionMethods
+  include ::GraphQL::Schema::Member::AcceptsDefinition::ToGraphQLExtension
+  def accessible?(context); end
+
+  def definition_methods(&block); end
+
+  def included(child_class); end
+
+  def interfaces(); end
+
+  def kind(); end
+
+  def orphan_types(*types); end
+
+  def own_interfaces(); end
+
+  def to_graphql(); end
+
+  def type_membership_class(membership_class=T.unsafe(nil)); end
+
+  def visible?(context); end
+end
+
+module GraphQL::Schema::Interface::DefinitionMethods
+end
+
+module GraphQL::Schema::Interface
+  extend ::GraphQL::Schema::Member::AcceptsDefinition
+  extend ::GraphQL::Schema::Interface::DefinitionMethods
+  extend ::GraphQL::Schema::Member::CachedGraphQLDefinition
+  extend ::GraphQL::Relay::TypeExtensions
+  extend ::GraphQL::Schema::Member::BaseDSLMethods
+  extend ::GraphQL::Schema::FindInheritedValue
+  extend ::GraphQL::Schema::FindInheritedValue::EmptyObjects
+  extend ::GraphQL::Schema::Member::TypeSystemHelpers
+  extend ::GraphQL::Schema::Member::HasFields
+  extend ::GraphQL::Schema::Member::HasPath
+  extend ::GraphQL::Schema::Member::RelayShortcuts
+  extend ::GraphQL::Schema::Member::Scoped
+  extend ::GraphQL::Schema::Member::HasAstNode
+  extend ::GraphQL::Schema::Member::AcceptsDefinition::AcceptsDefinitionDefinitionMethods
+  extend ::GraphQL::Schema::Member::AcceptsDefinition::ToGraphQLExtension
+end
+
+class GraphQL::Schema::IntrospectionSystem
+  def dynamic_field(name:); end
+
+  def dynamic_fields(); end
+
+  def entry_point(name:); end
+
+  def entry_points(); end
+
+  def initialize(schema); end
+
+  def possible_types(); end
+
+  def resolve_late_bindings(); end
+
+  def types(); end
+end
+
+class GraphQL::Schema::IntrospectionSystem::PerFieldProxyResolve
+  def call(obj, args, ctx); end
+
+  def initialize(object_class:, inner_resolve:); end
+end
+
+class GraphQL::Schema::IntrospectionSystem::PerFieldProxyResolve
+end
+
+class GraphQL::Schema::IntrospectionSystem
+end
+
+class GraphQL::Schema::InvalidDocumentError
+end
+
+class GraphQL::Schema::InvalidDocumentError
+end
+
+class GraphQL::Schema::InvalidTypeError
+end
+
+class GraphQL::Schema::InvalidTypeError
+end
+
+class GraphQL::Schema::LateBoundType
+  def graphql_name(); end
+
+  def initialize(local_name); end
+
+  def name(); end
+
+  def to_list_type(); end
+
+  def to_non_null_type(); end
+
+  def unwrap(); end
+end
+
+class GraphQL::Schema::LateBoundType
+end
+
+module GraphQL::Schema::LazyHandlingMethods
+  def after_any_lazies(maybe_lazies); end
+
+  def after_lazy(value); end
+
+  def lazy?(obj); end
+
+  def lazy_method_name(obj); end
+
+  def sync_lazy(value); end
+end
+
+module GraphQL::Schema::LazyHandlingMethods
+end
+
+class GraphQL::Schema::List
+  include ::GraphQL::Schema::Member::ValidatesInput
+  def coerce_input(value, ctx); end
+
+  def coerce_result(value, ctx); end
+
+  def description(); end
+
+  def graphql_name(); end
+
+  def validate_non_null_input(value, ctx); end
+end
+
+class GraphQL::Schema::List
+end
+
+module GraphQL::Schema::Loader
+  def load(introspection_result); end
+  NullScalarCoerce = ::T.let(nil, ::T.untyped)
+end
+
+module GraphQL::Schema::Loader
+  extend ::GraphQL::Schema::Loader
+  def self.build_arguments(arg_owner, args, type_resolver); end
+
+  def self.build_fields(type_defn, fields, type_resolver); end
+end
+
+class GraphQL::Schema::Member
+  include ::GraphQL::Schema::Member::GraphQLTypeNames
+end
+
+module GraphQL::Schema::Member::AcceptsDefinition
+end
+
+module GraphQL::Schema::Member::AcceptsDefinition::AcceptsDefinitionDefinitionMethods
+  def accepts_definition(name); end
+
+  def accepts_definition_methods(); end
+
+  def own_accepts_definition_methods(); end
+end
+
+module GraphQL::Schema::Member::AcceptsDefinition::AcceptsDefinitionDefinitionMethods
+end
+
+module GraphQL::Schema::Member::AcceptsDefinition::InitializeExtension
+  def accepts_definition_methods(); end
+
+  def initialize(*args, **kwargs, &block); end
+end
+
+module GraphQL::Schema::Member::AcceptsDefinition::InitializeExtension
+end
+
+module GraphQL::Schema::Member::AcceptsDefinition::ToGraphQLExtension
+  def to_graphql(); end
+end
+
+module GraphQL::Schema::Member::AcceptsDefinition::ToGraphQLExtension
+end
+
+module GraphQL::Schema::Member::AcceptsDefinition
+  def self.extended(child); end
+
+  def self.included(child); end
+end
+
+module GraphQL::Schema::Member::BaseDSLMethods
+  include ::GraphQL::Schema::FindInheritedValue
+  include ::GraphQL::Schema::FindInheritedValue::EmptyObjects
+  def accessible?(context); end
+
+  def authorized?(object, context); end
+
+  def default_graphql_name(); end
+
+  def description(new_description=T.unsafe(nil)); end
+
+  def graphql_name(new_name=T.unsafe(nil)); end
+
+  def introspection(new_introspection=T.unsafe(nil)); end
+
+  def introspection?(); end
+
+  def mutation(mutation_class=T.unsafe(nil)); end
+
+  def name(new_name=T.unsafe(nil)); end
+
+  def overridden_graphql_name(); end
+
+  def to_graphql(); end
+
+  def unwrap(); end
+
+  def visible?(context); end
+end
+
+module GraphQL::Schema::Member::BaseDSLMethods
+end
+
+module GraphQL::Schema::Member::CachedGraphQLDefinition
+  def graphql_definition(); end
+
+  def type_class(); end
+end
+
+module GraphQL::Schema::Member::CachedGraphQLDefinition
+end
+
+module GraphQL::Schema::Member::GraphQLTypeNames
+  Boolean = ::T.let(nil, ::T.untyped)
+  ID = ::T.let(nil, ::T.untyped)
+  Int = ::T.let(nil, ::T.untyped)
+end
+
+module GraphQL::Schema::Member::GraphQLTypeNames
+end
+
+module GraphQL::Schema::Member::HasArguments
+  def add_argument(arg_defn); end
+
+  def argument_class(new_arg_class=T.unsafe(nil)); end
+
+  def arguments(); end
+
+  def coerce_arguments(parent_object, values, context); end
+
+  def own_arguments(); end
+end
+
+module GraphQL::Schema::Member::HasArguments::ArgumentObjectLoader
+  def load_application_object(argument, lookup_as_type, id, context); end
+
+  def load_application_object_failed(err); end
+
+  def object_from_id(type, id, context); end
+end
+
+module GraphQL::Schema::Member::HasArguments::ArgumentObjectLoader
+end
+
+module GraphQL::Schema::Member::HasArguments
+  def self.extended(cls); end
+
+  def self.included(cls); end
+end
+
+module GraphQL::Schema::Member::HasAstNode
+  def ast_node(new_ast_node=T.unsafe(nil)); end
+end
+
+module GraphQL::Schema::Member::HasAstNode
+end
+
+module GraphQL::Schema::Member::HasFields
+  def add_field(field_defn); end
+
+  def field_class(new_field_class=T.unsafe(nil)); end
+
+  def fields(); end
+
+  def get_field(field_name); end
+
+  def global_id_field(field_name); end
+
+  def own_fields(); end
+  CONFLICT_FIELD_NAMES = ::T.let(nil, ::T.untyped)
+  GRAPHQL_RUBY_KEYWORDS = ::T.let(nil, ::T.untyped)
+  RUBY_KEYWORDS = ::T.let(nil, ::T.untyped)
+end
+
+module GraphQL::Schema::Member::HasPath
+  def path(); end
+end
+
+module GraphQL::Schema::Member::HasPath
+end
+
+module GraphQL::Schema::Member::RelayShortcuts
+  def connection_type(); end
+
+  def connection_type_class(new_connection_type_class=T.unsafe(nil)); end
+
+  def edge_type(); end
+
+  def edge_type_class(new_edge_type_class=T.unsafe(nil)); end
+end
+
+module GraphQL::Schema::Member::RelayShortcuts
+end
+
+module GraphQL::Schema::Member::Scoped
+  def scope_items(items, context); end
+end
+
+module GraphQL::Schema::Member::Scoped
+end
+
+module GraphQL::Schema::Member::TypeSystemHelpers
+  def kind(); end
+
+  def list?(); end
+
+  def non_null?(); end
+
+  def to_list_type(); end
+
+  def to_non_null_type(); end
+
+  def to_type_signature(); end
+end
+
+module GraphQL::Schema::Member::TypeSystemHelpers
+end
+
+module GraphQL::Schema::Member::ValidatesInput
+  def coerce_isolated_input(v); end
+
+  def coerce_isolated_result(v); end
+
+  def valid_input?(val, ctx); end
+
+  def valid_isolated_input?(v); end
+
+  def validate_input(val, ctx); end
+end
+
+module GraphQL::Schema::Member::ValidatesInput
+end
+
+class GraphQL::Schema::Member
+  extend ::GraphQL::Schema::Member::CachedGraphQLDefinition
+  extend ::GraphQL::Relay::TypeExtensions
+  extend ::GraphQL::Schema::Member::BaseDSLMethods
+  extend ::GraphQL::Schema::FindInheritedValue
+  extend ::GraphQL::Schema::FindInheritedValue::EmptyObjects
+  extend ::GraphQL::Schema::Member::TypeSystemHelpers
+  extend ::GraphQL::Schema::Member::Scoped
+  extend ::GraphQL::Schema::Member::RelayShortcuts
+  extend ::GraphQL::Schema::Member::HasPath
+  extend ::GraphQL::Schema::Member::HasAstNode
+end
+
+class GraphQL::Schema::MiddlewareChain
+  def <<(callable); end
+
+  def ==(other); end
+
+  def [](*args, &block); end
+
+  def concat(callables); end
+
+  def delete(*args, &block); end
+
+  def final_step(); end
+
+  def first(*args, &block); end
+
+  def initialize(steps: T.unsafe(nil), final_step: T.unsafe(nil)); end
+
+  def insert(*args, &block); end
+
+  def invoke(arguments); end
+
+  def push(callable); end
+
+  def steps(); end
+end
+
+class GraphQL::Schema::MiddlewareChain::MiddlewareWrapper
+  def call(*args, &next_middleware); end
+
+  def callable(); end
+
+  def initialize(callable); end
+end
+
+class GraphQL::Schema::MiddlewareChain::MiddlewareWrapper
+end
+
+class GraphQL::Schema::MiddlewareChain
+  extend ::Forwardable
+end
+
+class GraphQL::Schema::Mutation
+end
+
+class GraphQL::Schema::Mutation
+  extend ::GraphQL::Schema::Member::HasFields
+  extend ::GraphQL::Schema::Resolver::HasPayloadType
+end
+
+class GraphQL::Schema::NonNull
+  include ::GraphQL::Schema::Member::ValidatesInput
+  def coerce_input(value, ctx); end
+
+  def coerce_result(value, ctx); end
+
+  def description(); end
+
+  def graphql_name(); end
+
+  def validate_input(value, ctx); end
+end
+
+class GraphQL::Schema::NonNull
+end
+
+module GraphQL::Schema::NullMask
+end
+
+module GraphQL::Schema::NullMask
+  def self.call(member, ctx); end
+end
+
+class GraphQL::Schema::Object
+  include ::GraphQL::Execution::Interpreter::HandlesRawValue
+  def context(); end
+
+  def initialize(object, context); end
+
+  def object(); end
+end
+
+class GraphQL::Schema::Object
+  extend ::GraphQL::Schema::Member::AcceptsDefinition
+  extend ::GraphQL::Schema::Member::AcceptsDefinition::AcceptsDefinitionDefinitionMethods
+  extend ::GraphQL::Schema::Member::AcceptsDefinition::ToGraphQLExtension
+  def self.authorized_new(object, context); end
+
+  def self.implements(*new_interfaces, **options); end
+
+  def self.interface_type_memberships(); end
+
+  def self.interfaces(context=T.unsafe(nil)); end
+
+  def self.own_interface_type_memberships(); end
+end
+
+class GraphQL::Schema::PossibleTypes
+  def initialize(schema); end
+
+  def interface_implementers(ctx, type_defn); end
+
+  def possible_types(type_defn, ctx); end
+end
+
+class GraphQL::Schema::PossibleTypes
+end
+
+class GraphQL::Schema::Printer
+  def initialize(schema, context: T.unsafe(nil), only: T.unsafe(nil), except: T.unsafe(nil), introspection: T.unsafe(nil)); end
+
+  def print_schema(); end
+
+  def print_type(type); end
+
+  def schema(); end
+
+  def warden(); end
+end
+
+class GraphQL::Schema::Printer::IntrospectionPrinter
+end
+
+class GraphQL::Schema::Printer::IntrospectionPrinter
+end
+
+class GraphQL::Schema::Printer
+  def self.print_introspection_schema(); end
+
+  def self.print_schema(schema, **args); end
+end
+
+class GraphQL::Schema::RelayClassicMutation
+  def resolve_with_support(**inputs); end
+end
+
+class GraphQL::Schema::RelayClassicMutation
+  def self.input_object_class(new_class=T.unsafe(nil)); end
+
+  def self.input_type(new_input_type=T.unsafe(nil)); end
+end
+
+class GraphQL::Schema::RescueMiddleware
+  def call(*args); end
+
+  def remove_handler(*error_classes); end
+
+  def rescue_from(*error_classes, &block); end
+
+  def rescue_table(); end
+end
+
+class GraphQL::Schema::RescueMiddleware
+end
+
+class GraphQL::Schema::Resolver
+  include ::GraphQL::Schema::Member::GraphQLTypeNames
+  include ::GraphQL::Schema::Member::HasArguments::ArgumentObjectLoader
+  include ::GraphQL::Schema::Member::HasPath
+  def authorized?(**inputs); end
+
+  def context(); end
+
+  def field(); end
+
+  def initialize(object:, context:, field:); end
+
+  def object(); end
+
+  def ready?(**args); end
+
+  def resolve(**args); end
+
+  def resolve_with_support(**args); end
+end
+
+module GraphQL::Schema::Resolver::HasPayloadType
+  def field_class(new_class=T.unsafe(nil)); end
+
+  def object_class(new_class=T.unsafe(nil)); end
+
+  def payload_type(new_payload_type=T.unsafe(nil)); end
+
+  def type(new_payload_type=T.unsafe(nil)); end
+
+  def type_expr(new_payload_type=T.unsafe(nil)); end
+end
+
+module GraphQL::Schema::Resolver::HasPayloadType
+end
+
+class GraphQL::Schema::Resolver
+  extend ::GraphQL::Schema::Member::BaseDSLMethods
+  extend ::GraphQL::Schema::FindInheritedValue
+  extend ::GraphQL::Schema::FindInheritedValue::EmptyObjects
+  extend ::GraphQL::Schema::Member::HasArguments
+  extend ::GraphQL::Schema::Member::HasPath
+  def self.arguments_loads_as_type(); end
+
+  def self.complexity(new_complexity=T.unsafe(nil)); end
+
+  def self.extension(extension, **options); end
+
+  def self.extensions(); end
+
+  def self.extras(new_extras=T.unsafe(nil)); end
+
+  def self.field_options(); end
+
+  def self.null(allow_null=T.unsafe(nil)); end
+
+  def self.resolve_method(new_method=T.unsafe(nil)); end
+
+  def self.type(new_type=T.unsafe(nil), null: T.unsafe(nil)); end
+
+  def self.type_expr(); end
+end
+
+class GraphQL::Schema::Scalar
+end
+
+class GraphQL::Schema::Scalar
+  extend ::GraphQL::Schema::Member::AcceptsDefinition
+  extend ::GraphQL::Schema::Member::AcceptsDefinition::AcceptsDefinitionDefinitionMethods
+  extend ::GraphQL::Schema::Member::ValidatesInput
+  extend ::GraphQL::Schema::Member::AcceptsDefinition::ToGraphQLExtension
+  def self.coerce_input(val, ctx); end
+
+  def self.coerce_result(val, ctx); end
+
+  def self.default_scalar(is_default=T.unsafe(nil)); end
+
+  def self.default_scalar?(); end
+
+  def self.validate_non_null_input(value, ctx); end
+end
+
+class GraphQL::Schema::Subscription
+  def resolve_subscribe(**args); end
+
+  def resolve_update(**args); end
+
+  def subscribe(args=T.unsafe(nil)); end
+
+  def unsubscribe(); end
+
+  def update(args=T.unsafe(nil)); end
+  READING_SCOPE = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Schema::Subscription::EarlyTerminationError
+end
+
+class GraphQL::Schema::Subscription::EarlyTerminationError
+end
+
+class GraphQL::Schema::Subscription::NoUpdateError
+end
+
+class GraphQL::Schema::Subscription::NoUpdateError
+end
+
+class GraphQL::Schema::Subscription::UnsubscribedError
+end
+
+class GraphQL::Schema::Subscription::UnsubscribedError
+end
+
+class GraphQL::Schema::Subscription
+  extend ::GraphQL::Schema::Resolver::HasPayloadType
+  extend ::GraphQL::Schema::Member::HasFields
+  def self.subscription_scope(new_scope=T.unsafe(nil)); end
+end
+
+class GraphQL::Schema::Timeout
+  def handle_timeout(error, query); end
+
+  def initialize(max_seconds:); end
+
+  def max_seconds(); end
+
+  def trace(key, data); end
+end
+
+class GraphQL::Schema::Timeout::TimeoutError
+  def initialize(parent_type, field); end
+end
+
+class GraphQL::Schema::Timeout::TimeoutError
+end
+
+class GraphQL::Schema::Timeout
+  def self.use(schema, **options); end
+end
+
+class GraphQL::Schema::TimeoutMiddleware
+  def call(parent_type, parent_object, field_definition, field_args, query_context); end
+
+  def initialize(max_seconds:, context_key: T.unsafe(nil), &block); end
+
+  def on_timeout(parent_type, parent_object, field_definition, field_args, field_context); end
+end
+
+class GraphQL::Schema::TimeoutMiddleware::TimeoutError
+  def initialize(parent_type, field_defn); end
+end
+
+class GraphQL::Schema::TimeoutMiddleware::TimeoutError
+end
+
+class GraphQL::Schema::TimeoutMiddleware::TimeoutQueryProxy
+  def context(); end
+
+  def initialize(query, ctx); end
+  RUBYGEMS_ACTIVATION_MONITOR = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Schema::TimeoutMiddleware::TimeoutQueryProxy
+end
+
+class GraphQL::Schema::TimeoutMiddleware
+end
+
+class GraphQL::Schema::Traversal
+  def initialize(schema, introspection: T.unsafe(nil)); end
+
+  def instrumented_field_map(); end
+
+  def type_map(); end
+
+  def type_reference_map(); end
+
+  def union_memberships(); end
+end
+
+class GraphQL::Schema::Traversal
+end
+
+module GraphQL::Schema::TypeExpression
+end
+
+module GraphQL::Schema::TypeExpression
+  def self.build_type(type_owner, ast_node); end
+end
+
+class GraphQL::Schema::TypeMembership
+  def abstract_type(); end
+
+  def initialize(abstract_type, object_type, **options); end
+
+  def object_type(); end
+
+  def object_type=(object_type); end
+
+  def visible?(_ctx); end
+end
+
+class GraphQL::Schema::TypeMembership
+end
+
+class GraphQL::Schema::Union
+end
+
+class GraphQL::Schema::Union
+  extend ::GraphQL::Schema::Member::AcceptsDefinition
+  extend ::GraphQL::Schema::Member::AcceptsDefinition::AcceptsDefinitionDefinitionMethods
+  extend ::GraphQL::Schema::Member::AcceptsDefinition::ToGraphQLExtension
+  def self.possible_types(*types, context: T.unsafe(nil), **options); end
+
+  def self.type_membership_class(membership_class=T.unsafe(nil)); end
+
+  def self.type_memberships(); end
+end
+
+module GraphQL::Schema::UniqueWithinType
+end
+
+module GraphQL::Schema::UniqueWithinType
+  def self.decode(node_id, separator: T.unsafe(nil)); end
+
+  def self.default_id_separator(); end
+
+  def self.default_id_separator=(default_id_separator); end
+
+  def self.encode(type_name, object_value, separator: T.unsafe(nil)); end
+end
+
+class GraphQL::Schema::UnresolvedLateBoundTypeError
+  def initialize(type:); end
+
+  def type(); end
+end
+
+class GraphQL::Schema::UnresolvedLateBoundTypeError
+end
+
+class GraphQL::Schema::Validation
+  RULES = ::T.let(nil, ::T.untyped)
+end
+
+module GraphQL::Schema::Validation::Rules
+  ARGUMENTS_ARE_STRING_TO_ARGUMENT = ::T.let(nil, ::T.untyped)
+  ARGUMENTS_ARE_VALID = ::T.let(nil, ::T.untyped)
+  DEFAULT_VALUE_IS_VALID_FOR_TYPE = ::T.let(nil, ::T.untyped)
+  DESCRIPTION_IS_STRING_OR_NIL = ::T.let(nil, ::T.untyped)
+  FIELDS_ARE_VALID = ::T.let(nil, ::T.untyped)
+  HAS_AT_LEAST_ONE_ARGUMENT = ::T.let(nil, ::T.untyped)
+  HAS_AT_LEAST_ONE_FIELD = ::T.let(nil, ::T.untyped)
+  HAS_ONE_OR_MORE_POSSIBLE_TYPES = ::T.let(nil, ::T.untyped)
+  INTERFACES_ARE_IMPLEMENTED = ::T.let(nil, ::T.untyped)
+  NAME_IS_STRING = ::T.let(nil, ::T.untyped)
+  RESERVED_NAME = ::T.let(nil, ::T.untyped)
+  RESERVED_TYPE_NAME = ::T.let(nil, ::T.untyped)
+  SCHEMA_CAN_FETCH_IDS = ::T.let(nil, ::T.untyped)
+  SCHEMA_CAN_GENERATE_IDS = ::T.let(nil, ::T.untyped)
+  SCHEMA_CAN_RESOLVE_TYPES = ::T.let(nil, ::T.untyped)
+  SCHEMA_INSTRUMENTERS_ARE_VALID = ::T.let(nil, ::T.untyped)
+  TYPE_IS_VALID_INPUT_TYPE = ::T.let(nil, ::T.untyped)
+end
+
+module GraphQL::Schema::Validation::Rules
+  def self.assert_named_items_are_valid(item_name, get_items_proc); end
+
+  def self.assert_property(property_name, *allowed_classes); end
+
+  def self.assert_property_list_of(property_name, list_member_class); end
+
+  def self.assert_property_mapping(property_name, from_class, to_class); end
+
+  def self.count_at_least(item_name, minimum_count, get_items_proc); end
+end
+
+class GraphQL::Schema::Validation
+  def self.validate(object); end
+end
+
+class GraphQL::Schema::Warden
+  def arguments(argument_owner); end
+
+  def directives(); end
+
+  def enum_values(enum_defn); end
+
+  def fields(type_defn); end
+
+  def get_field(parent_type, field_name); end
+
+  def get_type(type_name); end
+
+  def initialize(filter, context:, schema:); end
+
+  def interfaces(obj_type); end
+
+  def possible_types(type_defn); end
+
+  def reachable_type?(type_name); end
+
+  def reachable_types(); end
+
+  def root_type_for_operation(op_name); end
+
+  def types(); end
+  NO_REFERENCES = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Schema::Warden
+end
+
+class GraphQL::Schema::Wrapper
+  include ::GraphQL::Schema::Member::CachedGraphQLDefinition
+  include ::GraphQL::Schema::Member::TypeSystemHelpers
+  def ==(other); end
+
+  def initialize(of_type); end
+
+  def of_type(); end
+
+  def to_graphql(); end
+
+  def unwrap(); end
+end
+
+class GraphQL::Schema::Wrapper
+end
+
+class GraphQL::Schema
+  extend ::Forwardable
+  extend ::GraphQL::Schema::Member::AcceptsDefinition
+  extend ::GraphQL::Schema::Member::AcceptsDefinition::AcceptsDefinitionDefinitionMethods
+  extend ::GraphQL::Schema::Member::HasAstNode
+  extend ::GraphQL::Schema::FindInheritedValue
+  extend ::GraphQL::Schema::FindInheritedValue::EmptyObjects
+  extend ::GraphQL::Schema::LazyHandlingMethods
+  extend ::GraphQL::Schema::Member::AcceptsDefinition::ToGraphQLExtension
+  def self.accessible?(member, ctx); end
+
+  def self.analysis_engine(); end
+
+  def self.analysis_engine=(analysis_engine); end
+
+  def self.as_json(only: T.unsafe(nil), except: T.unsafe(nil), context: T.unsafe(nil)); end
+
+  def self.connections(); end
+
+  def self.connections=(connections); end
+
+  def self.context_class(new_context_class=T.unsafe(nil)); end
+
+  def self.cursor_encoder(new_encoder=T.unsafe(nil)); end
+
+  def self.default_directives(); end
+
+  def self.default_execution_strategy(); end
+
+  def self.default_execution_strategy=(default_execution_strategy); end
+
+  def self.default_filter(); end
+
+  def self.default_mask(new_mask=T.unsafe(nil)); end
+
+  def self.default_max_page_size(new_default_max_page_size=T.unsafe(nil)); end
+
+  def self.directive(new_directive); end
+
+  def self.directives(new_directives=T.unsafe(nil)); end
+
+  def self.disable_introspection_entry_points(); end
+
+  def self.disable_introspection_entry_points?(); end
+
+  def self.disable_schema_introspection_entry_point(); end
+
+  def self.disable_schema_introspection_entry_point?(); end
+
+  def self.disable_type_introspection_entry_point(); end
+
+  def self.disable_type_introspection_entry_point?(); end
+
+  def self.error_bubbling(new_error_bubbling=T.unsafe(nil)); end
+
+  def self.error_bubbling=(error_bubbling); end
+
+  def self.error_handler(); end
+
+  def self.error_handler=(error_handler); end
+
+  def self.execute(query_str=T.unsafe(nil), **kwargs); end
+
+  def self.execution_strategy_for_operation(*args, &block); end
+
+  def self.find(path); end
+
+  def self.from_definition(definition_or_path, default_resolve: T.unsafe(nil), interpreter: T.unsafe(nil), parser: T.unsafe(nil), using: T.unsafe(nil)); end
+
+  def self.from_introspection(introspection_result); end
+
+  def self.get_field(type_or_name, field_name); end
+
+  def self.get_fields(type); end
+
+  def self.get_type(type_name); end
+
+  def self.graphql_definition(); end
+
+  def self.id_from_object(object, type, ctx); end
+
+  def self.id_from_object=(*args, &block); end
+
+  def self.id_from_object_proc(*args, &block); end
+
+  def self.inaccessible_fields(error); end
+
+  def self.inherited(child_class); end
+
+  def self.instrument(instrument_step, instrumenter, options=T.unsafe(nil)); end
+
+  def self.instrumenters(); end
+
+  def self.interpreter=(interpreter); end
+
+  def self.interpreter?(); end
+
+  def self.introspection(new_introspection_namespace=T.unsafe(nil)); end
+
+  def self.introspection_system(); end
+
+  def self.lazy_resolve(lazy_class, value_method); end
+
+  def self.max_complexity(max_complexity=T.unsafe(nil)); end
+
+  def self.max_complexity=(max_complexity); end
+
+  def self.max_depth(new_max_depth=T.unsafe(nil)); end
+
+  def self.max_depth=(max_depth); end
+
+  def self.metadata(*args, &block); end
+
+  def self.middleware(new_middleware=T.unsafe(nil)); end
+
+  def self.multiplex(queries, **kwargs); end
+
+  def self.multiplex_analyzer(new_analyzer); end
+
+  def self.multiplex_analyzers(); end
+
+  def self.mutation(new_mutation_object=T.unsafe(nil)); end
+
+  def self.mutation_execution_strategy(new_mutation_execution_strategy=T.unsafe(nil)); end
+
+  def self.new_connections?(); end
+
+  def self.object_from_id(node_id, ctx); end
+
+  def self.object_from_id=(*args, &block); end
+
+  def self.object_from_id_proc(*args, &block); end
+
+  def self.orphan_types(*new_orphan_types); end
+
+  def self.parse_error(parse_err, ctx); end
+
+  def self.plugins(); end
+
+  def self.possible_types(type=T.unsafe(nil), context=T.unsafe(nil)); end
+
+  def self.query(new_query_object=T.unsafe(nil)); end
+
+  def self.query_analyzer(new_analyzer); end
+
+  def self.query_analyzers(); end
+
+  def self.query_execution_strategy(new_query_execution_strategy=T.unsafe(nil)); end
+
+  def self.redefine(*args, &block); end
+
+  def self.references_to(to_type=T.unsafe(nil), from: T.unsafe(nil)); end
+
+  def self.remove_handler(*args, &block); end
+
+  def self.rescue_from(*err_classes, &handler_block); end
+
+  def self.rescues(); end
+
+  def self.resolve_type(type, obj, ctx); end
+
+  def self.root_type_for_operation(operation); end
+
+  def self.root_types(); end
+
+  def self.static_validator(); end
+
+  def self.subscription(new_subscription_object=T.unsafe(nil)); end
+
+  def self.subscription_execution_strategy(new_subscription_execution_strategy=T.unsafe(nil)); end
+
+  def self.subscriptions(); end
+
+  def self.subscriptions=(subscriptions); end
+
+  def self.to_definition(only: T.unsafe(nil), except: T.unsafe(nil), context: T.unsafe(nil)); end
+
+  def self.to_document(); end
+
+  def self.to_json(*args); end
+
+  def self.tracer(new_tracer); end
+
+  def self.tracers(); end
+
+  def self.type_error(type_err, ctx); end
+
+  def self.type_from_ast(ast_node, context: T.unsafe(nil)); end
+
+  def self.types(); end
+
+  def self.unauthorized_field(unauthorized_error); end
+
+  def self.unauthorized_object(unauthorized_error); end
+
+  def self.union_memberships(type=T.unsafe(nil)); end
+
+  def self.use(plugin, **kwargs); end
+
+  def self.using_ast_analysis?(); end
+
+  def self.validate(*args, &block); end
+
+  def self.visible?(member, ctx); end
+end
+
+module GraphQL::StaticValidation
+  ALL_RULES = ::T.let(nil, ::T.untyped)
+end
+
+module GraphQL::StaticValidation::ArgumentLiteralsAreCompatible
+  def on_argument(node, parent); end
+end
+
+module GraphQL::StaticValidation::ArgumentLiteralsAreCompatible
+end
+
+class GraphQL::StaticValidation::ArgumentLiteralsAreCompatibleError
+  def argument_name(); end
+
+  def code(); end
+
+  def initialize(message, type:, path: T.unsafe(nil), nodes: T.unsafe(nil), argument: T.unsafe(nil), extensions: T.unsafe(nil), coerce_extensions: T.unsafe(nil)); end
+
+  def type_name(); end
+end
+
+class GraphQL::StaticValidation::ArgumentLiteralsAreCompatibleError
+end
+
+module GraphQL::StaticValidation::ArgumentNamesAreUnique
+  include ::GraphQL::StaticValidation::Error::ErrorHelper
+  def on_directive(node, parent); end
+
+  def on_field(node, parent); end
+
+  def validate_arguments(node); end
+end
+
+module GraphQL::StaticValidation::ArgumentNamesAreUnique
+end
+
+class GraphQL::StaticValidation::ArgumentNamesAreUniqueError
+  def code(); end
+
+  def initialize(message, name:, path: T.unsafe(nil), nodes: T.unsafe(nil)); end
+
+  def name(); end
+end
+
+class GraphQL::StaticValidation::ArgumentNamesAreUniqueError
+end
+
+module GraphQL::StaticValidation::ArgumentsAreDefined
+  def on_argument(node, parent); end
+end
+
+module GraphQL::StaticValidation::ArgumentsAreDefined
+end
+
+class GraphQL::StaticValidation::ArgumentsAreDefinedError
+  def argument_name(); end
+
+  def code(); end
+
+  def initialize(message, name:, type:, argument:, path: T.unsafe(nil), nodes: T.unsafe(nil)); end
+
+  def name(); end
+
+  def type_name(); end
+end
+
+class GraphQL::StaticValidation::ArgumentsAreDefinedError
+end
+
+class GraphQL::StaticValidation::BaseVisitor
+  def context(); end
+
+  def initialize(document, context); end
+
+  def object_types(); end
+
+  def path(); end
+
+  def rewrite_document(); end
+end
+
+module GraphQL::StaticValidation::BaseVisitor::ContextMethods
+  def argument_definition(); end
+
+  def directive_definition(); end
+
+  def field_definition(); end
+
+  def on_argument(node, parent); end
+
+  def on_directive(node, parent); end
+
+  def on_field(node, parent); end
+
+  def on_fragment_definition(node, parent); end
+
+  def on_fragment_spread(node, parent); end
+
+  def on_inline_fragment(node, parent); end
+
+  def on_input_object(node, parent); end
+
+  def on_operation_definition(node, parent); end
+
+  def parent_type_definition(); end
+
+  def type_definition(); end
+end
+
+module GraphQL::StaticValidation::BaseVisitor::ContextMethods
+end
+
+class GraphQL::StaticValidation::BaseVisitor
+  def self.including_rules(rules, rewrite: T.unsafe(nil)); end
+end
+
+class GraphQL::StaticValidation::DefaultVisitor
+  include ::GraphQL::StaticValidation::DefinitionDependencies
+  include ::GraphQL::StaticValidation::SubscriptionRootExists
+  include ::GraphQL::StaticValidation::MutationRootExists
+  include ::GraphQL::StaticValidation::VariableUsagesAreAllowed
+  include ::GraphQL::StaticValidation::VariablesAreUsedAndDefined
+  include ::GraphQL::StaticValidation::VariableDefaultValuesAreCorrectlyTyped
+  include ::GraphQL::StaticValidation::VariablesAreInputTypes
+  include ::GraphQL::StaticValidation::VariableNamesAreUnique
+  include ::GraphQL::StaticValidation::ArgumentNamesAreUnique
+  include ::GraphQL::StaticValidation::RequiredInputObjectAttributesArePresent
+  include ::GraphQL::StaticValidation::RequiredArgumentsArePresent
+  include ::GraphQL::StaticValidation::ArgumentLiteralsAreCompatible
+  include ::GraphQL::StaticValidation::ArgumentsAreDefined
+  include ::GraphQL::StaticValidation::FieldsHaveAppropriateSelections
+  include ::GraphQL::StaticValidation::FieldsWillMerge
+  include ::GraphQL::StaticValidation::FieldsAreDefinedOnType
+  include ::GraphQL::StaticValidation::FragmentSpreadsArePossible
+  include ::GraphQL::StaticValidation::FragmentsAreOnCompositeTypes
+  include ::GraphQL::StaticValidation::FragmentTypesExist
+  include ::GraphQL::StaticValidation::FragmentsAreUsed
+  include ::GraphQL::StaticValidation::FragmentsAreNamed
+  include ::GraphQL::StaticValidation::FragmentsAreFinite
+  include ::GraphQL::StaticValidation::FragmentNamesAreUnique
+  include ::GraphQL::StaticValidation::OperationNamesAreValid
+  include ::GraphQL::StaticValidation::UniqueDirectivesPerLocation
+  include ::GraphQL::StaticValidation::DirectivesAreInValidLocations
+  include ::GraphQL::StaticValidation::DirectivesAreDefined
+  include ::GraphQL::StaticValidation::NoDefinitionsArePresent
+  include ::GraphQL::StaticValidation::Error::ErrorHelper
+  include ::GraphQL::InternalRepresentation::Rewrite
+  include ::GraphQL::Language
+  include ::GraphQL::StaticValidation::BaseVisitor::ContextMethods
+end
+
+class GraphQL::StaticValidation::DefaultVisitor
+end
+
+module GraphQL::StaticValidation::DefinitionDependencies
+  def dependencies(); end
+
+  def dependency_map(&block); end
+
+  def initialize(*_); end
+
+  def on_document(node, parent); end
+
+  def on_fragment_definition(node, parent); end
+
+  def on_fragment_spread(node, parent); end
+
+  def on_operation_definition(node, prev_node); end
+end
+
+class GraphQL::StaticValidation::DefinitionDependencies::DependencyMap
+  def [](definition_node); end
+
+  def cyclical_definitions(); end
+
+  def unmet_dependencies(); end
+
+  def unused_dependencies(); end
+end
+
+class GraphQL::StaticValidation::DefinitionDependencies::DependencyMap
+end
+
+class GraphQL::StaticValidation::DefinitionDependencies::NodeWithPath
+  def eql?(*args, &block); end
+
+  def hash(*args, &block); end
+
+  def initialize(node, path); end
+
+  def name(*args, &block); end
+
+  def node(); end
+
+  def path(); end
+end
+
+class GraphQL::StaticValidation::DefinitionDependencies::NodeWithPath
+  extend ::Forwardable
+end
+
+module GraphQL::StaticValidation::DefinitionDependencies
+end
+
+module GraphQL::StaticValidation::DirectivesAreDefined
+  def initialize(*_); end
+
+  def on_directive(node, parent); end
+end
+
+module GraphQL::StaticValidation::DirectivesAreDefined
+end
+
+class GraphQL::StaticValidation::DirectivesAreDefinedError
+  def code(); end
+
+  def directive_name(); end
+
+  def initialize(message, directive:, path: T.unsafe(nil), nodes: T.unsafe(nil)); end
+end
+
+class GraphQL::StaticValidation::DirectivesAreDefinedError
+end
+
+module GraphQL::StaticValidation::DirectivesAreInValidLocations
+  include ::GraphQL::Language
+  def on_directive(node, parent); end
+  LOCATION_MESSAGE_NAMES = ::T.let(nil, ::T.untyped)
+  SIMPLE_LOCATIONS = ::T.let(nil, ::T.untyped)
+  SIMPLE_LOCATION_NODES = ::T.let(nil, ::T.untyped)
+end
+
+module GraphQL::StaticValidation::DirectivesAreInValidLocations
+end
+
+class GraphQL::StaticValidation::DirectivesAreInValidLocationsError
+  def code(); end
+
+  def initialize(message, target:, path: T.unsafe(nil), nodes: T.unsafe(nil), name: T.unsafe(nil)); end
+
+  def name(); end
+
+  def target_name(); end
+end
+
+class GraphQL::StaticValidation::DirectivesAreInValidLocationsError
+end
+
+class GraphQL::StaticValidation::Error
+  def initialize(message, path: T.unsafe(nil), nodes: T.unsafe(nil)); end
+
+  def message(); end
+
+  def path(); end
+
+  def path=(path); end
+
+  def to_h(); end
+end
+
+module GraphQL::StaticValidation::Error::ErrorHelper
+  def error(error_message, nodes, context: T.unsafe(nil), path: T.unsafe(nil), extensions: T.unsafe(nil)); end
+end
+
+module GraphQL::StaticValidation::Error::ErrorHelper
+end
+
+class GraphQL::StaticValidation::Error
+end
+
+module GraphQL::StaticValidation::FieldsAreDefinedOnType
+  def on_field(node, parent); end
+end
+
+module GraphQL::StaticValidation::FieldsAreDefinedOnType
+end
+
+class GraphQL::StaticValidation::FieldsAreDefinedOnTypeError
+  def code(); end
+
+  def field_name(); end
+
+  def initialize(message, type:, field:, path: T.unsafe(nil), nodes: T.unsafe(nil)); end
+
+  def type_name(); end
+end
+
+class GraphQL::StaticValidation::FieldsAreDefinedOnTypeError
+end
+
+module GraphQL::StaticValidation::FieldsHaveAppropriateSelections
+  include ::GraphQL::StaticValidation::Error::ErrorHelper
+  def on_field(node, parent); end
+
+  def on_operation_definition(node, _parent); end
+end
+
+module GraphQL::StaticValidation::FieldsHaveAppropriateSelections
+end
+
+class GraphQL::StaticValidation::FieldsHaveAppropriateSelectionsError
+  def code(); end
+
+  def initialize(message, node_name:, path: T.unsafe(nil), nodes: T.unsafe(nil), type: T.unsafe(nil)); end
+
+  def node_name(); end
+
+  def type_name(); end
+end
+
+class GraphQL::StaticValidation::FieldsHaveAppropriateSelectionsError
+end
+
+module GraphQL::StaticValidation::FieldsWillMerge
+  def initialize(*_); end
+
+  def on_field(node, _parent); end
+
+  def on_operation_definition(node, _parent); end
+  NO_ARGS = ::T.let(nil, ::T.untyped)
+  NO_SELECTIONS = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::StaticValidation::FieldsWillMerge::Field
+  def definition(); end
+
+  def definition=(_); end
+
+  def node(); end
+
+  def node=(_); end
+
+  def owner_type(); end
+
+  def owner_type=(_); end
+
+  def parents(); end
+
+  def parents=(_); end
+end
+
+class GraphQL::StaticValidation::FieldsWillMerge::Field
+  def self.[](*_); end
+
+  def self.members(); end
+end
+
+class GraphQL::StaticValidation::FieldsWillMerge::FragmentSpread
+  def name(); end
+
+  def name=(_); end
+
+  def parents(); end
+
+  def parents=(_); end
+end
+
+class GraphQL::StaticValidation::FieldsWillMerge::FragmentSpread
+  def self.[](*_); end
+
+  def self.members(); end
+end
+
+module GraphQL::StaticValidation::FieldsWillMerge
+end
+
+class GraphQL::StaticValidation::FieldsWillMergeError
+  def code(); end
+
+  def conflicts(); end
+
+  def field_name(); end
+
+  def initialize(message, field_name:, conflicts:, path: T.unsafe(nil), nodes: T.unsafe(nil)); end
+end
+
+class GraphQL::StaticValidation::FieldsWillMergeError
+end
+
+module GraphQL::StaticValidation::FragmentNamesAreUnique
+  def initialize(*_); end
+
+  def on_document(_n, _p); end
+
+  def on_fragment_definition(node, parent); end
+end
+
+module GraphQL::StaticValidation::FragmentNamesAreUnique
+end
+
+class GraphQL::StaticValidation::FragmentNamesAreUniqueError
+  def code(); end
+
+  def fragment_name(); end
+
+  def initialize(message, name:, path: T.unsafe(nil), nodes: T.unsafe(nil)); end
+end
+
+class GraphQL::StaticValidation::FragmentNamesAreUniqueError
+end
+
+module GraphQL::StaticValidation::FragmentSpreadsArePossible
+  def initialize(*_); end
+
+  def on_document(node, parent); end
+
+  def on_fragment_spread(node, parent); end
+
+  def on_inline_fragment(node, parent); end
+end
+
+class GraphQL::StaticValidation::FragmentSpreadsArePossible::FragmentSpread
+  def initialize(node:, parent_type:, path:); end
+
+  def node(); end
+
+  def parent_type(); end
+
+  def path(); end
+end
+
+class GraphQL::StaticValidation::FragmentSpreadsArePossible::FragmentSpread
+end
+
+module GraphQL::StaticValidation::FragmentSpreadsArePossible
+end
+
+class GraphQL::StaticValidation::FragmentSpreadsArePossibleError
+  def code(); end
+
+  def fragment_name(); end
+
+  def initialize(message, type:, fragment_name:, parent:, path: T.unsafe(nil), nodes: T.unsafe(nil)); end
+
+  def parent_name(); end
+
+  def type_name(); end
+end
+
+class GraphQL::StaticValidation::FragmentSpreadsArePossibleError
+end
+
+module GraphQL::StaticValidation::FragmentTypesExist
+  def on_fragment_definition(node, _parent); end
+
+  def on_inline_fragment(node, _parent); end
+end
+
+module GraphQL::StaticValidation::FragmentTypesExist
+end
+
+class GraphQL::StaticValidation::FragmentTypesExistError
+  def code(); end
+
+  def initialize(message, type:, path: T.unsafe(nil), nodes: T.unsafe(nil)); end
+
+  def type_name(); end
+end
+
+class GraphQL::StaticValidation::FragmentTypesExistError
+end
+
+module GraphQL::StaticValidation::FragmentsAreFinite
+  def on_document(_n, _p); end
+end
+
+module GraphQL::StaticValidation::FragmentsAreFinite
+end
+
+class GraphQL::StaticValidation::FragmentsAreFiniteError
+  def code(); end
+
+  def fragment_name(); end
+
+  def initialize(message, name:, path: T.unsafe(nil), nodes: T.unsafe(nil)); end
+end
+
+class GraphQL::StaticValidation::FragmentsAreFiniteError
+end
+
+module GraphQL::StaticValidation::FragmentsAreNamed
+  def on_fragment_definition(node, _parent); end
+end
+
+module GraphQL::StaticValidation::FragmentsAreNamed
+end
+
+class GraphQL::StaticValidation::FragmentsAreNamedError
+  def code(); end
+end
+
+class GraphQL::StaticValidation::FragmentsAreNamedError
+end
+
+module GraphQL::StaticValidation::FragmentsAreOnCompositeTypes
+  def on_fragment_definition(node, parent); end
+
+  def on_inline_fragment(node, parent); end
+end
+
+module GraphQL::StaticValidation::FragmentsAreOnCompositeTypes
+end
+
+class GraphQL::StaticValidation::FragmentsAreOnCompositeTypesError
+  def argument_name(); end
+
+  def code(); end
+
+  def initialize(message, type:, path: T.unsafe(nil), nodes: T.unsafe(nil)); end
+
+  def type_name(); end
+end
+
+class GraphQL::StaticValidation::FragmentsAreOnCompositeTypesError
+end
+
+module GraphQL::StaticValidation::FragmentsAreUsed
+  def on_document(node, parent); end
+end
+
+module GraphQL::StaticValidation::FragmentsAreUsed
+end
+
+class GraphQL::StaticValidation::FragmentsAreUsedError
+  def code(); end
+
+  def fragment_name(); end
+
+  def initialize(message, fragment:, path: T.unsafe(nil), nodes: T.unsafe(nil)); end
+end
+
+class GraphQL::StaticValidation::FragmentsAreUsedError
+end
+
+class GraphQL::StaticValidation::InterpreterVisitor
+  include ::GraphQL::StaticValidation::DefinitionDependencies
+  include ::GraphQL::StaticValidation::SubscriptionRootExists
+  include ::GraphQL::StaticValidation::MutationRootExists
+  include ::GraphQL::StaticValidation::VariableUsagesAreAllowed
+  include ::GraphQL::StaticValidation::VariablesAreUsedAndDefined
+  include ::GraphQL::StaticValidation::VariableDefaultValuesAreCorrectlyTyped
+  include ::GraphQL::StaticValidation::VariablesAreInputTypes
+  include ::GraphQL::StaticValidation::VariableNamesAreUnique
+  include ::GraphQL::StaticValidation::ArgumentNamesAreUnique
+  include ::GraphQL::StaticValidation::RequiredInputObjectAttributesArePresent
+  include ::GraphQL::StaticValidation::RequiredArgumentsArePresent
+  include ::GraphQL::StaticValidation::ArgumentLiteralsAreCompatible
+  include ::GraphQL::StaticValidation::ArgumentsAreDefined
+  include ::GraphQL::StaticValidation::FieldsHaveAppropriateSelections
+  include ::GraphQL::StaticValidation::FieldsWillMerge
+  include ::GraphQL::StaticValidation::FieldsAreDefinedOnType
+  include ::GraphQL::StaticValidation::FragmentSpreadsArePossible
+  include ::GraphQL::StaticValidation::FragmentsAreOnCompositeTypes
+  include ::GraphQL::StaticValidation::FragmentTypesExist
+  include ::GraphQL::StaticValidation::FragmentsAreUsed
+  include ::GraphQL::StaticValidation::FragmentsAreNamed
+  include ::GraphQL::StaticValidation::FragmentsAreFinite
+  include ::GraphQL::StaticValidation::FragmentNamesAreUnique
+  include ::GraphQL::StaticValidation::OperationNamesAreValid
+  include ::GraphQL::StaticValidation::UniqueDirectivesPerLocation
+  include ::GraphQL::StaticValidation::DirectivesAreInValidLocations
+  include ::GraphQL::Language
+  include ::GraphQL::StaticValidation::DirectivesAreDefined
+  include ::GraphQL::StaticValidation::NoDefinitionsArePresent
+  include ::GraphQL::StaticValidation::Error::ErrorHelper
+  include ::GraphQL::StaticValidation::BaseVisitor::ContextMethods
+end
+
+class GraphQL::StaticValidation::InterpreterVisitor
+end
+
+class GraphQL::StaticValidation::LiteralValidator
+  def initialize(context:); end
+
+  def validate(ast_value, type); end
+end
+
+class GraphQL::StaticValidation::LiteralValidator
+end
+
+module GraphQL::StaticValidation::MutationRootExists
+  def on_operation_definition(node, _parent); end
+end
+
+module GraphQL::StaticValidation::MutationRootExists
+end
+
+class GraphQL::StaticValidation::MutationRootExistsError
+  def code(); end
+end
+
+class GraphQL::StaticValidation::MutationRootExistsError
+end
+
+module GraphQL::StaticValidation::NoDefinitionsArePresent
+  include ::GraphQL::StaticValidation::Error::ErrorHelper
+  def initialize(*_); end
+
+  def on_directive_definition(node, parent); end
+
+  def on_document(node, parent); end
+
+  def on_enum_type_definition(node, parent); end
+
+  def on_enum_type_extension(node, parent); end
+
+  def on_input_object_type_definition(node, parent); end
+
+  def on_input_object_type_extension(node, parent); end
+
+  def on_interface_type_definition(node, parent); end
+
+  def on_interface_type_extension(node, parent); end
+
+  def on_invalid_node(node, parent); end
+
+  def on_object_type_definition(node, parent); end
+
+  def on_object_type_extension(node, parent); end
+
+  def on_scalar_type_definition(node, parent); end
+
+  def on_scalar_type_extension(node, parent); end
+
+  def on_schema_definition(node, parent); end
+
+  def on_schema_extension(node, parent); end
+
+  def on_union_type_definition(node, parent); end
+
+  def on_union_type_extension(node, parent); end
+end
+
+module GraphQL::StaticValidation::NoDefinitionsArePresent
+end
+
+class GraphQL::StaticValidation::NoDefinitionsArePresentError
+  def code(); end
+end
+
+class GraphQL::StaticValidation::NoDefinitionsArePresentError
+end
+
+class GraphQL::StaticValidation::NoValidateVisitor
+  include ::GraphQL::InternalRepresentation::Rewrite
+  include ::GraphQL::Language
+  include ::GraphQL::StaticValidation::DefinitionDependencies
+  include ::GraphQL::StaticValidation::BaseVisitor::ContextMethods
+end
+
+class GraphQL::StaticValidation::NoValidateVisitor
+end
+
+module GraphQL::StaticValidation::OperationNamesAreValid
+  def initialize(*_); end
+
+  def on_document(node, parent); end
+
+  def on_operation_definition(node, parent); end
+end
+
+module GraphQL::StaticValidation::OperationNamesAreValid
+end
+
+class GraphQL::StaticValidation::OperationNamesAreValidError
+  def code(); end
+
+  def initialize(message, path: T.unsafe(nil), nodes: T.unsafe(nil), name: T.unsafe(nil)); end
+
+  def operation_name(); end
+end
+
+class GraphQL::StaticValidation::OperationNamesAreValidError
+end
+
+module GraphQL::StaticValidation::RequiredArgumentsArePresent
+  def on_directive(node, _parent); end
+
+  def on_field(node, _parent); end
+end
+
+module GraphQL::StaticValidation::RequiredArgumentsArePresent
+end
+
+class GraphQL::StaticValidation::RequiredArgumentsArePresentError
+  def arguments(); end
+
+  def class_name(); end
+
+  def code(); end
+
+  def initialize(message, class_name:, name:, arguments:, path: T.unsafe(nil), nodes: T.unsafe(nil)); end
+
+  def name(); end
+end
+
+class GraphQL::StaticValidation::RequiredArgumentsArePresentError
+end
+
+module GraphQL::StaticValidation::RequiredInputObjectAttributesArePresent
+  def on_input_object(node, parent); end
+end
+
+module GraphQL::StaticValidation::RequiredInputObjectAttributesArePresent
+end
+
+class GraphQL::StaticValidation::RequiredInputObjectAttributesArePresentError
+  def argument_name(); end
+
+  def argument_type(); end
+
+  def code(); end
+
+  def initialize(message, path:, nodes:, argument_type:, argument_name:, input_object_type:); end
+
+  def input_object_type(); end
+end
+
+class GraphQL::StaticValidation::RequiredInputObjectAttributesArePresentError
+end
+
+module GraphQL::StaticValidation::SubscriptionRootExists
+  def on_operation_definition(node, _parent); end
+end
+
+module GraphQL::StaticValidation::SubscriptionRootExists
+end
+
+class GraphQL::StaticValidation::SubscriptionRootExistsError
+  def code(); end
+end
+
+class GraphQL::StaticValidation::SubscriptionRootExistsError
+end
+
+class GraphQL::StaticValidation::TypeStack
+  def argument_definitions(); end
+
+  def directive_definitions(); end
+
+  def field_definitions(); end
+
+  def initialize(schema, visitor); end
+
+  def object_types(); end
+
+  def path(); end
+
+  def schema(); end
+  PUSH_STRATEGIES = ::T.let(nil, ::T.untyped)
+  TYPE_INFERRENCE_ROOTS = ::T.let(nil, ::T.untyped)
+end
+
+module GraphQL::StaticValidation::TypeStack::ArgumentStrategy
+end
+
+module GraphQL::StaticValidation::TypeStack::ArgumentStrategy
+  def self.pop(stack, node); end
+
+  def self.push(stack, node); end
+end
+
+module GraphQL::StaticValidation::TypeStack::DirectiveStrategy
+end
+
+module GraphQL::StaticValidation::TypeStack::DirectiveStrategy
+  def self.pop(stack, node); end
+
+  def self.push(stack, node); end
+end
+
+class GraphQL::StaticValidation::TypeStack::EnterWithStrategy
+  def call(node, parent); end
+
+  def initialize(stack, strategy); end
+end
+
+class GraphQL::StaticValidation::TypeStack::EnterWithStrategy
+end
+
+module GraphQL::StaticValidation::TypeStack::FieldStrategy
+end
+
+module GraphQL::StaticValidation::TypeStack::FieldStrategy
+  def self.pop(stack, node); end
+
+  def self.push(stack, node); end
+end
+
+module GraphQL::StaticValidation::TypeStack::FragmentDefinitionStrategy
+end
+
+module GraphQL::StaticValidation::TypeStack::FragmentDefinitionStrategy
+  extend ::GraphQL::StaticValidation::TypeStack::FragmentWithTypeStrategy
+  def self.push_path_member(stack, node); end
+end
+
+module GraphQL::StaticValidation::TypeStack::FragmentSpreadStrategy
+end
+
+module GraphQL::StaticValidation::TypeStack::FragmentSpreadStrategy
+  def self.pop(stack, node); end
+
+  def self.push(stack, node); end
+end
+
+module GraphQL::StaticValidation::TypeStack::FragmentWithTypeStrategy
+  def pop(stack, node); end
+
+  def push(stack, node); end
+end
+
+module GraphQL::StaticValidation::TypeStack::FragmentWithTypeStrategy
+end
+
+module GraphQL::StaticValidation::TypeStack::InlineFragmentStrategy
+end
+
+module GraphQL::StaticValidation::TypeStack::InlineFragmentStrategy
+  extend ::GraphQL::StaticValidation::TypeStack::FragmentWithTypeStrategy
+  def self.push_path_member(stack, node); end
+end
+
+class GraphQL::StaticValidation::TypeStack::LeaveWithStrategy
+  def call(node, parent); end
+
+  def initialize(stack, strategy); end
+end
+
+class GraphQL::StaticValidation::TypeStack::LeaveWithStrategy
+end
+
+module GraphQL::StaticValidation::TypeStack::OperationDefinitionStrategy
+end
+
+module GraphQL::StaticValidation::TypeStack::OperationDefinitionStrategy
+  def self.pop(stack, node); end
+
+  def self.push(stack, node); end
+end
+
+class GraphQL::StaticValidation::TypeStack
+end
+
+module GraphQL::StaticValidation::UniqueDirectivesPerLocation
+  def on_enum_type_definition(node, parent); end
+
+  def on_enum_value_definition(node, parent); end
+
+  def on_field(node, parent); end
+
+  def on_field_definition(node, parent); end
+
+  def on_fragment_definition(node, parent); end
+
+  def on_fragment_spread(node, parent); end
+
+  def on_inline_fragment(node, parent); end
+
+  def on_input_object_type_definition(node, parent); end
+
+  def on_input_value_definition(node, parent); end
+
+  def on_interface_type_definition(node, parent); end
+
+  def on_object_type_definition(node, parent); end
+
+  def on_operation_definition(node, parent); end
+
+  def on_scalar_type_definition(node, parent); end
+
+  def on_union_type_definition(node, parent); end
+  DIRECTIVE_NODE_HOOKS = ::T.let(nil, ::T.untyped)
+end
+
+module GraphQL::StaticValidation::UniqueDirectivesPerLocation
+end
+
+class GraphQL::StaticValidation::UniqueDirectivesPerLocationError
+  def code(); end
+
+  def directive_name(); end
+
+  def initialize(message, directive:, path: T.unsafe(nil), nodes: T.unsafe(nil)); end
+end
+
+class GraphQL::StaticValidation::UniqueDirectivesPerLocationError
+end
+
+class GraphQL::StaticValidation::ValidationContext
+  def argument_definition(*args, &block); end
+
+  def dependencies(*args, &block); end
+
+  def directive_definition(*args, &block); end
+
+  def document(*args, &block); end
+
+  def errors(); end
+
+  def field_definition(*args, &block); end
+
+  def fragments(*args, &block); end
+
+  def initialize(query, visitor_class); end
+
+  def object_types(*args, &block); end
+
+  def on_dependency_resolve(&handler); end
+
+  def on_dependency_resolve_handlers(); end
+
+  def operations(*args, &block); end
+
+  def parent_type_definition(*args, &block); end
+
+  def path(*args, &block); end
+
+  def query(); end
+
+  def schema(*args, &block); end
+
+  def type_definition(*args, &block); end
+
+  def validate_literal(ast_value, type); end
+
+  def visitor(); end
+
+  def warden(*args, &block); end
+end
+
+class GraphQL::StaticValidation::ValidationContext
+  extend ::Forwardable
+end
+
+class GraphQL::StaticValidation::Validator
+  def initialize(schema:, rules: T.unsafe(nil)); end
+
+  def validate(query, validate: T.unsafe(nil)); end
+end
+
+class GraphQL::StaticValidation::Validator
+end
+
+module GraphQL::StaticValidation::VariableDefaultValuesAreCorrectlyTyped
+  def on_variable_definition(node, parent); end
+end
+
+module GraphQL::StaticValidation::VariableDefaultValuesAreCorrectlyTyped
+end
+
+class GraphQL::StaticValidation::VariableDefaultValuesAreCorrectlyTypedError
+  def code(); end
+
+  def initialize(message, name:, error_type:, path: T.unsafe(nil), nodes: T.unsafe(nil), type: T.unsafe(nil)); end
+
+  def type_name(); end
+
+  def variable_name(); end
+
+  def violation(); end
+  VIOLATIONS = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::StaticValidation::VariableDefaultValuesAreCorrectlyTypedError
+end
+
+module GraphQL::StaticValidation::VariableNamesAreUnique
+  def on_operation_definition(node, parent); end
+end
+
+module GraphQL::StaticValidation::VariableNamesAreUnique
+end
+
+class GraphQL::StaticValidation::VariableNamesAreUniqueError
+  def code(); end
+
+  def initialize(message, name:, path: T.unsafe(nil), nodes: T.unsafe(nil)); end
+
+  def variable_name(); end
+end
+
+class GraphQL::StaticValidation::VariableNamesAreUniqueError
+end
+
+module GraphQL::StaticValidation::VariableUsagesAreAllowed
+  def initialize(*_); end
+
+  def on_argument(node, parent); end
+
+  def on_operation_definition(node, parent); end
+end
+
+module GraphQL::StaticValidation::VariableUsagesAreAllowed
+end
+
+class GraphQL::StaticValidation::VariableUsagesAreAllowedError
+  def argument_name(); end
+
+  def code(); end
+
+  def error_message(); end
+
+  def initialize(message, type:, name:, argument:, error:, path: T.unsafe(nil), nodes: T.unsafe(nil)); end
+
+  def type_name(); end
+
+  def variable_name(); end
+end
+
+class GraphQL::StaticValidation::VariableUsagesAreAllowedError
+end
+
+module GraphQL::StaticValidation::VariablesAreInputTypes
+  def on_variable_definition(node, parent); end
+end
+
+module GraphQL::StaticValidation::VariablesAreInputTypes
+end
+
+class GraphQL::StaticValidation::VariablesAreInputTypesError
+  def code(); end
+
+  def initialize(message, type:, name:, path: T.unsafe(nil), nodes: T.unsafe(nil)); end
+
+  def type_name(); end
+
+  def variable_name(); end
+end
+
+class GraphQL::StaticValidation::VariablesAreInputTypesError
+end
+
+module GraphQL::StaticValidation::VariablesAreUsedAndDefined
+  def initialize(*_); end
+
+  def on_document(node, parent); end
+
+  def on_fragment_definition(node, parent); end
+
+  def on_fragment_spread(node, parent); end
+
+  def on_operation_definition(node, parent); end
+
+  def on_variable_identifier(node, parent); end
+end
+
+class GraphQL::StaticValidation::VariablesAreUsedAndDefined::VariableUsage
+  def ast_node(); end
+
+  def ast_node=(ast_node); end
+
+  def declared?(); end
+
+  def declared_by(); end
+
+  def declared_by=(declared_by); end
+
+  def path(); end
+
+  def path=(path); end
+
+  def used?(); end
+
+  def used_by(); end
+
+  def used_by=(used_by); end
+end
+
+class GraphQL::StaticValidation::VariablesAreUsedAndDefined::VariableUsage
+end
+
+module GraphQL::StaticValidation::VariablesAreUsedAndDefined
+end
+
+class GraphQL::StaticValidation::VariablesAreUsedAndDefinedError
+  def code(); end
+
+  def initialize(message, name:, error_type:, path: T.unsafe(nil), nodes: T.unsafe(nil)); end
+
+  def variable_name(); end
+
+  def violation(); end
+  VIOLATIONS = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::StaticValidation::VariablesAreUsedAndDefinedError
+end
+
+module GraphQL::StaticValidation
+end
+
+module GraphQL::StringDedupBackport
+end
+
+module GraphQL::StringDedupBackport
+end
+
+class GraphQL::StringEncodingError
+  def initialize(str); end
+
+  def string(); end
+end
+
+class GraphQL::StringEncodingError
+end
+
+class GraphQL::Subscriptions
+  def build_id(); end
+
+  def delete_subscription(subscription_id); end
+
+  def deliver(subscription_id, result); end
+
+  def each_subscription_id(event); end
+
+  def execute(subscription_id, event, object); end
+
+  def execute_all(event, object); end
+
+  def initialize(schema:, **rest); end
+
+  def normalize_name(event_or_arg_name); end
+
+  def read_subscription(subscription_id); end
+
+  def trigger(event_name, args, object, scope: T.unsafe(nil)); end
+
+  def write_subscription(query, events); end
+end
+
+class GraphQL::Subscriptions::ActionCableSubscriptions
+  def initialize(serializer: T.unsafe(nil), **rest); end
+  EVENT_PREFIX = ::T.let(nil, ::T.untyped)
+  SUBSCRIPTION_PREFIX = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Subscriptions::ActionCableSubscriptions
+end
+
+class GraphQL::Subscriptions::Event
+  def arguments(); end
+
+  def context(); end
+
+  def initialize(name:, arguments:, field: T.unsafe(nil), context: T.unsafe(nil), scope: T.unsafe(nil)); end
+
+  def name(); end
+
+  def topic(); end
+end
+
+class GraphQL::Subscriptions::Event
+  def self.serialize(name, arguments, field, scope:); end
+end
+
+class GraphQL::Subscriptions::Instrumentation
+  def after_query(query); end
+
+  def before_query(query); end
+
+  def initialize(schema:); end
+
+  def instrument(type, field); end
+end
+
+class GraphQL::Subscriptions::Instrumentation::SubscriptionRegistrationResolve
+  def call(obj, args, ctx); end
+
+  def initialize(inner_proc); end
+end
+
+class GraphQL::Subscriptions::Instrumentation::SubscriptionRegistrationResolve
+end
+
+class GraphQL::Subscriptions::Instrumentation
+end
+
+class GraphQL::Subscriptions::InvalidTriggerError
+end
+
+class GraphQL::Subscriptions::InvalidTriggerError
+end
+
+module GraphQL::Subscriptions::Serialize
+  GLOBALID_KEY = ::T.let(nil, ::T.untyped)
+  SYMBOL_KEY = ::T.let(nil, ::T.untyped)
+  SYMBOL_KEYS_KEY = ::T.let(nil, ::T.untyped)
+end
+
+module GraphQL::Subscriptions::Serialize
+  def self.dump(obj); end
+
+  def self.dump_recursive(obj); end
+
+  def self.load(str); end
+end
+
+module GraphQL::Subscriptions::SubscriptionRoot
+  def field(*args, extensions: T.unsafe(nil), **rest, &block); end
+end
+
+class GraphQL::Subscriptions::SubscriptionRoot::Extension
+  def after_resolve(value:, context:, object:, arguments:, **rest); end
+end
+
+class GraphQL::Subscriptions::SubscriptionRoot::Extension
+end
+
+module GraphQL::Subscriptions::SubscriptionRoot::InstanceMethods
+  def skip_subscription_root(*_); end
+end
+
+module GraphQL::Subscriptions::SubscriptionRoot::InstanceMethods
+end
+
+module GraphQL::Subscriptions::SubscriptionRoot
+  def self.extended(child_cls); end
+end
+
+class GraphQL::Subscriptions
+  def self.use(defn, options=T.unsafe(nil)); end
+end
+
+module GraphQL::Tracing
+end
+
+module GraphQL::Tracing::ActiveSupportNotificationsTracing
+  KEYS = ::T.let(nil, ::T.untyped)
+end
+
+module GraphQL::Tracing::ActiveSupportNotificationsTracing
+  def self.trace(key, metadata); end
+end
+
+class GraphQL::Tracing::AppOpticsTracing
+  def platform_field_key(type, field); end
+
+  def platform_trace(platform_key, _key, data); end
+  EXEC_KEYS = ::T.let(nil, ::T.untyped)
+  PREP_KEYS = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Tracing::AppOpticsTracing
+  def self.version(); end
+end
+
+class GraphQL::Tracing::AppsignalTracing
+  def platform_authorized_key(type); end
+
+  def platform_field_key(type, field); end
+
+  def platform_resolve_type_key(type); end
+
+  def platform_trace(platform_key, key, data); end
+end
+
+class GraphQL::Tracing::AppsignalTracing
+end
+
+class GraphQL::Tracing::DataDogTracing
+  def analytics_available?(); end
+
+  def analytics_enabled?(); end
+
+  def analytics_sample_rate(); end
+
+  def platform_authorized_key(type); end
+
+  def platform_field_key(type, field); end
+
+  def platform_resolve_type_key(type); end
+
+  def platform_trace(platform_key, key, data); end
+
+  def service_name(); end
+
+  def tracer(); end
+end
+
+class GraphQL::Tracing::DataDogTracing
+end
+
+class GraphQL::Tracing::NewRelicTracing
+  def platform_authorized_key(type); end
+
+  def platform_field_key(type, field); end
+
+  def platform_resolve_type_key(type); end
+
+  def platform_trace(platform_key, key, data); end
+end
+
+class GraphQL::Tracing::NewRelicTracing
+end
+
+module GraphQL::Tracing::NullTracer
+end
+
+module GraphQL::Tracing::NullTracer
+  def self.trace(k, v); end
+end
+
+class GraphQL::Tracing::PlatformTracing
+  def initialize(options=T.unsafe(nil)); end
+
+  def instrument(type, field); end
+
+  def trace(key, data); end
+
+  def trace_field(type, field); end
+end
+
+class GraphQL::Tracing::PlatformTracing
+  def self.platform_keys(); end
+
+  def self.platform_keys=(platform_keys); end
+
+  def self.use(schema_defn, options=T.unsafe(nil)); end
+end
+
+class GraphQL::Tracing::PrometheusTracing
+  def initialize(opts=T.unsafe(nil)); end
+
+  def platform_authorized_key(type); end
+
+  def platform_field_key(type, field); end
+
+  def platform_resolve_type_key(type); end
+
+  def platform_trace(platform_key, key, data, &block); end
+  DEFAULT_COLLECTOR_TYPE = ::T.let(nil, ::T.untyped)
+  DEFAULT_WHITELIST = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Tracing::PrometheusTracing
+end
+
+class GraphQL::Tracing::ScoutTracing
+  def platform_authorized_key(type); end
+
+  def platform_field_key(type, field); end
+
+  def platform_resolve_type_key(type); end
+
+  def platform_trace(platform_key, key, data); end
+  INSTRUMENT_OPTS = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Tracing::ScoutTracing
+end
+
+class GraphQL::Tracing::SkylightTracing
+  def platform_authorized_key(type); end
+
+  def platform_field_key(type, field); end
+
+  def platform_resolve_type_key(type); end
+
+  def platform_trace(platform_key, key, data); end
+end
+
+class GraphQL::Tracing::SkylightTracing
+end
+
+module GraphQL::Tracing::Traceable
+  def trace(key, metadata); end
+end
+
+module GraphQL::Tracing::Traceable
+end
+
+module GraphQL::Tracing
+  def self.install(tracer); end
+
+  def self.tracers(); end
+
+  def self.uninstall(tracer); end
+end
+
+module GraphQL::TypeKinds
+  ENUM = ::T.let(nil, ::T.untyped)
+  INPUT_OBJECT = ::T.let(nil, ::T.untyped)
+  INTERFACE = ::T.let(nil, ::T.untyped)
+  LIST = ::T.let(nil, ::T.untyped)
+  NON_NULL = ::T.let(nil, ::T.untyped)
+  OBJECT = ::T.let(nil, ::T.untyped)
+  SCALAR = ::T.let(nil, ::T.untyped)
+  TYPE_KINDS = ::T.let(nil, ::T.untyped)
+  UNION = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::TypeKinds::TypeKind
+  def abstract?(); end
+
+  def composite?(); end
+
+  def description(); end
+
+  def enum?(); end
+
+  def fields?(); end
+
+  def initialize(name, abstract: T.unsafe(nil), fields: T.unsafe(nil), wraps: T.unsafe(nil), input: T.unsafe(nil), description: T.unsafe(nil)); end
+
+  def input?(); end
+
+  def input_object?(); end
+
+  def interface?(); end
+
+  def list?(); end
+
+  def name(); end
+
+  def non_null?(); end
+
+  def object?(); end
+
+  def resolves?(); end
+
+  def scalar?(); end
+
+  def union?(); end
+
+  def wraps?(); end
+end
+
+class GraphQL::TypeKinds::TypeKind
+end
+
+module GraphQL::TypeKinds
+end
+
+module GraphQL::Types
+end
+
+class GraphQL::Types::BigInt
+end
+
+class GraphQL::Types::BigInt
+  def self.coerce_input(value, _ctx); end
+
+  def self.coerce_result(value, _ctx); end
+end
+
+class GraphQL::Types::Boolean
+end
+
+class GraphQL::Types::Boolean
+  def self.coerce_input(value, _ctx); end
+
+  def self.coerce_result(value, _ctx); end
+end
+
+class GraphQL::Types::Float
+end
+
+class GraphQL::Types::Float
+  def self.coerce_input(value, _ctx); end
+
+  def self.coerce_result(value, _ctx); end
+end
+
+class GraphQL::Types::ID
+end
+
+class GraphQL::Types::ID
+  def self.coerce_input(value, _ctx); end
+
+  def self.coerce_result(value, _ctx); end
+end
+
+class GraphQL::Types::ISO8601Date
+end
+
+class GraphQL::Types::ISO8601Date
+  def self.coerce_input(str_value, _ctx); end
+
+  def self.coerce_result(value, _ctx); end
+end
+
+class GraphQL::Types::ISO8601DateTime
+  DEFAULT_TIME_PRECISION = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Types::ISO8601DateTime
+  def self.coerce_input(str_value, _ctx); end
+
+  def self.coerce_result(value, _ctx); end
+
+  def self.time_precision(); end
+
+  def self.time_precision=(value); end
+end
+
+class GraphQL::Types::Int
+  MAX = ::T.let(nil, ::T.untyped)
+  MIN = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Types::Int
+  def self.coerce_input(value, _ctx); end
+
+  def self.coerce_result(value, ctx); end
+end
+
+class GraphQL::Types::JSON
+end
+
+class GraphQL::Types::JSON
+  def self.coerce_input(value, _context); end
+
+  def self.coerce_result(value, _context); end
+end
+
+module GraphQL::Types::Relay
+  NodeField = ::T.let(nil, ::T.untyped)
+  NodesField = ::T.let(nil, ::T.untyped)
+end
+
+class GraphQL::Types::Relay::BaseConnection
+  def cursor_from_node(*args, &block); end
+
+  def edges(); end
+
+  def nodes(); end
+
+  def parent(*args, &block); end
+end
+
+class GraphQL::Types::Relay::BaseConnection
+  extend ::Forwardable
+  def self.accessible?(ctx); end
+
+  def self.authorized?(obj, ctx); end
+
+  def self.edge_class(); end
+
+  def self.edge_type(edge_type_class, edge_class: T.unsafe(nil), node_type: T.unsafe(nil), nodes_field: T.unsafe(nil)); end
+
+  def self.node_type(); end
+
+  def self.nodes_field(); end
+
+  def self.visible?(ctx); end
+end
+
+class GraphQL::Types::Relay::BaseEdge
+end
+
+class GraphQL::Types::Relay::BaseEdge
+  def self.accessible?(ctx); end
+
+  def self.authorized?(obj, ctx); end
+
+  def self.node_type(node_type=T.unsafe(nil), null: T.unsafe(nil)); end
+
+  def self.visible?(ctx); end
+end
+
+class GraphQL::Types::Relay::BaseField
+  def initialize(edge_class: T.unsafe(nil), **rest, &block); end
+end
+
+class GraphQL::Types::Relay::BaseField
+end
+
+module GraphQL::Types::Relay::BaseInterface
+  include ::GraphQL::Schema::Interface
+  include ::GraphQL::Schema::Member::GraphQLTypeNames
+end
+
+module GraphQL::Types::Relay::BaseInterface::DefinitionMethods
+  def default_relay(new_value); end
+
+  def default_relay?(); end
+
+  def to_graphql(); end
+end
+
+module GraphQL::Types::Relay::BaseInterface::DefinitionMethods
+end
+
+module GraphQL::Types::Relay::BaseInterface
+  extend ::GraphQL::Schema::Interface::DefinitionMethods
+  extend ::GraphQL::Schema::Member::CachedGraphQLDefinition
+  extend ::GraphQL::Relay::TypeExtensions
+  extend ::GraphQL::Schema::Member::BaseDSLMethods
+  extend ::GraphQL::Schema::FindInheritedValue
+  extend ::GraphQL::Schema::FindInheritedValue::EmptyObjects
+  extend ::GraphQL::Schema::Member::TypeSystemHelpers
+  extend ::GraphQL::Schema::Member::HasFields
+  extend ::GraphQL::Schema::Member::HasPath
+  extend ::GraphQL::Schema::Member::RelayShortcuts
+  extend ::GraphQL::Schema::Member::Scoped
+  extend ::GraphQL::Schema::Member::HasAstNode
+  extend ::GraphQL::Schema::Member::AcceptsDefinition::AcceptsDefinitionDefinitionMethods
+  extend ::GraphQL::Schema::Member::AcceptsDefinition::ToGraphQLExtension
+  extend ::GraphQL::Types::Relay::BaseInterface::DefinitionMethods
+end
+
+class GraphQL::Types::Relay::BaseObject
+end
+
+class GraphQL::Types::Relay::BaseObject
+  def self.default_relay(new_value); end
+
+  def self.default_relay?(); end
+end
+
+module GraphQL::Types::Relay::Node
+  include ::GraphQL::Types::Relay::BaseInterface
+  include ::GraphQL::Schema::Interface
+  include ::GraphQL::Schema::Member::GraphQLTypeNames
+end
+
+module GraphQL::Types::Relay::Node::DefinitionMethods
+end
+
+module GraphQL::Types::Relay::Node::DefinitionMethods
+end
+
+module GraphQL::Types::Relay::Node
+  extend ::GraphQL::Schema::Interface::DefinitionMethods
+  extend ::GraphQL::Schema::Member::CachedGraphQLDefinition
+  extend ::GraphQL::Relay::TypeExtensions
+  extend ::GraphQL::Schema::Member::BaseDSLMethods
+  extend ::GraphQL::Schema::FindInheritedValue
+  extend ::GraphQL::Schema::FindInheritedValue::EmptyObjects
+  extend ::GraphQL::Schema::Member::TypeSystemHelpers
+  extend ::GraphQL::Schema::Member::HasFields
+  extend ::GraphQL::Schema::Member::HasPath
+  extend ::GraphQL::Schema::Member::RelayShortcuts
+  extend ::GraphQL::Schema::Member::Scoped
+  extend ::GraphQL::Schema::Member::HasAstNode
+  extend ::GraphQL::Schema::Member::AcceptsDefinition::AcceptsDefinitionDefinitionMethods
+  extend ::GraphQL::Schema::Member::AcceptsDefinition::ToGraphQLExtension
+  extend ::GraphQL::Types::Relay::BaseInterface::DefinitionMethods
+  extend ::GraphQL::Types::Relay::Node::DefinitionMethods
+end
+
+class GraphQL::Types::Relay::PageInfo
+end
+
+class GraphQL::Types::Relay::PageInfo
+end
+
+module GraphQL::Types::Relay
+end
+
+class GraphQL::Types::String
+end
+
+class GraphQL::Types::String
+  def self.coerce_input(value, _ctx); end
+
+  def self.coerce_result(value, ctx); end
+end
+
+module GraphQL::Types
+end
+
+class GraphQL::UnauthorizedError
+  def context(); end
+
+  def initialize(message=T.unsafe(nil), object: T.unsafe(nil), type: T.unsafe(nil), context: T.unsafe(nil)); end
+
+  def object(); end
+
+  def type(); end
+end
+
+class GraphQL::UnauthorizedError
+end
+
+class GraphQL::UnauthorizedFieldError
+  def field(); end
+
+  def field=(field); end
+
+  def initialize(message=T.unsafe(nil), object: T.unsafe(nil), type: T.unsafe(nil), context: T.unsafe(nil), field: T.unsafe(nil)); end
+end
+
+class GraphQL::UnauthorizedFieldError
+end
+
+class GraphQL::UnionType
+  def add_possible_types(types, **options); end
+
+  def get_possible_type(type_name, ctx); end
+
+  def include?(child_type_defn, ctx=T.unsafe(nil)); end
+
+  def kind(); end
+
+  def possible_type?(type, ctx); end
+
+  def possible_types(ctx=T.unsafe(nil)); end
+
+  def possible_types=(types); end
+
+  def resolve_type=(new_resolve_type_proc); end
+
+  def resolve_type_proc(); end
+
+  def resolve_type_proc=(resolve_type_proc); end
+
+  def type_membership_class(); end
+
+  def type_membership_class=(type_membership_class); end
+
+  def type_memberships(); end
+
+  def type_memberships=(type_memberships); end
+end
+
+class GraphQL::UnionType::AcceptPossibleTypesDefinition
+end
+
+class GraphQL::UnionType::AcceptPossibleTypesDefinition
+  def self.call(target, possible_types, options=T.unsafe(nil)); end
+end
+
+class GraphQL::UnionType
+end
+
+class GraphQL::UnresolvedTypeError
+  def field(); end
+
+  def initialize(value, field, parent_type, resolved_type, possible_types); end
+
+  def parent_type(); end
+
+  def possible_types(); end
+
+  def resolved_type(); end
+
+  def value(); end
+end
+
+class GraphQL::UnresolvedTypeError
+end
+
+module GraphQL
+  def self.parse(graphql_string, tracer: T.unsafe(nil)); end
+
+  def self.parse_file(filename); end
+
+  def self.parse_with_racc(string, filename: T.unsafe(nil), tracer: T.unsafe(nil)); end
+
+  def self.scan(graphql_string); end
+
+  def self.scan_with_ragel(graphql_string); end
+end
+
+module GraphiQL
+end
+
+module GraphiQL::Rails
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+class GraphiQL::Rails::Config
+  def csrf(); end
+
+  def csrf=(csrf); end
+
+  def headers(); end
+
+  def headers=(headers); end
+
+  def initial_query(); end
+
+  def initial_query=(initial_query); end
+
+  def initialize(query_params: T.unsafe(nil), initial_query: T.unsafe(nil), title: T.unsafe(nil), logo: T.unsafe(nil), csrf: T.unsafe(nil), headers: T.unsafe(nil)); end
+
+  def logo(); end
+
+  def logo=(logo); end
+
+  def query_params(); end
+
+  def query_params=(query_params); end
+
+  def resolve_headers(view_context); end
+
+  def title(); end
+
+  def title=(title); end
+  CSRF_TOKEN_HEADER = ::T.let(nil, ::T.untyped)
+  DEFAULT_HEADERS = ::T.let(nil, ::T.untyped)
+end
+
+class GraphiQL::Rails::Config
+end
+
+class GraphiQL::Rails::EditorsController
+  def graphql_endpoint_path(); end
+
+  def show(); end
+end
+
+class GraphiQL::Rails::EditorsController
+end
+
+class GraphiQL::Rails::Engine
+end
+
+class GraphiQL::Rails::Engine
+end
+
+module GraphiQL::Rails
+  def self.config(); end
+
+  def self.config=(config); end
+
+  def self.railtie_helpers_paths(); end
+
+  def self.railtie_namespace(); end
+
+  def self.railtie_routes_url_helpers(include_path_helpers=T.unsafe(nil)); end
+
+  def self.table_name_prefix(); end
+
+  def self.use_relative_model_naming?(); end
+end
+
+module GraphiQL
 end
 
 class HTMLSelector
@@ -40920,6 +49185,56 @@ end
 module IntegerStringImpl
 end
 
+class Island
+  include ::Island::GeneratedAttributeMethods
+  include ::Island::GeneratedAssociationMethods
+  RelationType = ::T.let(nil, ::T.untyped)
+end
+
+class Island::ActiveRecord_AssociationRelation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Island::GeneratedRelationMethods
+end
+
+class Island::ActiveRecord_AssociationRelation
+end
+
+class Island::ActiveRecord_Associations_CollectionProxy
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Island::GeneratedRelationMethods
+end
+
+class Island::ActiveRecord_Associations_CollectionProxy
+end
+
+class Island::ActiveRecord_Relation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Island::GeneratedRelationMethods
+end
+
+class Island::ActiveRecord_Relation
+end
+
+module Island::GeneratedAssociationMethods
+end
+
+module Island::GeneratedAssociationMethods
+end
+
+module Island::GeneratedAttributeMethods
+end
+
+module Island::GeneratedAttributeMethods
+  extend ::Mutex_m
+end
+
+module Island::GeneratedRelationMethods
+end
+
+module Island::GeneratedRelationMethods
+  extend ::Mutex_m
+end
+
 class JSON::Ext::Generator::State
   def self.from_state(_); end
 end
@@ -41128,6 +49443,532 @@ class KeyError
   def key(); end
 
   def receiver(); end
+end
+
+module Launchy
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+class Launchy::Application
+  def find_executable(bin, *paths); end
+
+  def host_os_family(); end
+
+  def ruby_engine(); end
+
+  def run(cmd, *args); end
+
+  def runner(); end
+end
+
+class Launchy::Application::Browser
+  def app_list(); end
+
+  def browser_cmdline(); end
+
+  def browser_env(); end
+
+  def cmd_and_args(uri, options=T.unsafe(nil)); end
+
+  def cygwin_app_list(); end
+
+  def darwin_app_list(); end
+
+  def nix_app_list(); end
+
+  def open(uri, options=T.unsafe(nil)); end
+
+  def windows_app_list(); end
+end
+
+class Launchy::Application::Browser
+  def self.handles?(uri); end
+
+  def self.schemes(); end
+end
+
+class Launchy::Application
+  extend ::Launchy::DescendantTracker
+  def self.find_executable(bin, *paths); end
+
+  def self.handling(uri); end
+end
+
+class Launchy::ApplicationNotFoundError
+end
+
+class Launchy::ApplicationNotFoundError
+end
+
+class Launchy::ArgumentError
+end
+
+class Launchy::ArgumentError
+end
+
+class Launchy::Argv
+  def ==(other); end
+
+  def [](idx); end
+
+  def argv(); end
+
+  def executable?(); end
+
+  def initialize(*args); end
+
+  def to_str(); end
+
+  def valid?(); end
+end
+
+class Launchy::Argv
+end
+
+class Launchy::Browser
+  def visit(url); end
+end
+
+class Launchy::Browser
+  def self.run(*args); end
+end
+
+class Launchy::Cli
+  def error_output(error); end
+
+  def good_run(argv, env); end
+
+  def options(); end
+
+  def parse(argv, env); end
+
+  def parser(); end
+
+  def run(argv=T.unsafe(nil), env=T.unsafe(nil)); end
+end
+
+class Launchy::Cli
+end
+
+class Launchy::CommandNotFoundError
+end
+
+class Launchy::CommandNotFoundError
+end
+
+module Launchy::DescendantTracker
+  def children(); end
+
+  def find_child(method, *args); end
+
+  def inherited(klass); end
+end
+
+module Launchy::DescendantTracker
+end
+
+module Launchy::Detect
+end
+
+class Launchy::Detect::HostOs
+  def default_host_os(); end
+
+  def host_os(); end
+
+  def initialize(host_os=T.unsafe(nil)); end
+
+  def override_host_os(); end
+
+  def to_str(); end
+end
+
+class Launchy::Detect::HostOs
+end
+
+class Launchy::Detect::HostOsFamily
+  def cygwin?(); end
+
+  def darwin?(); end
+
+  def host_os(); end
+
+  def initialize(host_os=T.unsafe(nil)); end
+
+  def nix?(); end
+
+  def windows?(); end
+end
+
+class Launchy::Detect::HostOsFamily::Cygwin
+  def app_list(app); end
+end
+
+class Launchy::Detect::HostOsFamily::Cygwin
+  def self.matching_regex(); end
+end
+
+class Launchy::Detect::HostOsFamily::Darwin
+  def app_list(app); end
+end
+
+class Launchy::Detect::HostOsFamily::Darwin
+  def self.matching_regex(); end
+end
+
+class Launchy::Detect::HostOsFamily::Nix
+  def app_list(app); end
+end
+
+class Launchy::Detect::HostOsFamily::Nix
+  def self.matching_regex(); end
+end
+
+class Launchy::Detect::HostOsFamily::NotFoundError
+end
+
+class Launchy::Detect::HostOsFamily::NotFoundError
+end
+
+class Launchy::Detect::HostOsFamily::Windows
+  def app_list(app); end
+end
+
+class Launchy::Detect::HostOsFamily::Windows
+  def self.matching_regex(); end
+end
+
+class Launchy::Detect::HostOsFamily
+  extend ::Launchy::DescendantTracker
+  def self.cygwin?(); end
+
+  def self.darwin?(); end
+
+  def self.detect(host_os=T.unsafe(nil)); end
+
+  def self.matches?(host_os); end
+
+  def self.nix?(); end
+
+  def self.windows?(); end
+end
+
+class Launchy::Detect::NixDesktopEnvironment
+end
+
+class Launchy::Detect::NixDesktopEnvironment::Gnome
+end
+
+class Launchy::Detect::NixDesktopEnvironment::Gnome
+  def self.browser(); end
+
+  def self.is_current_desktop_environment?(); end
+end
+
+class Launchy::Detect::NixDesktopEnvironment::Kde
+end
+
+class Launchy::Detect::NixDesktopEnvironment::Kde
+  def self.browser(); end
+
+  def self.is_current_desktop_environment?(); end
+end
+
+class Launchy::Detect::NixDesktopEnvironment::NotFound
+end
+
+class Launchy::Detect::NixDesktopEnvironment::NotFound
+  def self.browser(); end
+
+  def self.is_current_desktop_environment?(); end
+end
+
+class Launchy::Detect::NixDesktopEnvironment::NotFoundError
+end
+
+class Launchy::Detect::NixDesktopEnvironment::NotFoundError
+end
+
+class Launchy::Detect::NixDesktopEnvironment::Xdg
+end
+
+class Launchy::Detect::NixDesktopEnvironment::Xdg
+  def self.browser(); end
+
+  def self.is_current_desktop_environment?(); end
+end
+
+class Launchy::Detect::NixDesktopEnvironment::Xfce
+end
+
+class Launchy::Detect::NixDesktopEnvironment::Xfce
+  def self.browser(); end
+
+  def self.is_current_desktop_environment?(); end
+end
+
+class Launchy::Detect::NixDesktopEnvironment
+  extend ::Launchy::DescendantTracker
+  def self.browsers(); end
+
+  def self.detect(); end
+
+  def self.fallback_browsers(); end
+end
+
+class Launchy::Detect::RubyEngine
+  def initialize(ruby_engine=T.unsafe(nil)); end
+
+  def ruby_engine(); end
+end
+
+class Launchy::Detect::RubyEngine::Jruby
+end
+
+class Launchy::Detect::RubyEngine::Jruby
+  def self.engine_name(); end
+end
+
+class Launchy::Detect::RubyEngine::MacRuby
+end
+
+class Launchy::Detect::RubyEngine::MacRuby
+  def self.engine_name(); end
+end
+
+class Launchy::Detect::RubyEngine::Mri
+end
+
+class Launchy::Detect::RubyEngine::Mri
+  def self.engine_name(); end
+end
+
+class Launchy::Detect::RubyEngine::NotFoundError
+end
+
+class Launchy::Detect::RubyEngine::NotFoundError
+end
+
+class Launchy::Detect::RubyEngine::Rbx
+end
+
+class Launchy::Detect::RubyEngine::Rbx
+  def self.engine_name(); end
+end
+
+class Launchy::Detect::RubyEngine
+  extend ::Launchy::DescendantTracker
+  def self.detect(ruby_engine=T.unsafe(nil)); end
+
+  def self.is_current_engine?(ruby_engine); end
+
+  def self.jruby?(); end
+
+  def self.macruby?(); end
+
+  def self.mri?(); end
+
+  def self.rbx?(); end
+
+  def self.ruby_engine_error_message(ruby_engine); end
+end
+
+class Launchy::Detect::Runner
+  def commandline_normalize(cmdline); end
+
+  def dry_run(cmd, *args); end
+
+  def run(cmd, *args); end
+
+  def shell_commands(cmd, args); end
+end
+
+class Launchy::Detect::Runner::Forkable
+  def child_pid(); end
+
+  def wet_run(cmd, *args); end
+end
+
+class Launchy::Detect::Runner::Forkable
+end
+
+class Launchy::Detect::Runner::Jruby
+  def wet_run(cmd, *args); end
+end
+
+class Launchy::Detect::Runner::Jruby
+end
+
+class Launchy::Detect::Runner::NotFoundError
+end
+
+class Launchy::Detect::Runner::NotFoundError
+end
+
+class Launchy::Detect::Runner::Windows
+  def all_args(cmd, *args); end
+
+  def shell_commands(cmd, *args); end
+
+  def wet_run(cmd, *args); end
+end
+
+class Launchy::Detect::Runner::Windows
+end
+
+class Launchy::Detect::Runner
+  extend ::Launchy::DescendantTracker
+  def self.detect(); end
+end
+
+module Launchy::Detect
+end
+
+class Launchy::Error
+end
+
+class Launchy::Error
+end
+
+module Launchy::Version
+  MAJOR = ::T.let(nil, ::T.untyped)
+  MINOR = ::T.let(nil, ::T.untyped)
+  PATCH = ::T.let(nil, ::T.untyped)
+end
+
+module Launchy::Version
+  def self.to_a(); end
+end
+
+module Launchy
+  def self.app_for_uri(uri); end
+
+  def self.app_for_uri_string(s); end
+
+  def self.application(); end
+
+  def self.application=(app); end
+
+  def self.bug_report_message(); end
+
+  def self.debug=(d); end
+
+  def self.debug?(); end
+
+  def self.dry_run=(dry_run); end
+
+  def self.dry_run?(); end
+
+  def self.extract_global_options(options); end
+
+  def self.host_os(); end
+
+  def self.host_os=(host_os); end
+
+  def self.log(msg); end
+
+  def self.open(uri_s, options=T.unsafe(nil), &error_block); end
+
+  def self.path(); end
+
+  def self.path=(path); end
+
+  def self.reset_global_options(); end
+
+  def self.ruby_engine(); end
+
+  def self.ruby_engine=(ruby_engine); end
+
+  def self.string_to_uri(s); end
+end
+
+module LetterOpener
+end
+
+class LetterOpener::Configuration
+  def location(); end
+
+  def location=(location); end
+
+  def message_template(); end
+
+  def message_template=(message_template); end
+end
+
+class LetterOpener::Configuration
+end
+
+class LetterOpener::DeliveryMethod
+  def deliver!(mail); end
+
+  def initialize(options=T.unsafe(nil)); end
+
+  def settings(); end
+
+  def settings=(settings); end
+end
+
+class LetterOpener::DeliveryMethod::InvalidOption
+end
+
+class LetterOpener::DeliveryMethod::InvalidOption
+end
+
+class LetterOpener::DeliveryMethod
+end
+
+class LetterOpener::Message
+  def attachment_filename(attachment); end
+
+  def auto_link(text); end
+
+  def bcc(); end
+
+  def body(); end
+
+  def cc(); end
+
+  def content_type(); end
+
+  def encoding(); end
+
+  def filepath(); end
+
+  def from(); end
+
+  def h(content); end
+
+  def initialize(mail, options=T.unsafe(nil)); end
+
+  def mail(); end
+
+  def render(); end
+
+  def reply_to(); end
+
+  def sender(); end
+
+  def template(); end
+
+  def to(); end
+
+  def type(); end
+  ERROR_MSG = ::T.let(nil, ::T.untyped)
+end
+
+class LetterOpener::Message
+  def self.rendered_messages(mail, options=T.unsafe(nil)); end
+end
+
+class LetterOpener::Railtie
+end
+
+class LetterOpener::Railtie
+end
+
+module LetterOpener
+  def self.configuration(); end
+
+  def self.configure(); end
 end
 
 module Listen
@@ -45282,7 +54123,21 @@ module MiniMime
   def self.lookup_by_filename(filename); end
 end
 
-MiniTest = Minitest
+module Minitest
+end
+
+MiniTest::Assertions = Minitest::Assertions
+
+MiniTest::Guard = Minitest::Guard
+
+MiniTest::Reportable = Minitest::Reportable
+
+MiniTest::Runnable = Minitest::Runnable
+
+MiniTest::Test = Minitest::Test
+
+module Minitest
+end
 
 module Minitest
   ENCS = ::T.let(nil, ::T.untyped)
@@ -45965,6 +54820,9 @@ end
 
 module MonitorMixin
   def self.extend_object(obj); end
+end
+
+class Mutations::BaseMutation
 end
 
 module Mutex_m
@@ -55609,40 +64467,40 @@ end
 module Polyfill::Module
 end
 
-module Polyfill::Module::M8180
+module Polyfill::Module::M86760
 end
 
-module Polyfill::Module::M8180
+module Polyfill::Module::M86760
 end
 
-module Polyfill::Module::M8200
+module Polyfill::Module::M86800
 end
 
-module Polyfill::Module::M8200
+module Polyfill::Module::M86800
 end
 
-module Polyfill::Module::M8220
+module Polyfill::Module::M86880
 end
 
-module Polyfill::Module::M8220
+module Polyfill::Module::M86880
 end
 
-module Polyfill::Module::M8240
+module Polyfill::Module::M87320
 end
 
-module Polyfill::Module::M8240
+module Polyfill::Module::M87320
 end
 
-module Polyfill::Module::M8260
+module Polyfill::Module::M87560
 end
 
-module Polyfill::Module::M8260
+module Polyfill::Module::M87560
 end
 
-module Polyfill::Module::M8280
+module Polyfill::Module::M87660
 end
 
-module Polyfill::Module::M8280
+module Polyfill::Module::M87660
 end
 
 module Polyfill::Module
@@ -57716,6 +66574,180 @@ module Psych
   def self.safe_load(yaml, legacy_permitted_classes=T.unsafe(nil), legacy_permitted_symbols=T.unsafe(nil), legacy_aliases=T.unsafe(nil), legacy_filename=T.unsafe(nil), permitted_classes: T.unsafe(nil), permitted_symbols: T.unsafe(nil), aliases: T.unsafe(nil), filename: T.unsafe(nil), fallback: T.unsafe(nil), symbolize_names: T.unsafe(nil)); end
 
   def self.to_json(object); end
+end
+
+module PublicSuffix
+  BANG = ::T.let(nil, ::T.untyped)
+  DOT = ::T.let(nil, ::T.untyped)
+  STAR = ::T.let(nil, ::T.untyped)
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+class PublicSuffix::Domain
+  def domain(); end
+
+  def domain?(); end
+
+  def initialize(*args); end
+
+  def name(); end
+
+  def sld(); end
+
+  def subdomain(); end
+
+  def subdomain?(); end
+
+  def tld(); end
+
+  def to_a(); end
+
+  def trd(); end
+end
+
+class PublicSuffix::Domain
+  def self.name_to_labels(name); end
+end
+
+class PublicSuffix::DomainInvalid
+end
+
+class PublicSuffix::DomainInvalid
+end
+
+class PublicSuffix::DomainNotAllowed
+end
+
+class PublicSuffix::DomainNotAllowed
+end
+
+class PublicSuffix::Error
+end
+
+class PublicSuffix::Error
+end
+
+class PublicSuffix::List
+  def <<(rule); end
+
+  def ==(other); end
+
+  def add(rule); end
+
+  def clear(); end
+
+  def default_rule(); end
+
+  def each(&block); end
+
+  def empty?(); end
+
+  def eql?(other); end
+
+  def find(name, default: T.unsafe(nil), **options); end
+
+  def rules(); end
+
+  def size(); end
+  DEFAULT_LIST_PATH = ::T.let(nil, ::T.untyped)
+end
+
+class PublicSuffix::List
+  def self.default(**options); end
+
+  def self.default=(value); end
+
+  def self.parse(input, private_domains: T.unsafe(nil)); end
+end
+
+module PublicSuffix::Rule
+end
+
+class PublicSuffix::Rule::Base
+  def ==(other); end
+
+  def decompose(*_); end
+
+  def eql?(other); end
+
+  def initialize(value:, length: T.unsafe(nil), private: T.unsafe(nil)); end
+
+  def length(); end
+
+  def match?(name); end
+
+  def parts(); end
+
+  def private(); end
+
+  def value(); end
+end
+
+class PublicSuffix::Rule::Base
+  def self.build(content, private: T.unsafe(nil)); end
+end
+
+class PublicSuffix::Rule::Entry
+  def length=(_); end
+
+  def private(); end
+
+  def private=(_); end
+
+  def type(); end
+
+  def type=(_); end
+end
+
+class PublicSuffix::Rule::Entry
+  def self.[](*_); end
+
+  def self.members(); end
+end
+
+class PublicSuffix::Rule::Exception
+  def decompose(domain); end
+
+  def rule(); end
+end
+
+class PublicSuffix::Rule::Exception
+end
+
+class PublicSuffix::Rule::Normal
+  def decompose(domain); end
+
+  def rule(); end
+end
+
+class PublicSuffix::Rule::Normal
+end
+
+class PublicSuffix::Rule::Wildcard
+  def decompose(domain); end
+
+  def rule(); end
+end
+
+class PublicSuffix::Rule::Wildcard
+end
+
+module PublicSuffix::Rule
+  def self.default(); end
+
+  def self.factory(content, private: T.unsafe(nil)); end
+end
+
+module PublicSuffix
+  def self.decompose(name, rule); end
+
+  def self.domain(name, **options); end
+
+  def self.normalize(name); end
+
+  def self.parse(name, list: T.unsafe(nil), default_rule: T.unsafe(nil), ignore_private: T.unsafe(nil)); end
+
+  def self.valid?(name, list: T.unsafe(nil), default_rule: T.unsafe(nil), ignore_private: T.unsafe(nil)); end
 end
 
 module Puma
@@ -66762,6 +75794,29 @@ module RSpec::Core::MetadataFilter
   def self.silence_metadata_example_group_deprecations(); end
 end
 
+module RSpec::Core::MockingAdapters
+end
+
+module RSpec::Core::MockingAdapters::RSpec
+  include ::RSpec::Mocks::ExampleMethods
+  include ::RSpec::Mocks::ArgumentMatchers
+  include ::RSpec::Mocks::ExampleMethods::ExpectHost
+  def setup_mocks_for_rspec(); end
+
+  def teardown_mocks_for_rspec(); end
+
+  def verify_mocks_for_rspec(); end
+end
+
+module RSpec::Core::MockingAdapters::RSpec
+  def self.configuration(); end
+
+  def self.framework_name(); end
+end
+
+module RSpec::Core::MockingAdapters
+end
+
 class RSpec::Core::MultipleExceptionError
   include ::RSpec::Core::MultipleExceptionError::InterfaceTag
   def aggregation_block_label(); end
@@ -68072,6 +77127,7 @@ class RSpec::Expectations::LegacyMatcherAdapter
 end
 
 class RSpec::Expectations::MultipleExpectationsNotMetError
+  include ::RSpec::Core::MultipleExceptionError::InterfaceTag
   def aggregation_block_label(); end
 
   def aggregation_metadata(); end
@@ -69653,122 +78709,6 @@ module RSpec::Mocks::ArgumentMatchers
   def kind_of(klass); end
 
   def no_args(); end
-end
-
-class RSpec::Mocks::ArgumentMatchers::AnyArgMatcher
-  def ===(_other); end
-
-  def description(); end
-  INSTANCE = ::T.let(nil, ::T.untyped)
-end
-
-class RSpec::Mocks::ArgumentMatchers::AnyArgMatcher
-end
-
-class RSpec::Mocks::ArgumentMatchers::AnyArgsMatcher
-  def description(); end
-  INSTANCE = ::T.let(nil, ::T.untyped)
-end
-
-class RSpec::Mocks::ArgumentMatchers::AnyArgsMatcher
-end
-
-class RSpec::Mocks::ArgumentMatchers::ArrayIncludingMatcher
-  def ===(actual); end
-
-  def description(); end
-
-  def initialize(expected); end
-end
-
-class RSpec::Mocks::ArgumentMatchers::ArrayIncludingMatcher
-end
-
-class RSpec::Mocks::ArgumentMatchers::BaseHashMatcher
-  def ===(predicate, actual); end
-
-  def description(name); end
-
-  def initialize(expected); end
-end
-
-class RSpec::Mocks::ArgumentMatchers::BaseHashMatcher
-end
-
-class RSpec::Mocks::ArgumentMatchers::BooleanMatcher
-  def ===(value); end
-
-  def description(); end
-  INSTANCE = ::T.let(nil, ::T.untyped)
-end
-
-class RSpec::Mocks::ArgumentMatchers::BooleanMatcher
-end
-
-class RSpec::Mocks::ArgumentMatchers::DuckTypeMatcher
-  def ===(value); end
-
-  def description(); end
-
-  def initialize(*methods_to_respond_to); end
-end
-
-class RSpec::Mocks::ArgumentMatchers::DuckTypeMatcher
-end
-
-class RSpec::Mocks::ArgumentMatchers::HashExcludingMatcher
-  def ===(actual); end
-
-  def description(); end
-end
-
-class RSpec::Mocks::ArgumentMatchers::HashExcludingMatcher
-end
-
-class RSpec::Mocks::ArgumentMatchers::HashIncludingMatcher
-  def ===(actual); end
-
-  def description(); end
-end
-
-class RSpec::Mocks::ArgumentMatchers::HashIncludingMatcher
-end
-
-class RSpec::Mocks::ArgumentMatchers::InstanceOf
-  def ===(actual); end
-
-  def description(); end
-
-  def initialize(klass); end
-end
-
-class RSpec::Mocks::ArgumentMatchers::InstanceOf
-end
-
-class RSpec::Mocks::ArgumentMatchers::KindOf
-  def ===(actual); end
-
-  def description(); end
-
-  def initialize(klass); end
-end
-
-class RSpec::Mocks::ArgumentMatchers::KindOf
-end
-
-class RSpec::Mocks::ArgumentMatchers::NoArgsMatcher
-  def description(); end
-  INSTANCE = ::T.let(nil, ::T.untyped)
-end
-
-class RSpec::Mocks::ArgumentMatchers::NoArgsMatcher
-end
-
-class RSpec::Mocks::ArgumentMatchers::SingletonMatcher
-end
-
-class RSpec::Mocks::ArgumentMatchers::SingletonMatcher
-  def self.inherited(subklass); end
 end
 
 module RSpec::Mocks::ArgumentMatchers
@@ -98001,6 +106941,2821 @@ module Shellwords
   def self.split(line); end
 end
 
+module Shoulda
+end
+
+module Shoulda::Matchers
+  TERMINAL_MAX_WIDTH = ::T.let(nil, ::T.untyped)
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+module Shoulda::Matchers::ActionController
+  def filter_param(key); end
+
+  def permit(*params); end
+
+  def redirect_to(url_or_description, &block); end
+
+  def render_template(options=T.unsafe(nil), message=T.unsafe(nil)); end
+
+  def render_with_layout(expected_layout=T.unsafe(nil)); end
+
+  def rescue_from(exception); end
+
+  def respond_with(status); end
+
+  def route(method, path, port: T.unsafe(nil)); end
+
+  def set_flash(); end
+
+  def set_session(); end
+
+  def use_after_action(callback); end
+
+  def use_around_action(callback); end
+
+  def use_before_action(callback); end
+end
+
+class Shoulda::Matchers::ActionController::CallbackMatcher
+  def callback_type(); end
+
+  def callbacks(); end
+
+  def controller(); end
+
+  def controller_class(); end
+
+  def description(); end
+
+  def failure_message(); end
+
+  def failure_message_when_negated(); end
+
+  def initialize(method_name, kind, callback_type); end
+
+  def kind(); end
+
+  def matches?(controller); end
+
+  def method_name(); end
+end
+
+class Shoulda::Matchers::ActionController::CallbackMatcher
+end
+
+class Shoulda::Matchers::ActionController::FilterParamMatcher
+  def description(); end
+
+  def failure_message(); end
+
+  def failure_message_when_negated(); end
+
+  def initialize(key); end
+
+  def matches?(controller); end
+end
+
+class Shoulda::Matchers::ActionController::FilterParamMatcher
+end
+
+class Shoulda::Matchers::ActionController::FlashStore
+  def controller(); end
+
+  def controller=(controller); end
+
+  def empty?(); end
+
+  def has_key?(key); end
+
+  def has_value?(expected_value); end
+
+  def name(); end
+
+  def use_now!(); end
+end
+
+class Shoulda::Matchers::ActionController::FlashStore
+  def self.future(); end
+
+  def self.now(); end
+end
+
+class Shoulda::Matchers::ActionController::PermitMatcher
+  def action(); end
+
+  def actual_permitted_parameter_names(); end
+
+  def add_params(params); end
+
+  def context(); end
+
+  def controller(); end
+
+  def default_verb(); end
+
+  def description(); end
+
+  def double_collections_by_parameter_name(); end
+
+  def ensure_action_and_verb_present!(); end
+
+  def expectation(); end
+
+  def expected_permitted_parameter_names(); end
+
+  def failure_message(); end
+
+  def failure_message_when_negated(); end
+
+  def for(action, options=T.unsafe(nil)); end
+
+  def format_parameter_names(parameter_names); end
+
+  def in_context(context); end
+
+  def initialize(expected_permitted_parameter_names); end
+
+  def matches?(controller); end
+
+  def on(subparameter_name); end
+
+  def parameter_names_as_sentence(); end
+
+  def parameters_double_registry(); end
+
+  def reality(); end
+
+  def request_params(); end
+
+  def stubbed_params=(stubbed_params); end
+
+  def subparameter_name(); end
+
+  def unpermitted_parameter_names(); end
+
+  def verb(); end
+end
+
+class Shoulda::Matchers::ActionController::PermitMatcher::ActionNotDefinedError
+end
+
+class Shoulda::Matchers::ActionController::PermitMatcher::ActionNotDefinedError
+end
+
+class Shoulda::Matchers::ActionController::PermitMatcher::CompositeParametersDoubleRegistry
+  def parameters_double_registries(); end
+
+  def permitted_parameter_names(options=T.unsafe(nil)); end
+
+  def register(); end
+end
+
+class Shoulda::Matchers::ActionController::PermitMatcher::CompositeParametersDoubleRegistry
+end
+
+class Shoulda::Matchers::ActionController::PermitMatcher::ParametersDoubleRegistry
+  def double_collections_by_parameter_name(); end
+
+  def initialize(params); end
+
+  def params(); end
+
+  def permitted_parameter_names(args=T.unsafe(nil)); end
+
+  def register(); end
+  TOP_LEVEL = ::T.let(nil, ::T.untyped)
+end
+
+class Shoulda::Matchers::ActionController::PermitMatcher::ParametersDoubleRegistry
+  def self.permitted_parameter_names_within(double_collection); end
+end
+
+class Shoulda::Matchers::ActionController::PermitMatcher::VerbNotDefinedError
+end
+
+class Shoulda::Matchers::ActionController::PermitMatcher::VerbNotDefinedError
+end
+
+class Shoulda::Matchers::ActionController::PermitMatcher
+end
+
+class Shoulda::Matchers::ActionController::RedirectToMatcher
+  def description(); end
+
+  def failure_message(); end
+
+  def failure_message_when_negated(); end
+
+  def in_context(context); end
+
+  def initialize(url_or_description, context, &block); end
+
+  def matches?(controller); end
+end
+
+class Shoulda::Matchers::ActionController::RedirectToMatcher
+end
+
+class Shoulda::Matchers::ActionController::RenderTemplateMatcher
+  def description(); end
+
+  def failure_message(); end
+
+  def failure_message_when_negated(); end
+
+  def in_context(context); end
+
+  def initialize(options, message, context); end
+
+  def matches?(controller); end
+end
+
+class Shoulda::Matchers::ActionController::RenderTemplateMatcher
+end
+
+class Shoulda::Matchers::ActionController::RenderWithLayoutMatcher
+  def description(); end
+
+  def failure_message(); end
+
+  def failure_message_when_negated(); end
+
+  def in_context(context); end
+
+  def initialize(expected_layout); end
+
+  def matches?(controller); end
+end
+
+class Shoulda::Matchers::ActionController::RenderWithLayoutMatcher
+end
+
+class Shoulda::Matchers::ActionController::RescueFromMatcher
+  def controller(); end
+
+  def description(); end
+
+  def exception(); end
+
+  def expectation(); end
+
+  def expected_method(); end
+
+  def failure_message(); end
+
+  def failure_message_when_negated(); end
+
+  def handler_exists?(); end
+
+  def handlers(); end
+
+  def initialize(exception); end
+
+  def matches?(controller); end
+
+  def method_name_matches?(); end
+
+  def rescues_from_exception?(); end
+
+  def with(method); end
+end
+
+class Shoulda::Matchers::ActionController::RescueFromMatcher
+end
+
+class Shoulda::Matchers::ActionController::RespondWithMatcher
+  def correct_status_code?(); end
+
+  def correct_status_code_range?(); end
+
+  def description(); end
+
+  def expectation(); end
+
+  def failure_message(); end
+
+  def failure_message_when_negated(); end
+
+  def initialize(status); end
+
+  def matches?(controller); end
+
+  def response_code(); end
+
+  def symbol_to_status_code(potential_symbol); end
+end
+
+class Shoulda::Matchers::ActionController::RespondWithMatcher
+end
+
+class Shoulda::Matchers::ActionController::RouteMatcher
+  def description(); end
+
+  def failure_message(); end
+
+  def failure_message_when_negated(); end
+
+  def in_context(context); end
+
+  def initialize(context, method, path, port: T.unsafe(nil)); end
+
+  def matches?(controller); end
+
+  def to(*args); end
+end
+
+class Shoulda::Matchers::ActionController::RouteMatcher
+end
+
+class Shoulda::Matchers::ActionController::RouteParams
+  def args(); end
+
+  def controller_and_action_given_as_string?(); end
+
+  def extract_params_from_string(); end
+
+  def initialize(args); end
+
+  def normalize(); end
+
+  def normalize_values(hash); end
+
+  def stringify(value); end
+
+  def stringify_params(); end
+
+  def symbolize_or_stringify(key, value); end
+  PARAMS_TO_SYMBOLIZE = ::T.let(nil, ::T.untyped)
+end
+
+class Shoulda::Matchers::ActionController::RouteParams
+end
+
+class Shoulda::Matchers::ActionController::SessionStore
+  def controller(); end
+
+  def controller=(controller); end
+
+  def empty?(); end
+
+  def has_key?(key); end
+
+  def has_value?(expected_value); end
+
+  def name(); end
+end
+
+class Shoulda::Matchers::ActionController::SessionStore
+end
+
+class Shoulda::Matchers::ActionController::SetFlashMatcher
+  def [](key); end
+
+  def description(*args, &block); end
+
+  def expected_value(); end
+
+  def failure_message(*args, &block); end
+
+  def failure_message_for_should(*args, &block); end
+
+  def failure_message_for_should_not(*args, &block); end
+
+  def failure_message_when_negated(*args, &block); end
+
+  def in_context(context); end
+
+  def key(); end
+
+  def matches?(*args, &block); end
+
+  def now(); end
+
+  def to(expected_value=T.unsafe(nil), &block); end
+
+  def underlying_matcher(); end
+end
+
+class Shoulda::Matchers::ActionController::SetFlashMatcher::QualifierOrderError
+end
+
+class Shoulda::Matchers::ActionController::SetFlashMatcher::QualifierOrderError
+end
+
+class Shoulda::Matchers::ActionController::SetFlashMatcher
+  extend ::Forwardable
+end
+
+class Shoulda::Matchers::ActionController::SetSessionMatcher
+  def [](key); end
+
+  def description(*args, &block); end
+
+  def failure_message(*args, &block); end
+
+  def failure_message_for_should(*args, &block); end
+
+  def failure_message_for_should_not(*args, &block); end
+
+  def failure_message_when_negated(*args, &block); end
+
+  def in_context(context); end
+
+  def matches?(*args, &block); end
+
+  def to(expected_value=T.unsafe(nil), &block); end
+
+  def underlying_matcher(); end
+end
+
+class Shoulda::Matchers::ActionController::SetSessionMatcher
+  extend ::Forwardable
+end
+
+class Shoulda::Matchers::ActionController::SetSessionOrFlashMatcher
+  def [](key); end
+
+  def context(); end
+
+  def controller(); end
+
+  def description(); end
+
+  def expected_value(); end
+
+  def failure_message(); end
+
+  def failure_message_for_should(); end
+
+  def failure_message_for_should_not(); end
+
+  def failure_message_when_negated(); end
+
+  def in_context(context); end
+
+  def initialize(store); end
+
+  def key(); end
+
+  def matches?(controller); end
+
+  def store(); end
+
+  def to(expected_value=T.unsafe(nil), &block); end
+end
+
+class Shoulda::Matchers::ActionController::SetSessionOrFlashMatcher
+end
+
+module Shoulda::Matchers::ActionController
+end
+
+module Shoulda::Matchers::ActiveModel
+  def allow_mass_assignment_of(value); end
+
+  def allow_value(*values); end
+
+  def allow_values(*values); end
+
+  def have_secure_password(); end
+
+  def validate_absence_of(attr); end
+
+  def validate_acceptance_of(attr); end
+
+  def validate_confirmation_of(attr); end
+
+  def validate_exclusion_of(attr); end
+
+  def validate_inclusion_of(attr); end
+
+  def validate_length_of(attr); end
+
+  def validate_numericality_of(attr); end
+
+  def validate_presence_of(attr); end
+end
+
+class Shoulda::Matchers::ActiveModel::AllowMassAssignmentOfMatcher
+  def as(role); end
+
+  def description(); end
+
+  def failure_message(); end
+
+  def failure_message_when_negated(); end
+
+  def initialize(attribute); end
+
+  def matches?(subject); end
+end
+
+class Shoulda::Matchers::ActiveModel::AllowMassAssignmentOfMatcher
+end
+
+class Shoulda::Matchers::ActiveModel::AllowValueMatcher
+  include ::Shoulda::Matchers::ActiveModel::Helpers
+  include ::Shoulda::Matchers::ActiveModel::Qualifiers::IgnoringInterferenceByWriter
+  def _after_setting_value(&callback); end
+
+  def after_setting_value_callback(); end
+
+  def attribute_changed_value_message=(attribute_changed_value_message); end
+
+  def attribute_to_check_message_against(); end
+
+  def attribute_to_set(); end
+
+  def context(); end
+
+  def description(); end
+
+  def does_not_match?(instance); end
+
+  def expected_message(); end
+
+  def expects_custom_validation_message?(); end
+
+  def expects_strict?(); end
+
+  def failure_message(); end
+
+  def failure_message_preface=(failure_message_preface); end
+
+  def failure_message_when_negated(); end
+
+  def for(attribute_name); end
+
+  def initialize(*values); end
+
+  def instance(); end
+
+  def last_attribute_setter_used(); end
+
+  def last_value_set(); end
+
+  def matches?(instance); end
+
+  def model(); end
+
+  def on(context); end
+
+  def options(); end
+
+  def result(); end
+
+  def simple_description(); end
+
+  def strict(expects_strict=T.unsafe(nil)); end
+
+  def values_to_preset(); end
+
+  def values_to_preset=(values_to_preset); end
+
+  def values_to_set(); end
+
+  def with_message(message, given_options=T.unsafe(nil)); end
+end
+
+class Shoulda::Matchers::ActiveModel::AllowValueMatcher::AttributeChangedValueError
+  def attribute_name(); end
+
+  def attribute_name=(attribute_name); end
+
+  def matcher_name(); end
+
+  def matcher_name=(matcher_name); end
+
+  def model(); end
+
+  def model=(model); end
+
+  def successful?(); end
+
+  def value_read(); end
+
+  def value_read=(value_read); end
+
+  def value_written(); end
+
+  def value_written=(value_written); end
+end
+
+class Shoulda::Matchers::ActiveModel::AllowValueMatcher::AttributeChangedValueError
+end
+
+class Shoulda::Matchers::ActiveModel::AllowValueMatcher::AttributeDoesNotExistError
+  def attribute_name(); end
+
+  def attribute_name=(attribute_name); end
+
+  def model(); end
+
+  def model=(model); end
+
+  def successful?(); end
+
+  def value(); end
+
+  def value=(value); end
+end
+
+class Shoulda::Matchers::ActiveModel::AllowValueMatcher::AttributeDoesNotExistError
+end
+
+class Shoulda::Matchers::ActiveModel::AllowValueMatcher::AttributeSetter
+  def after_set_callback(); end
+
+  def args(); end
+
+  def attribute_changed_value?(); end
+
+  def attribute_name(); end
+
+  def check(); end
+
+  def checked?(); end
+
+  def description(); end
+
+  def failure_message(); end
+
+  def initialize(args); end
+
+  def matcher_name(); end
+
+  def object(); end
+
+  def result_of_checking(); end
+
+  def result_of_setting(); end
+
+  def run(); end
+
+  def run!(); end
+
+  def set(); end
+
+  def set!(); end
+
+  def set?(); end
+
+  def successful?(); end
+
+  def successfully_checked?(); end
+
+  def successfully_set?(); end
+
+  def unsuccessful?(); end
+
+  def unsuccessfully_checked?(); end
+
+  def value_read(); end
+
+  def value_written(); end
+end
+
+class Shoulda::Matchers::ActiveModel::AllowValueMatcher::AttributeSetter
+  def self.set(args); end
+end
+
+class Shoulda::Matchers::ActiveModel::AllowValueMatcher::AttributeSetterAndValidator
+  def after_setting_value_callback(*args, &block); end
+
+  def allow_value_matcher(); end
+
+  def attribute_name(); end
+
+  def attribute_setter(); end
+
+  def attribute_setter_description(); end
+
+  def attribute_to_check_message_against(*args, &block); end
+
+  def context(*args, &block); end
+
+  def expected_message(*args, &block); end
+
+  def expects_strict?(*args, &block); end
+
+  def ignore_interference_by_writer(*args, &block); end
+
+  def initialize(allow_value_matcher, attribute_name, value); end
+
+  def instance(*args, &block); end
+
+  def validator(); end
+
+  def value(); end
+end
+
+class Shoulda::Matchers::ActiveModel::AllowValueMatcher::AttributeSetterAndValidator
+  extend ::Forwardable
+end
+
+class Shoulda::Matchers::ActiveModel::AllowValueMatcher::AttributeSetters
+  include ::Enumerable
+  def each(&block); end
+
+  def first_failing(); end
+
+  def initialize(allow_value_matcher, values); end
+
+  def tuples(); end
+end
+
+class Shoulda::Matchers::ActiveModel::AllowValueMatcher::AttributeSetters
+end
+
+class Shoulda::Matchers::ActiveModel::AllowValueMatcher::AttributeSettersAndValidators
+  include ::Enumerable
+  def each(&block); end
+
+  def first_failing(); end
+
+  def first_passing(); end
+
+  def initialize(allow_value_matcher, values); end
+
+  def tuples(); end
+end
+
+class Shoulda::Matchers::ActiveModel::AllowValueMatcher::AttributeSettersAndValidators
+end
+
+class Shoulda::Matchers::ActiveModel::AllowValueMatcher::SuccessfulCheck
+  def successful?(); end
+end
+
+class Shoulda::Matchers::ActiveModel::AllowValueMatcher::SuccessfulCheck
+end
+
+class Shoulda::Matchers::ActiveModel::AllowValueMatcher::SuccessfulSetting
+  def successful?(); end
+end
+
+class Shoulda::Matchers::ActiveModel::AllowValueMatcher::SuccessfulSetting
+end
+
+class Shoulda::Matchers::ActiveModel::AllowValueMatcher
+end
+
+class Shoulda::Matchers::ActiveModel::CouldNotDetermineValueOutsideOfArray
+end
+
+class Shoulda::Matchers::ActiveModel::CouldNotDetermineValueOutsideOfArray
+end
+
+class Shoulda::Matchers::ActiveModel::CouldNotSetPasswordError
+  def model(); end
+
+  def model=(model); end
+end
+
+class Shoulda::Matchers::ActiveModel::CouldNotSetPasswordError
+  def self.create(model); end
+end
+
+class Shoulda::Matchers::ActiveModel::DisallowValueMatcher
+  def _after_setting_value(*args, &block); end
+
+  def allow_matcher(); end
+
+  def attribute_changed_value_message=(*args, &block); end
+
+  def attribute_to_set(*args, &block); end
+
+  def description(*args, &block); end
+
+  def does_not_match?(subject); end
+
+  def expects_strict?(*args, &block); end
+
+  def failure_message(); end
+
+  def failure_message_preface(*args, &block); end
+
+  def failure_message_preface=(*args, &block); end
+
+  def failure_message_when_negated(); end
+
+  def for(attribute); end
+
+  def ignore_interference_by_writer(*args, &block); end
+
+  def ignoring_interference_by_writer(value=T.unsafe(nil)); end
+
+  def initialize(value); end
+
+  def last_attribute_setter_used(*args, &block); end
+
+  def last_value_set(*args, &block); end
+
+  def matches?(subject); end
+
+  def model(*args, &block); end
+
+  def on(context); end
+
+  def simple_description(*args, &block); end
+
+  def strict(strict=T.unsafe(nil)); end
+
+  def values_to_preset=(*args, &block); end
+
+  def with_message(message, options=T.unsafe(nil)); end
+end
+
+class Shoulda::Matchers::ActiveModel::DisallowValueMatcher
+  extend ::Forwardable
+end
+
+class Shoulda::Matchers::ActiveModel::HaveSecurePasswordMatcher
+  def description(); end
+
+  def failure_message(); end
+
+  def matches?(subject); end
+
+  def subject(); end
+
+  def validate(); end
+  CORRECT_PASSWORD = ::T.let(nil, ::T.untyped)
+  EXPECTED_METHODS = ::T.let(nil, ::T.untyped)
+  INCORRECT_PASSWORD = ::T.let(nil, ::T.untyped)
+  MESSAGES = ::T.let(nil, ::T.untyped)
+end
+
+class Shoulda::Matchers::ActiveModel::HaveSecurePasswordMatcher
+end
+
+module Shoulda::Matchers::ActiveModel::Helpers
+  def default_error_message(type, options=T.unsafe(nil)); end
+
+  def format_validation_errors(errors); end
+
+  def pretty_error_messages(object); end
+end
+
+module Shoulda::Matchers::ActiveModel::Helpers
+end
+
+class Shoulda::Matchers::ActiveModel::NonNullableBooleanError
+  def attribute(); end
+
+  def attribute=(attribute); end
+end
+
+class Shoulda::Matchers::ActiveModel::NonNullableBooleanError
+  def self.create(attribute); end
+end
+
+module Shoulda::Matchers::ActiveModel::NumericalityMatchers
+end
+
+class Shoulda::Matchers::ActiveModel::NumericalityMatchers::ComparisonMatcher
+  def comparison_description(); end
+
+  def for(attribute); end
+
+  def initialize(numericality_matcher, value, operator); end
+
+  def simple_description(); end
+
+  def with_message(message); end
+  ERROR_MESSAGES = ::T.let(nil, ::T.untyped)
+end
+
+class Shoulda::Matchers::ActiveModel::NumericalityMatchers::ComparisonMatcher
+end
+
+class Shoulda::Matchers::ActiveModel::NumericalityMatchers::EvenNumberMatcher
+  def simple_description(); end
+  NON_EVEN_NUMBER_VALUE = ::T.let(nil, ::T.untyped)
+end
+
+class Shoulda::Matchers::ActiveModel::NumericalityMatchers::EvenNumberMatcher
+end
+
+class Shoulda::Matchers::ActiveModel::NumericalityMatchers::NumericTypeMatcher
+  def allowed_type_adjective(); end
+
+  def allowed_type_name(); end
+
+  def attribute(); end
+
+  def diff_to_compare(); end
+
+  def disallowed_value(); end
+
+  def does_not_match?(*args, &block); end
+
+  def expects_custom_validation_message?(*args, &block); end
+
+  def expects_strict?(*args, &block); end
+
+  def failure_message(*args, &block); end
+
+  def failure_message_when_negated(*args, &block); end
+
+  def ignore_interference_by_writer(*args, &block); end
+
+  def ignoring_interference_by_writer(*args, &block); end
+
+  def initialize(numeric_type_matcher, attribute); end
+
+  def matches?(*args, &block); end
+
+  def on(*args, &block); end
+
+  def strict(*args, &block); end
+
+  def with_message(*args, &block); end
+
+  def wrap_disallow_value_matcher(matcher); end
+end
+
+class Shoulda::Matchers::ActiveModel::NumericalityMatchers::NumericTypeMatcher
+  extend ::Forwardable
+end
+
+class Shoulda::Matchers::ActiveModel::NumericalityMatchers::OddNumberMatcher
+  def simple_description(); end
+  NON_ODD_NUMBER_VALUE = ::T.let(nil, ::T.untyped)
+end
+
+class Shoulda::Matchers::ActiveModel::NumericalityMatchers::OddNumberMatcher
+end
+
+class Shoulda::Matchers::ActiveModel::NumericalityMatchers::OnlyIntegerMatcher
+  def simple_description(); end
+  NON_INTEGER_VALUE = ::T.let(nil, ::T.untyped)
+end
+
+class Shoulda::Matchers::ActiveModel::NumericalityMatchers::OnlyIntegerMatcher
+end
+
+module Shoulda::Matchers::ActiveModel::NumericalityMatchers
+end
+
+module Shoulda::Matchers::ActiveModel::Qualifiers
+end
+
+module Shoulda::Matchers::ActiveModel::Qualifiers::AllowNil
+  def allow_nil(); end
+
+  def expects_to_allow_nil?(); end
+
+  def initialize(*args); end
+end
+
+module Shoulda::Matchers::ActiveModel::Qualifiers::AllowNil
+end
+
+class Shoulda::Matchers::ActiveModel::Qualifiers::IgnoreInterferenceByWriter
+  def always?(); end
+
+  def changed?(); end
+
+  def condition(); end
+
+  def considering?(value); end
+
+  def default_to(argument); end
+
+  def initialize(argument=T.unsafe(nil)); end
+
+  def never?(); end
+
+  def set(argument); end
+
+  def setting(); end
+end
+
+class Shoulda::Matchers::ActiveModel::Qualifiers::IgnoreInterferenceByWriter
+end
+
+module Shoulda::Matchers::ActiveModel::Qualifiers::IgnoringInterferenceByWriter
+  def ignore_interference_by_writer(); end
+
+  def ignoring_interference_by_writer(value=T.unsafe(nil)); end
+
+  def initialize(*args); end
+end
+
+module Shoulda::Matchers::ActiveModel::Qualifiers::IgnoringInterferenceByWriter
+end
+
+module Shoulda::Matchers::ActiveModel::Qualifiers
+end
+
+module Shoulda::Matchers::ActiveModel::Uniqueness
+end
+
+module Shoulda::Matchers::ActiveModel::Uniqueness
+end
+
+class Shoulda::Matchers::ActiveModel::ValidateAbsenceOfMatcher
+  def simple_description(); end
+end
+
+class Shoulda::Matchers::ActiveModel::ValidateAbsenceOfMatcher
+end
+
+class Shoulda::Matchers::ActiveModel::ValidateAcceptanceOfMatcher
+  def simple_description(); end
+end
+
+class Shoulda::Matchers::ActiveModel::ValidateAcceptanceOfMatcher
+end
+
+class Shoulda::Matchers::ActiveModel::ValidateConfirmationOfMatcher
+  include ::Shoulda::Matchers::ActiveModel::Helpers
+  def confirmation_attribute(); end
+
+  def simple_description(); end
+end
+
+class Shoulda::Matchers::ActiveModel::ValidateConfirmationOfMatcher
+end
+
+class Shoulda::Matchers::ActiveModel::ValidateExclusionOfMatcher
+  def in_array(array); end
+
+  def in_range(range); end
+
+  def simple_description(); end
+end
+
+class Shoulda::Matchers::ActiveModel::ValidateExclusionOfMatcher
+end
+
+class Shoulda::Matchers::ActiveModel::ValidateInclusionOfMatcher
+  def allow_blank(); end
+
+  def allow_nil(); end
+
+  def expects_to_allow_blank?(); end
+
+  def expects_to_allow_nil?(); end
+
+  def in_array(array); end
+
+  def in_range(range); end
+
+  def simple_description(); end
+
+  def with_high_message(message); end
+
+  def with_low_message(message); end
+
+  def with_message(message); end
+  ARBITRARY_OUTSIDE_DATE = ::T.let(nil, ::T.untyped)
+  ARBITRARY_OUTSIDE_DATETIME = ::T.let(nil, ::T.untyped)
+  ARBITRARY_OUTSIDE_DECIMAL = ::T.let(nil, ::T.untyped)
+  ARBITRARY_OUTSIDE_INTEGER = ::T.let(nil, ::T.untyped)
+  ARBITRARY_OUTSIDE_STRING = ::T.let(nil, ::T.untyped)
+  ARBITRARY_OUTSIDE_TIME = ::T.let(nil, ::T.untyped)
+  BLANK_VALUES = ::T.let(nil, ::T.untyped)
+  BOOLEAN_ALLOWS_BOOLEAN_MESSAGE = ::T.let(nil, ::T.untyped)
+  BOOLEAN_ALLOWS_NIL_MESSAGE = ::T.let(nil, ::T.untyped)
+end
+
+class Shoulda::Matchers::ActiveModel::ValidateInclusionOfMatcher
+end
+
+class Shoulda::Matchers::ActiveModel::ValidateLengthOfMatcher
+  include ::Shoulda::Matchers::ActiveModel::Helpers
+  def allow_nil(); end
+
+  def is_at_least(length); end
+
+  def is_at_most(length); end
+
+  def is_equal_to(length); end
+
+  def simple_description(); end
+
+  def with_long_message(message); end
+
+  def with_message(message); end
+
+  def with_short_message(message); end
+end
+
+class Shoulda::Matchers::ActiveModel::ValidateLengthOfMatcher
+end
+
+class Shoulda::Matchers::ActiveModel::ValidateNumericalityOfMatcher
+  include ::Shoulda::Matchers::ActiveModel::Qualifiers::IgnoringInterferenceByWriter
+  def allow_nil(); end
+
+  def description(); end
+
+  def diff_to_compare(); end
+
+  def does_not_match?(subject); end
+
+  def even(); end
+
+  def expects_custom_validation_message?(); end
+
+  def expects_strict?(); end
+
+  def expects_to_allow_nil?(); end
+
+  def failure_message(); end
+
+  def failure_message_when_negated(); end
+
+  def given_numeric_column?(); end
+
+  def initialize(attribute); end
+
+  def is_equal_to(value); end
+
+  def is_greater_than(value); end
+
+  def is_greater_than_or_equal_to(value); end
+
+  def is_less_than(value); end
+
+  def is_less_than_or_equal_to(value); end
+
+  def matches?(subject); end
+
+  def odd(); end
+
+  def on(context); end
+
+  def only_integer(); end
+
+  def simple_description(); end
+
+  def strict(); end
+
+  def with_message(message); end
+  DEFAULT_DIFF_TO_COMPARE = ::T.let(nil, ::T.untyped)
+  NON_NUMERIC_VALUE = ::T.let(nil, ::T.untyped)
+  NUMERIC_NAME = ::T.let(nil, ::T.untyped)
+end
+
+class Shoulda::Matchers::ActiveModel::ValidateNumericalityOfMatcher
+end
+
+class Shoulda::Matchers::ActiveModel::ValidatePresenceOfMatcher
+  include ::Shoulda::Matchers::ActiveModel::Qualifiers::AllowNil
+  def initialize(attribute); end
+
+  def simple_description(); end
+end
+
+class Shoulda::Matchers::ActiveModel::ValidatePresenceOfMatcher
+end
+
+class Shoulda::Matchers::ActiveModel::ValidationMatcher
+  include ::Shoulda::Matchers::ActiveModel::Qualifiers::IgnoringInterferenceByWriter
+  def allow_value_matcher(value, message=T.unsafe(nil), &block); end
+
+  def allows_value_of(value, message=T.unsafe(nil), &block); end
+
+  def attribute(); end
+
+  def context(); end
+
+  def description(); end
+
+  def disallow_value_matcher(value, message=T.unsafe(nil), &block); end
+
+  def disallows_value_of(value, message=T.unsafe(nil), &block); end
+
+  def does_not_match?(subject); end
+
+  def expects_custom_validation_message?(); end
+
+  def expects_strict?(); end
+
+  def failure_message(); end
+
+  def failure_message_when_negated(); end
+
+  def initialize(attribute); end
+
+  def last_submatcher_run(); end
+
+  def matches?(subject); end
+
+  def model(); end
+
+  def on(context); end
+
+  def strict(); end
+
+  def subject(); end
+
+  def with_message(expected_message); end
+end
+
+class Shoulda::Matchers::ActiveModel::ValidationMatcher::BuildDescription
+  def call(); end
+
+  def initialize(matcher, main_description); end
+
+  def main_description(); end
+
+  def matcher(); end
+end
+
+class Shoulda::Matchers::ActiveModel::ValidationMatcher::BuildDescription
+  def self.call(matcher, main_description); end
+end
+
+class Shoulda::Matchers::ActiveModel::ValidationMatcher
+end
+
+class Shoulda::Matchers::ActiveModel::Validator
+  include ::Shoulda::Matchers::ActiveModel::Helpers
+  def all_formatted_validation_error_messages(); end
+
+  def attribute(); end
+
+  def call(); end
+
+  def captured_validation_exception?(); end
+
+  def context(); end
+
+  def has_messages?(); end
+
+  def initialize(record, attribute, options=T.unsafe(nil)); end
+
+  def record(); end
+
+  def type_of_message_matched?(); end
+
+  def validation_exception_message(); end
+end
+
+class Shoulda::Matchers::ActiveModel::Validator
+end
+
+module Shoulda::Matchers::ActiveModel
+end
+
+module Shoulda::Matchers::ActiveRecord
+  def accept_nested_attributes_for(name); end
+
+  def belong_to(name); end
+
+  def define_enum_for(attribute_name); end
+
+  def have_and_belong_to_many(name); end
+
+  def have_db_column(column); end
+
+  def have_db_index(columns); end
+
+  def have_many(name); end
+
+  def have_one(name); end
+
+  def have_readonly_attribute(value); end
+
+  def have_rich_text(rich_text_attribute); end
+
+  def have_secure_token(token_attribute=T.unsafe(nil)); end
+
+  def serialize(name); end
+
+  def validate_uniqueness_of(attr); end
+end
+
+class Shoulda::Matchers::ActiveRecord::AcceptNestedAttributesForMatcher
+  def allow_destroy(allow_destroy); end
+
+  def allow_destroy_correct?(); end
+
+  def config(); end
+
+  def description(); end
+
+  def exists?(); end
+
+  def expectation(); end
+
+  def failure_message(); end
+
+  def failure_message_when_negated(); end
+
+  def initialize(name); end
+
+  def limit(limit); end
+
+  def limit_correct?(); end
+
+  def matches?(subject); end
+
+  def model_class(); end
+
+  def model_config(); end
+
+  def should_or_should_not(value); end
+
+  def update_only(update_only); end
+
+  def update_only_correct?(); end
+
+  def verify_option_is_correct(option, failure_message); end
+end
+
+class Shoulda::Matchers::ActiveRecord::AcceptNestedAttributesForMatcher
+end
+
+class Shoulda::Matchers::ActiveRecord::AssociationMatcher
+  def add_submatcher(matcher_class, *args); end
+
+  def associated_class(*args, &block); end
+
+  def association_exists?(); end
+
+  def autosave(autosave); end
+
+  def autosave_correct?(); end
+
+  def belongs_foreign_key_missing?(); end
+
+  def belongs_to_required_by_default?(); end
+
+  def class_exists?(); end
+
+  def class_has_foreign_key?(klass); end
+
+  def class_name(class_name); end
+
+  def class_name_correct?(); end
+
+  def column_names_for(klass); end
+
+  def conditions(conditions); end
+
+  def conditions_correct?(); end
+
+  def counter_cache(counter_cache=T.unsafe(nil)); end
+
+  def dependent(dependent); end
+
+  def description(); end
+
+  def expectation(); end
+
+  def failing_submatchers(); end
+
+  def failure_message(); end
+
+  def failure_message_when_negated(); end
+
+  def foreign_key(); end
+
+  def foreign_key_exists?(); end
+
+  def foreign_key_reflection(); end
+
+  def has_foreign_key_missing?(); end
+
+  def index_errors(index_errors); end
+
+  def index_errors_correct?(); end
+
+  def initialize(macro, name); end
+
+  def inverse_of(inverse_of); end
+
+  def join_table(join_table_name); end
+
+  def join_table_correct?(); end
+
+  def join_table_matcher(); end
+
+  def join_table_name(); end
+
+  def macro(); end
+
+  def macro_correct?(); end
+
+  def macro_description(); end
+
+  def macro_supports_primary_key?(); end
+
+  def matches?(subject); end
+
+  def missing(); end
+
+  def missing_options(); end
+
+  def missing_options_for_failing_submatchers(); end
+
+  def model_class(*args, &block); end
+
+  def name(); end
+
+  def option_verifier(); end
+
+  def optional(optional=T.unsafe(nil)); end
+
+  def options(); end
+
+  def order(order); end
+
+  def polymorphic?(*args, &block); end
+
+  def primary_key_correct?(klass); end
+
+  def primary_key_exists?(); end
+
+  def reflection(*args, &block); end
+
+  def reflector(); end
+
+  def remove_submatcher(matcher_class); end
+
+  def required(required=T.unsafe(nil)); end
+
+  def source(source); end
+
+  def subject(); end
+
+  def submatchers(); end
+
+  def submatchers_match?(); end
+
+  def through(through); end
+
+  def through?(*args, &block); end
+
+  def touch(touch=T.unsafe(nil)); end
+
+  def touch_correct?(); end
+
+  def validate(validate=T.unsafe(nil)); end
+
+  def validate_correct?(); end
+
+  def with_foreign_key(foreign_key); end
+
+  def with_primary_key(primary_key); end
+
+  def without_validating_presence(); end
+end
+
+class Shoulda::Matchers::ActiveRecord::AssociationMatcher
+end
+
+module Shoulda::Matchers::ActiveRecord::AssociationMatchers
+end
+
+class Shoulda::Matchers::ActiveRecord::AssociationMatchers::CounterCacheMatcher
+  def counter_cache(); end
+
+  def counter_cache=(counter_cache); end
+
+  def description(); end
+
+  def initialize(counter_cache, name); end
+
+  def matches?(subject); end
+
+  def missing_option(); end
+
+  def missing_option=(missing_option); end
+
+  def name(); end
+
+  def name=(name); end
+
+  def option_verifier(); end
+
+  def subject(); end
+
+  def subject=(subject); end
+end
+
+class Shoulda::Matchers::ActiveRecord::AssociationMatchers::CounterCacheMatcher
+end
+
+class Shoulda::Matchers::ActiveRecord::AssociationMatchers::DependentMatcher
+  def dependent(); end
+
+  def dependent=(dependent); end
+
+  def description(); end
+
+  def initialize(dependent, name); end
+
+  def matches?(subject); end
+
+  def missing_option(); end
+
+  def missing_option=(missing_option); end
+
+  def name(); end
+
+  def name=(name); end
+
+  def subject(); end
+
+  def subject=(subject); end
+end
+
+class Shoulda::Matchers::ActiveRecord::AssociationMatchers::DependentMatcher
+end
+
+class Shoulda::Matchers::ActiveRecord::AssociationMatchers::InverseOfMatcher
+  def description(); end
+
+  def initialize(inverse_of, name); end
+
+  def inverse_of(); end
+
+  def inverse_of=(inverse_of); end
+
+  def matches?(subject); end
+
+  def missing_option(); end
+
+  def missing_option=(missing_option); end
+
+  def name(); end
+
+  def name=(name); end
+
+  def option_verifier(); end
+
+  def subject(); end
+
+  def subject=(subject); end
+end
+
+class Shoulda::Matchers::ActiveRecord::AssociationMatchers::InverseOfMatcher
+end
+
+class Shoulda::Matchers::ActiveRecord::AssociationMatchers::JoinTableMatcher
+  def associated_class(*args, &block); end
+
+  def association_foreign_key(*args, &block); end
+
+  def association_matcher(); end
+
+  def connection(*args, &block); end
+
+  def failure_message(); end
+
+  def foreign_key(*args, &block); end
+
+  def initialize(association_matcher, reflector); end
+
+  def join_table_exists?(); end
+
+  def join_table_has_correct_columns?(); end
+
+  def join_table_name(*args, &block); end
+
+  def join_table_option_correct?(); end
+
+  def matches?(subject); end
+
+  def missing_option(); end
+
+  def model_class(*args, &block); end
+
+  def name(*args, &block); end
+
+  def option_verifier(*args, &block); end
+
+  def options(*args, &block); end
+
+  def reflector(); end
+end
+
+class Shoulda::Matchers::ActiveRecord::AssociationMatchers::JoinTableMatcher
+end
+
+class Shoulda::Matchers::ActiveRecord::AssociationMatchers::ModelReflection
+  def associated_class(); end
+
+  def association_foreign_key(); end
+
+  def association_relation(); end
+
+  def foreign_key(); end
+
+  def initialize(reflection); end
+
+  def join_table_name(); end
+
+  def polymorphic?(); end
+
+  def reflection(); end
+
+  def subject(); end
+
+  def through?(); end
+  RUBYGEMS_ACTIVATION_MONITOR = ::T.let(nil, ::T.untyped)
+end
+
+class Shoulda::Matchers::ActiveRecord::AssociationMatchers::ModelReflection
+end
+
+class Shoulda::Matchers::ActiveRecord::AssociationMatchers::ModelReflector
+  def associated_class(*args, &block); end
+
+  def association_foreign_key(*args, &block); end
+
+  def association_relation(*args, &block); end
+
+  def build_relation_with_clause(name, value); end
+
+  def extract_relation_clause_from(relation, name); end
+
+  def foreign_key(*args, &block); end
+
+  def initialize(subject, name); end
+
+  def join_table_name(*args, &block); end
+
+  def model_class(); end
+
+  def name(); end
+
+  def polymorphic?(*args, &block); end
+
+  def reflect_on_association(name); end
+
+  def reflection(); end
+
+  def subject(); end
+
+  def through?(*args, &block); end
+
+  def value_as_sql(value); end
+end
+
+class Shoulda::Matchers::ActiveRecord::AssociationMatchers::ModelReflector
+end
+
+class Shoulda::Matchers::ActiveRecord::AssociationMatchers::OptionVerifier
+  def actual_value_for(name); end
+
+  def actual_value_for_class_name(); end
+
+  def actual_value_for_relation_clause(name); end
+
+  def correct_for?(*args); end
+
+  def correct_for_boolean?(name, expected_value); end
+
+  def correct_for_constant?(name, expected_unresolved_value); end
+
+  def correct_for_hash?(name, expected_value); end
+
+  def correct_for_relation_clause?(name, expected_value); end
+
+  def correct_for_string?(name, expected_value); end
+
+  def expected_value_for(type, name, value); end
+
+  def expected_value_for_constant(name); end
+
+  def expected_value_for_relation_clause(name, value); end
+
+  def initialize(reflector); end
+
+  def reflection(*args, &block); end
+
+  def reflector(); end
+
+  def type_cast(type, value); end
+  RELATION_OPTIONS = ::T.let(nil, ::T.untyped)
+end
+
+class Shoulda::Matchers::ActiveRecord::AssociationMatchers::OptionVerifier
+end
+
+class Shoulda::Matchers::ActiveRecord::AssociationMatchers::OptionalMatcher
+  def description(); end
+
+  def initialize(attribute_name, optional); end
+
+  def matches?(subject); end
+
+  def missing_option(); end
+end
+
+class Shoulda::Matchers::ActiveRecord::AssociationMatchers::OptionalMatcher
+end
+
+class Shoulda::Matchers::ActiveRecord::AssociationMatchers::OrderMatcher
+  def description(); end
+
+  def initialize(order, name); end
+
+  def matches?(subject); end
+
+  def missing_option(); end
+
+  def missing_option=(missing_option); end
+
+  def name(); end
+
+  def name=(name); end
+
+  def option_verifier(); end
+
+  def order(); end
+
+  def order=(order); end
+
+  def subject(); end
+
+  def subject=(subject); end
+end
+
+class Shoulda::Matchers::ActiveRecord::AssociationMatchers::OrderMatcher
+end
+
+class Shoulda::Matchers::ActiveRecord::AssociationMatchers::RequiredMatcher
+  def description(); end
+
+  def initialize(attribute_name, required); end
+
+  def matches?(subject); end
+
+  def missing_option(); end
+end
+
+class Shoulda::Matchers::ActiveRecord::AssociationMatchers::RequiredMatcher
+end
+
+class Shoulda::Matchers::ActiveRecord::AssociationMatchers::SourceMatcher
+  def description(); end
+
+  def initialize(source, name); end
+
+  def matches?(subject); end
+
+  def missing_option(); end
+
+  def missing_option=(missing_option); end
+
+  def name(); end
+
+  def name=(name); end
+
+  def option_verifier(); end
+
+  def source(); end
+
+  def source=(source); end
+
+  def subject(); end
+
+  def subject=(subject); end
+end
+
+class Shoulda::Matchers::ActiveRecord::AssociationMatchers::SourceMatcher
+end
+
+class Shoulda::Matchers::ActiveRecord::AssociationMatchers::ThroughMatcher
+  def association_set_properly?(); end
+
+  def description(); end
+
+  def initialize(through, name); end
+
+  def matches?(subject); end
+
+  def missing_option(); end
+
+  def missing_option=(missing_option); end
+
+  def name(); end
+
+  def name=(name); end
+
+  def option_verifier(); end
+
+  def subject(); end
+
+  def subject=(subject); end
+
+  def through(); end
+
+  def through=(through); end
+
+  def through_association_correct?(); end
+
+  def through_association_exists?(); end
+
+  def through_reflection(); end
+end
+
+class Shoulda::Matchers::ActiveRecord::AssociationMatchers::ThroughMatcher
+end
+
+module Shoulda::Matchers::ActiveRecord::AssociationMatchers
+end
+
+class Shoulda::Matchers::ActiveRecord::DefineEnumForMatcher
+  def backed_by_column_of_type(expected_column_type); end
+
+  def description(); end
+
+  def failure_message(); end
+
+  def failure_message_when_negated(); end
+
+  def initialize(attribute_name); end
+
+  def matches?(subject); end
+
+  def with(expected_enum_values); end
+
+  def with_prefix(expected_prefix=T.unsafe(nil)); end
+
+  def with_suffix(expected_suffix=T.unsafe(nil)); end
+
+  def with_values(expected_enum_values); end
+end
+
+class Shoulda::Matchers::ActiveRecord::DefineEnumForMatcher
+end
+
+class Shoulda::Matchers::ActiveRecord::HaveDbColumnMatcher
+  def actual_primary?(); end
+
+  def actual_scale(); end
+
+  def column_exists?(); end
+
+  def correct_column_type?(); end
+
+  def correct_default?(); end
+
+  def correct_limit?(); end
+
+  def correct_null?(); end
+
+  def correct_precision?(); end
+
+  def correct_primary?(); end
+
+  def correct_scale?(); end
+
+  def description(); end
+
+  def expectation(); end
+
+  def failure_message(); end
+
+  def failure_message_when_negated(); end
+
+  def initialize(column); end
+
+  def matched_column(); end
+
+  def matches?(subject); end
+
+  def model_class(); end
+
+  def of_type(column_type); end
+
+  def with_options(opts=T.unsafe(nil)); end
+end
+
+class Shoulda::Matchers::ActiveRecord::HaveDbColumnMatcher::DecoratedColumn
+  def initialize(model, column); end
+
+  def model(); end
+
+  def primary?(); end
+
+  def type_cast_default(); end
+  RUBYGEMS_ACTIVATION_MONITOR = ::T.let(nil, ::T.untyped)
+end
+
+class Shoulda::Matchers::ActiveRecord::HaveDbColumnMatcher::DecoratedColumn
+end
+
+class Shoulda::Matchers::ActiveRecord::HaveDbColumnMatcher
+end
+
+class Shoulda::Matchers::ActiveRecord::HaveDbIndexMatcher
+  def description(); end
+
+  def failure_message(); end
+
+  def failure_message_when_negated(); end
+
+  def initialize(columns); end
+
+  def matches?(subject); end
+
+  def unique(unique=T.unsafe(nil)); end
+end
+
+class Shoulda::Matchers::ActiveRecord::HaveDbIndexMatcher
+end
+
+class Shoulda::Matchers::ActiveRecord::HaveReadonlyAttributeMatcher
+  def description(); end
+
+  def failure_message(); end
+
+  def failure_message_when_negated(); end
+
+  def initialize(attribute); end
+
+  def matches?(subject); end
+end
+
+class Shoulda::Matchers::ActiveRecord::HaveReadonlyAttributeMatcher
+end
+
+class Shoulda::Matchers::ActiveRecord::HaveRichText
+  def description(); end
+
+  def failure_message(); end
+
+  def failure_message_when_negated(); end
+
+  def initialize(rich_text_attribute); end
+
+  def matches?(subject); end
+end
+
+class Shoulda::Matchers::ActiveRecord::HaveRichText
+end
+
+class Shoulda::Matchers::ActiveRecord::HaveSecureTokenMatcher
+  def description(); end
+
+  def failure_message(); end
+
+  def failure_message_when_negated(); end
+
+  def initialize(token_attribute); end
+
+  def matches?(subject); end
+
+  def token_attribute(); end
+end
+
+class Shoulda::Matchers::ActiveRecord::HaveSecureTokenMatcher
+end
+
+class Shoulda::Matchers::ActiveRecord::SerializeMatcher
+  def as(type); end
+
+  def as_instance_of(type); end
+
+  def attribute_is_serialized?(); end
+
+  def class_valid?(); end
+
+  def description(); end
+
+  def expectation(); end
+
+  def failure_message(); end
+
+  def failure_message_when_negated(); end
+
+  def initialize(name); end
+
+  def instance_class_valid?(); end
+
+  def matches?(subject); end
+
+  def model(); end
+
+  def model_class(); end
+
+  def serialization_coder(); end
+
+  def serialization_valid?(); end
+
+  def type_valid?(); end
+end
+
+class Shoulda::Matchers::ActiveRecord::SerializeMatcher
+end
+
+module Shoulda::Matchers::ActiveRecord::Uniqueness
+end
+
+class Shoulda::Matchers::ActiveRecord::Uniqueness::Model
+  def already_exists?(); end
+
+  def initialize(name, namespace); end
+
+  def name(); end
+
+  def namespace(); end
+
+  def next(); end
+
+  def symlink_to(parent); end
+end
+
+class Shoulda::Matchers::ActiveRecord::Uniqueness::Model
+  def self.next_unique_copy_of(model_name, namespace); end
+end
+
+class Shoulda::Matchers::ActiveRecord::Uniqueness::Namespace
+  def clear(); end
+
+  def constant(); end
+
+  def has?(name); end
+
+  def initialize(constant); end
+
+  def set(name, value); end
+end
+
+class Shoulda::Matchers::ActiveRecord::Uniqueness::Namespace
+end
+
+class Shoulda::Matchers::ActiveRecord::Uniqueness::TestModelCreator
+  def create(); end
+
+  def initialize(model_name, namespace); end
+
+  def model_name(); end
+
+  def namespace(); end
+end
+
+class Shoulda::Matchers::ActiveRecord::Uniqueness::TestModelCreator
+  def self.create(model_name, namespace); end
+end
+
+module Shoulda::Matchers::ActiveRecord::Uniqueness::TestModels
+end
+
+module Shoulda::Matchers::ActiveRecord::Uniqueness::TestModels
+  def self.create(model_name); end
+
+  def self.remove_all(); end
+
+  def self.root_namespace(); end
+end
+
+module Shoulda::Matchers::ActiveRecord::Uniqueness
+end
+
+class Shoulda::Matchers::ActiveRecord::ValidateUniquenessOfMatcher
+  include ::Shoulda::Matchers::ActiveModel::Helpers
+  def allow_blank(); end
+
+  def allow_nil(); end
+
+  def case_insensitive(); end
+
+  def does_not_match?(given_record); end
+
+  def expects_to_allow_blank?(); end
+
+  def expects_to_allow_nil?(); end
+
+  def ignoring_case_sensitivity(); end
+
+  def matches?(given_record); end
+
+  def scoped_to(*scopes); end
+
+  def simple_description(); end
+end
+
+class Shoulda::Matchers::ActiveRecord::ValidateUniquenessOfMatcher::AttributeSetters
+  include ::Enumerable
+  def +(other_attribute_setters); end
+
+  def <<(given_attribute_setter); end
+
+  def each(&block); end
+
+  def last(); end
+end
+
+class Shoulda::Matchers::ActiveRecord::ValidateUniquenessOfMatcher::AttributeSetters
+end
+
+class Shoulda::Matchers::ActiveRecord::ValidateUniquenessOfMatcher::ExistingRecordInvalid
+  include ::Shoulda::Matchers::ActiveModel::Helpers
+  def underlying_exception(); end
+
+  def underlying_exception=(underlying_exception); end
+end
+
+class Shoulda::Matchers::ActiveRecord::ValidateUniquenessOfMatcher::ExistingRecordInvalid
+end
+
+class Shoulda::Matchers::ActiveRecord::ValidateUniquenessOfMatcher::NonCaseSwappableValueError
+  def attribute(); end
+
+  def attribute=(attribute); end
+
+  def model(); end
+
+  def model=(model); end
+
+  def value(); end
+
+  def value=(value); end
+end
+
+class Shoulda::Matchers::ActiveRecord::ValidateUniquenessOfMatcher::NonCaseSwappableValueError
+end
+
+class Shoulda::Matchers::ActiveRecord::ValidateUniquenessOfMatcher
+end
+
+module Shoulda::Matchers::ActiveRecord
+end
+
+class Shoulda::Matchers::Configuration
+  def integrate(&block); end
+
+  def integrations(); end
+end
+
+class Shoulda::Matchers::Configuration
+end
+
+class Shoulda::Matchers::Document
+  def document(); end
+
+  def indent(); end
+
+  def initialize(document, indent: T.unsafe(nil)); end
+
+  def wrap(); end
+end
+
+class Shoulda::Matchers::Document
+end
+
+module Shoulda::Matchers::Doublespeak
+end
+
+class Shoulda::Matchers::Doublespeak::Double
+  def activate(); end
+
+  def activated?(); end
+
+  def call_original_method(call); end
+
+  def calls(); end
+
+  def deactivate(); end
+
+  def implementation(); end
+
+  def initialize(world, klass, method_name, implementation); end
+
+  def klass(); end
+
+  def method_name(); end
+
+  def original_method(); end
+
+  def record_call(call); end
+
+  def replace_method_with_double(); end
+
+  def restore_original_method(); end
+
+  def store_original_method(); end
+
+  def to_return(value=T.unsafe(nil), &block); end
+
+  def world(); end
+end
+
+class Shoulda::Matchers::Doublespeak::Double
+end
+
+class Shoulda::Matchers::Doublespeak::DoubleCollection
+  def activate(); end
+
+  def calls_by_method_name(); end
+
+  def calls_to(method_name); end
+
+  def deactivate(); end
+
+  def doubles_by_method_name(); end
+
+  def initialize(world, klass); end
+
+  def klass(); end
+
+  def register_double(method_name, implementation_type); end
+
+  def register_proxy(method_name); end
+
+  def register_stub(method_name); end
+
+  def world(); end
+end
+
+class Shoulda::Matchers::Doublespeak::DoubleCollection
+end
+
+module Shoulda::Matchers::Doublespeak::DoubleImplementationRegistry
+end
+
+module Shoulda::Matchers::Doublespeak::DoubleImplementationRegistry
+  def self.find(type); end
+
+  def self.register(klass, type); end
+end
+
+class Shoulda::Matchers::Doublespeak::MethodCall
+  def ==(other); end
+
+  def args(); end
+
+  def block(); end
+
+  def caller(); end
+
+  def double(); end
+
+  def initialize(args); end
+
+  def method_name(); end
+
+  def object(); end
+
+  def return_value(); end
+
+  def return_value=(return_value); end
+
+  def to_hash(); end
+
+  def with_return_value(return_value); end
+end
+
+class Shoulda::Matchers::Doublespeak::MethodCall
+end
+
+class Shoulda::Matchers::Doublespeak::ObjectDouble
+  def calls(); end
+
+  def calls_by_method_name(); end
+
+  def calls_to(method_name); end
+
+  def method_missing(method_name, *args, &block); end
+
+  def respond_to?(_name, _include_private=T.unsafe(nil)); end
+end
+
+class Shoulda::Matchers::Doublespeak::ObjectDouble
+end
+
+class Shoulda::Matchers::Doublespeak::ProxyImplementation
+  def call(call); end
+
+  def initialize(stub_implementation); end
+
+  def returns(*args, &block); end
+
+  def stub_implementation(); end
+end
+
+class Shoulda::Matchers::Doublespeak::ProxyImplementation
+  extend ::Forwardable
+  def self.create(); end
+end
+
+class Shoulda::Matchers::Doublespeak::StubImplementation
+  def call(call); end
+
+  def implementation(); end
+
+  def returns(value=T.unsafe(nil), &block); end
+end
+
+class Shoulda::Matchers::Doublespeak::StubImplementation
+  def self.create(); end
+end
+
+class Shoulda::Matchers::Doublespeak::World
+  def double_collection_for(klass); end
+
+  def doubles_activated?(); end
+
+  def original_method_for(klass, method_name); end
+
+  def store_original_method_for(klass, method_name); end
+
+  def with_doubles_activated(); end
+end
+
+class Shoulda::Matchers::Doublespeak::World
+end
+
+module Shoulda::Matchers::Doublespeak
+  def self.debug(&block); end
+
+  def self.debugging_enabled?(); end
+
+  def self.double_collection_for(*args, &block); end
+
+  def self.with_doubles_activated(*args, &block); end
+
+  def self.world(); end
+end
+
+class Shoulda::Matchers::Error
+  def initialize(*args); end
+end
+
+class Shoulda::Matchers::Error
+  def self.create(attributes); end
+end
+
+module Shoulda::Matchers::Independent
+  def delegate_method(delegating_method); end
+end
+
+class Shoulda::Matchers::Independent::DelegateMethodMatcher
+  def allow_nil(); end
+
+  def as(delegate_method); end
+
+  def build_delegating_method_prefix(prefix); end
+
+  def call_delegating_method_with_delegate_method_returning(value); end
+
+  def calls_on_delegate_object(); end
+
+  def calls_to_delegate_method(); end
+
+  def class_or_instance_method_indicator(); end
+
+  def class_under_test(); end
+
+  def context(); end
+
+  def delegate_method(); end
+
+  def delegate_object(); end
+
+  def delegate_object_reader_method(); end
+
+  def delegate_object_received_call?(); end
+
+  def delegate_object_received_call_with_delegated_arguments?(); end
+
+  def delegated_arguments(); end
+
+  def delegating_method(); end
+
+  def description(); end
+
+  def ensure_delegate_object_has_been_specified!(); end
+
+  def expects_to_allow_nil_delegate_object?(); end
+
+  def failed_to_allow_nil_delegate_object?(); end
+
+  def failure_message(); end
+
+  def failure_message_when_negated(); end
+
+  def formatted_calls_on_delegate_object(); end
+
+  def formatted_delegate_method(options=T.unsafe(nil)); end
+
+  def formatted_delegate_object_reader_method_name(options=T.unsafe(nil)); end
+
+  def formatted_delegating_method_name(options=T.unsafe(nil)); end
+
+  def formatted_method_name_for(method_name, options); end
+
+  def in_context(context); end
+
+  def initialize(delegating_method); end
+
+  def matches?(subject); end
+
+  def method(); end
+
+  def possible_class_under_test(options); end
+
+  def register_subject_double_collection_to(returned_value); end
+
+  def subject(); end
+
+  def subject_delegates_to_delegate_object_correctly?(); end
+
+  def subject_handles_nil_delegate_object?(); end
+
+  def subject_has_delegate_object_reader_method?(); end
+
+  def subject_has_delegating_method?(); end
+
+  def subject_is_a_class?(); end
+
+  def to(delegate_object_reader_method); end
+
+  def with_arguments(*arguments); end
+
+  def with_prefix(prefix=T.unsafe(nil)); end
+end
+
+class Shoulda::Matchers::Independent::DelegateMethodMatcher::DelegateObjectNotSpecified
+end
+
+class Shoulda::Matchers::Independent::DelegateMethodMatcher::DelegateObjectNotSpecified
+end
+
+class Shoulda::Matchers::Independent::DelegateMethodMatcher::StubbedTarget
+  def has_received_arguments?(*args); end
+
+  def has_received_method?(); end
+
+  def initialize(method); end
+
+  def received_arguments(); end
+
+  def received_method(); end
+
+  def stub_method(method); end
+end
+
+class Shoulda::Matchers::Independent::DelegateMethodMatcher::StubbedTarget
+end
+
+class Shoulda::Matchers::Independent::DelegateMethodMatcher
+end
+
+module Shoulda::Matchers::Independent
+end
+
+module Shoulda::Matchers::Integrations
+end
+
+class Shoulda::Matchers::Integrations::Configuration
+  def apply(); end
+
+  def initialize(&block); end
+
+  def library(name); end
+
+  def test_framework(name); end
+
+  def test_frameworks(); end
+end
+
+class Shoulda::Matchers::Integrations::Configuration
+  def self.apply(&block); end
+end
+
+class Shoulda::Matchers::Integrations::ConfigurationError
+end
+
+class Shoulda::Matchers::Integrations::ConfigurationError
+end
+
+module Shoulda::Matchers::Integrations::Inclusion
+  def include_into(mod, *other_mods, &block); end
+end
+
+module Shoulda::Matchers::Integrations::Inclusion
+end
+
+module Shoulda::Matchers::Integrations::Libraries
+end
+
+class Shoulda::Matchers::Integrations::Libraries::ActionController
+  include ::Shoulda::Matchers::Integrations::Inclusion
+  include ::Shoulda::Matchers::Integrations::Rails
+  def integrate_with(test_framework); end
+end
+
+class Shoulda::Matchers::Integrations::Libraries::ActionController
+end
+
+class Shoulda::Matchers::Integrations::Libraries::ActiveModel
+  include ::Shoulda::Matchers::Integrations::Inclusion
+  include ::Shoulda::Matchers::Integrations::Rails
+  def integrate_with(test_framework); end
+end
+
+class Shoulda::Matchers::Integrations::Libraries::ActiveModel
+end
+
+class Shoulda::Matchers::Integrations::Libraries::ActiveRecord
+  include ::Shoulda::Matchers::Integrations::Inclusion
+  include ::Shoulda::Matchers::Integrations::Rails
+  def integrate_with(test_framework); end
+end
+
+class Shoulda::Matchers::Integrations::Libraries::ActiveRecord
+end
+
+class Shoulda::Matchers::Integrations::Libraries::MissingLibrary
+  def integrate_with(test_framework); end
+
+  def rails?(); end
+end
+
+class Shoulda::Matchers::Integrations::Libraries::MissingLibrary
+end
+
+class Shoulda::Matchers::Integrations::Libraries::Rails
+  include ::Shoulda::Matchers::Integrations::Rails
+  def integrate_with(test_framework); end
+  SUB_LIBRARIES = ::T.let(nil, ::T.untyped)
+end
+
+class Shoulda::Matchers::Integrations::Libraries::Rails
+end
+
+class Shoulda::Matchers::Integrations::Libraries::Routing
+  include ::Shoulda::Matchers::Integrations::Inclusion
+  include ::Shoulda::Matchers::Integrations::Rails
+  def integrate_with(test_framework); end
+end
+
+class Shoulda::Matchers::Integrations::Libraries::Routing
+end
+
+module Shoulda::Matchers::Integrations::Libraries
+end
+
+module Shoulda::Matchers::Integrations::Rails
+  def rails?(); end
+end
+
+module Shoulda::Matchers::Integrations::Rails
+end
+
+class Shoulda::Matchers::Integrations::Registry
+  def find!(name); end
+
+  def register(klass, name); end
+end
+
+class Shoulda::Matchers::Integrations::Registry
+end
+
+module Shoulda::Matchers::Integrations::TestFrameworks
+end
+
+class Shoulda::Matchers::Integrations::TestFrameworks::ActiveSupportTestCase
+  def configuration(); end
+
+  def include(*modules, **options); end
+
+  def n_unit?(); end
+
+  def validate!(); end
+end
+
+class Shoulda::Matchers::Integrations::TestFrameworks::ActiveSupportTestCase
+end
+
+class Shoulda::Matchers::Integrations::TestFrameworks::Minitest4
+  def include(*modules, **options); end
+
+  def n_unit?(); end
+
+  def validate!(); end
+end
+
+class Shoulda::Matchers::Integrations::TestFrameworks::Minitest4
+end
+
+class Shoulda::Matchers::Integrations::TestFrameworks::Minitest5
+  def include(*modules, **options); end
+
+  def n_unit?(); end
+
+  def validate!(); end
+end
+
+class Shoulda::Matchers::Integrations::TestFrameworks::Minitest5
+end
+
+class Shoulda::Matchers::Integrations::TestFrameworks::MissingTestFramework
+  def include(*modules, **options); end
+
+  def n_unit?(); end
+
+  def validate!(); end
+end
+
+class Shoulda::Matchers::Integrations::TestFrameworks::MissingTestFramework
+end
+
+class Shoulda::Matchers::Integrations::TestFrameworks::Rspec
+  def include(*modules, **options); end
+
+  def n_unit?(); end
+
+  def validate!(); end
+end
+
+class Shoulda::Matchers::Integrations::TestFrameworks::Rspec
+end
+
+class Shoulda::Matchers::Integrations::TestFrameworks::TestUnit
+  def include(*modules, **options); end
+
+  def n_unit?(); end
+
+  def validate!(); end
+end
+
+class Shoulda::Matchers::Integrations::TestFrameworks::TestUnit
+end
+
+module Shoulda::Matchers::Integrations::TestFrameworks
+end
+
+module Shoulda::Matchers::Integrations
+  def self.find_library!(name); end
+
+  def self.find_test_framework!(name); end
+
+  def self.register_library(klass, name); end
+
+  def self.register_test_framework(klass, name); end
+end
+
+class Shoulda::Matchers::Line
+  def indent(); end
+
+  def indentation(); end
+
+  def initialize(line, indent: T.unsafe(nil)); end
+
+  def line_to_wrap(); end
+
+  def original_line(); end
+
+  def previous_line_to_wrap(); end
+
+  def wrap(); end
+  OFFSETS = ::T.let(nil, ::T.untyped)
+end
+
+class Shoulda::Matchers::Line
+end
+
+class Shoulda::Matchers::MatcherContext
+  def context(); end
+
+  def initialize(context); end
+
+  def subject_is_a_class?(); end
+end
+
+class Shoulda::Matchers::MatcherContext
+end
+
+class Shoulda::Matchers::Paragraph
+  def indent(); end
+
+  def initialize(paragraph, indent: T.unsafe(nil)); end
+
+  def paragraph(); end
+
+  def wrap(); end
+end
+
+class Shoulda::Matchers::Paragraph
+end
+
+module Shoulda::Matchers::RailsShim
+end
+
+module Shoulda::Matchers::RailsShim
+  def self.action_pack_gte_5?(); end
+
+  def self.action_pack_lt_5?(); end
+
+  def self.action_pack_version(); end
+
+  def self.active_record_gte_5?(); end
+
+  def self.active_record_version(); end
+
+  def self.attribute_serialization_coder_for(model, attribute_name); end
+
+  def self.attribute_type_for(model, attribute_name); end
+
+  def self.attribute_types_for(model); end
+
+  def self.digestible_attributes_in(record); end
+
+  def self.generate_validation_message(record, attribute, type, model_name, options); end
+
+  def self.has_secure_password?(record, attribute_name); end
+
+  def self.make_controller_request(context, verb, action, request_params); end
+
+  def self.parent_of(mod); end
+
+  def self.secure_password_module(); end
+
+  def self.serialized_attributes_for(model); end
+
+  def self.supports_full_attributes_api?(model); end
+
+  def self.tables_and_views(connection); end
+
+  def self.validation_message_key_for_association_required_option(); end
+
+  def self.verb_for_update(); end
+end
+
+module Shoulda::Matchers::Routing
+  def route(method, path, port: T.unsafe(nil)); end
+end
+
+module Shoulda::Matchers::Routing
+end
+
+class Shoulda::Matchers::Text
+  def indented?(); end
+
+  def list_item?(); end
+
+  def match_as_list_item(); end
+  LIST_ITEM_REGEXP = ::T.let(nil, ::T.untyped)
+end
+
+class Shoulda::Matchers::Text
+end
+
+module Shoulda::Matchers::Util
+end
+
+module Shoulda::Matchers::Util
+  def self.a_or_an(next_word); end
+
+  def self.deconstantize(path); end
+
+  def self.dummy_value_for(column_type, array: T.unsafe(nil)); end
+
+  def self.indent(string, width); end
+
+  def self.inspect_hash(hash); end
+
+  def self.inspect_range(range); end
+
+  def self.inspect_value(value); end
+
+  def self.inspect_values(values); end
+
+  def self.safe_constantize(camel_cased_word); end
+end
+
+module Shoulda::Matchers::WordWrap
+  def word_wrap(document, options=T.unsafe(nil)); end
+  TERMINAL_WIDTH = ::T.let(nil, ::T.untyped)
+end
+
+module Shoulda::Matchers::WordWrap
+end
+
+module Shoulda::Matchers
+  extend ::Shoulda::Matchers::WordWrap
+  def self.assertion_exception_class(); end
+
+  def self.assertion_exception_class=(assertion_exception_class); end
+
+  def self.configuration(); end
+
+  def self.configure(); end
+
+  def self.integrations(); end
+
+  def self.warn(message); end
+
+  def self.warn_about_deprecated_method(old_method, new_method); end
+end
+
+module Shoulda
+end
+
 class SignalException
   def signm(); end
 
@@ -102993,10 +114748,6 @@ class Time
 
   def self.use_zone(time_zone); end
 
-  def self.zone(); end
-
-  def self.zone=(time_zone); end
-
   def self.zone_default(); end
 
   def self.zone_default=(zone_default); end
@@ -103021,6 +114772,224 @@ class TrueClass
   include ::JSON::Ext::Generator::GeneratorMethods::TrueClass
   include ::MessagePack::CoreExt
   include ::SafeType::BooleanMixin
+end
+
+class TurnipMarket
+  include ::TurnipMarket::GeneratedAttributeMethods
+  include ::TurnipMarket::GeneratedAssociationMethods
+  def after_add_for_turnip_valuations(); end
+
+  def after_add_for_turnip_valuations=(val); end
+
+  def after_add_for_turnip_valuations?(); end
+
+  def after_remove_for_turnip_valuations(); end
+
+  def after_remove_for_turnip_valuations=(val); end
+
+  def after_remove_for_turnip_valuations?(); end
+
+  def autosave_associated_records_for_island(*args); end
+
+  def autosave_associated_records_for_turnip_valuations(*args); end
+
+  def before_add_for_turnip_valuations(); end
+
+  def before_add_for_turnip_valuations=(val); end
+
+  def before_add_for_turnip_valuations?(); end
+
+  def before_remove_for_turnip_valuations(); end
+
+  def before_remove_for_turnip_valuations=(val); end
+
+  def before_remove_for_turnip_valuations?(); end
+
+  def validate_associated_records_for_turnip_valuations(*args); end
+  RelationType = ::T.let(nil, ::T.untyped)
+end
+
+class TurnipMarket::ActiveRecord_AssociationRelation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::TurnipMarket::GeneratedRelationMethods
+end
+
+class TurnipMarket::ActiveRecord_AssociationRelation
+end
+
+class TurnipMarket::ActiveRecord_Associations_CollectionProxy
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::TurnipMarket::GeneratedRelationMethods
+end
+
+class TurnipMarket::ActiveRecord_Associations_CollectionProxy
+end
+
+class TurnipMarket::ActiveRecord_Relation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::TurnipMarket::GeneratedRelationMethods
+end
+
+class TurnipMarket::ActiveRecord_Relation
+end
+
+module TurnipMarket::GeneratedAssociationMethods
+  def build_island(*args, &block); end
+
+  def create_island(*args, &block); end
+
+  def create_island!(*args, &block); end
+
+  def island(); end
+
+  def island=(value); end
+
+  def reload_island(); end
+
+  def turnip_valuation_ids(); end
+
+  def turnip_valuation_ids=(ids); end
+
+  def turnip_valuations(); end
+
+  def turnip_valuations=(value); end
+end
+
+module TurnipMarket::GeneratedAssociationMethods
+end
+
+module TurnipMarket::GeneratedAttributeMethods
+end
+
+module TurnipMarket::GeneratedAttributeMethods
+  extend ::Mutex_m
+end
+
+module TurnipMarket::GeneratedRelationMethods
+end
+
+module TurnipMarket::GeneratedRelationMethods
+  extend ::Mutex_m
+end
+
+class TurnipMarket
+  def self.after_add_for_turnip_valuations(); end
+
+  def self.after_add_for_turnip_valuations=(val); end
+
+  def self.after_add_for_turnip_valuations?(); end
+
+  def self.after_remove_for_turnip_valuations(); end
+
+  def self.after_remove_for_turnip_valuations=(val); end
+
+  def self.after_remove_for_turnip_valuations?(); end
+
+  def self.before_add_for_turnip_valuations(); end
+
+  def self.before_add_for_turnip_valuations=(val); end
+
+  def self.before_add_for_turnip_valuations?(); end
+
+  def self.before_remove_for_turnip_valuations(); end
+
+  def self.before_remove_for_turnip_valuations=(val); end
+
+  def self.before_remove_for_turnip_valuations?(); end
+end
+
+class TurnipValuation
+  include ::TurnipValuation::GeneratedAttributeMethods
+  include ::TurnipValuation::GeneratedAssociationMethods
+  def autosave_associated_records_for_turnip_market(*args); end
+
+  def typed_period(); end
+
+  def typed_period=(value); end
+  RelationType = ::T.let(nil, ::T.untyped)
+end
+
+class TurnipValuation::ActiveRecord_AssociationRelation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::TurnipValuation::GeneratedRelationMethods
+end
+
+class TurnipValuation::ActiveRecord_AssociationRelation
+end
+
+class TurnipValuation::ActiveRecord_Associations_CollectionProxy
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::TurnipValuation::GeneratedRelationMethods
+end
+
+class TurnipValuation::ActiveRecord_Associations_CollectionProxy
+end
+
+class TurnipValuation::ActiveRecord_Relation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::TurnipValuation::GeneratedRelationMethods
+end
+
+class TurnipValuation::ActiveRecord_Relation
+end
+
+module TurnipValuation::GeneratedAssociationMethods
+  def build_turnip_market(*args, &block); end
+
+  def create_turnip_market(*args, &block); end
+
+  def create_turnip_market!(*args, &block); end
+
+  def reload_turnip_market(); end
+
+  def turnip_market(); end
+
+  def turnip_market=(value); end
+end
+
+module TurnipValuation::GeneratedAssociationMethods
+end
+
+module TurnipValuation::GeneratedAttributeMethods
+end
+
+module TurnipValuation::GeneratedAttributeMethods
+  extend ::Mutex_m
+end
+
+module TurnipValuation::GeneratedRelationMethods
+  def evening(*args, &block); end
+
+  def morning(*args, &block); end
+
+  def not_evening(*args, &block); end
+
+  def not_morning(*args, &block); end
+end
+
+module TurnipValuation::GeneratedRelationMethods
+  extend ::Mutex_m
+end
+
+class TurnipValuation::Period
+  Evening = ::T.let(nil, ::T.untyped)
+  Morning = ::T.let(nil, ::T.untyped)
+end
+
+class TurnipValuation::Period
+  extend ::T::Helpers
+end
+
+class TurnipValuation
+  def self.evening(*args); end
+
+  def self.morning(*args); end
+
+  def self.not_evening(*args); end
+
+  def self.not_morning(*args); end
+
+  def self.periods(); end
 end
 
 module TypeCoerce::Configuration
@@ -103060,6 +115029,50 @@ end
 
 module TypeCoerce
   def self.[](type); end
+end
+
+class Types::BaseArgument
+end
+
+class Types::BaseField
+end
+
+class Types::BaseInputObject
+end
+
+module Types::BaseInterface
+  include ::GraphQL::Schema::Interface
+  include ::GraphQL::Schema::Member::GraphQLTypeNames
+end
+
+module Types::BaseInterface::DefinitionMethods
+end
+
+module Types::BaseInterface::DefinitionMethods
+end
+
+module Types::BaseInterface
+  extend ::GraphQL::Schema::Interface::DefinitionMethods
+  extend ::GraphQL::Schema::Member::CachedGraphQLDefinition
+  extend ::GraphQL::Relay::TypeExtensions
+  extend ::GraphQL::Schema::Member::BaseDSLMethods
+  extend ::GraphQL::Schema::FindInheritedValue
+  extend ::GraphQL::Schema::FindInheritedValue::EmptyObjects
+  extend ::GraphQL::Schema::Member::TypeSystemHelpers
+  extend ::GraphQL::Schema::Member::HasFields
+  extend ::GraphQL::Schema::Member::HasPath
+  extend ::GraphQL::Schema::Member::RelayShortcuts
+  extend ::GraphQL::Schema::Member::Scoped
+  extend ::GraphQL::Schema::Member::HasAstNode
+  extend ::GraphQL::Schema::Member::AcceptsDefinition::AcceptsDefinitionDefinitionMethods
+  extend ::GraphQL::Schema::Member::AcceptsDefinition::ToGraphQLExtension
+  extend ::Types::BaseInterface::DefinitionMethods
+end
+
+class Types::BaseScalar
+end
+
+class Types::BaseUnion
 end
 
 module URI

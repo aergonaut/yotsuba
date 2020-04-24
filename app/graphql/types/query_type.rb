@@ -1,3 +1,4 @@
+# typed: true
 module Types
   class QueryType < Types::BaseObject
     # Add root-level fields here.

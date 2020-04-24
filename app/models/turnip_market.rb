@@ -1,3 +1,4 @@
+# typed: true
 class TurnipMarket < ApplicationRecord
   belongs_to :island
   has_many :turnip_valuations

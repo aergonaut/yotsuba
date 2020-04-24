@@ -2,7 +2,6 @@
 #   srb rbi todo
 
 # typed: strong
-module ::DashboardHelper; end
 module ActiveRecord::CollectionCacheKey; end
 module ActiveRecord::Delegation::DelegateCache; end
 module T::InterfaceWrapper::Helpers; end

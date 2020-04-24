@@ -1,3 +1,4 @@
+# typed: strict
 module Types
   class UserType < Types::BaseObject
     description "A user"

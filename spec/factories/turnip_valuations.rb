@@ -1,3 +1,4 @@
+# typed: false
 FactoryBot.define do
   factory :turnip_valuation do
     period { :morning }

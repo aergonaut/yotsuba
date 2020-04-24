@@ -1,3 +1,4 @@
+# typed: false
 require "rails_helper"
 
 RSpec.describe TurnipMarket, type: :model do
