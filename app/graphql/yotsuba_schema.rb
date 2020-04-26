@@ -9,4 +9,20 @@ class YotsubaSchema < GraphQL::Schema
 
   # Add built-in connections for pagination
   use GraphQL::Pagination::Connections
+
+  def self.id_from_object(object, _type_definition, _query_context)
+    object.to_sgid.to_s
+  end
+
+  def self.object_from_id(id, _query_context)
+    GlobalID::Locator.locate_signed(id)
+  end
+
+  def self.resolve_type(type, obj, context)
+    if obj.class.respond_to?(:graphql_type)
+      obj.class.graphql_type
+    else
+      raise "Unexpected object: #{obj}"
+    end
+  end
 end
