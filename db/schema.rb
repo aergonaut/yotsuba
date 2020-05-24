@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_24_061718) do
+ActiveRecord::Schema.define(version: 2020_05_23_183131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "furnitures", force: :cascade do |t|
+    t.string "type", null: false
+    t.string "name", null: false
+    t.boolean "diy", default: false, null: false
+    t.boolean "catalog", default: false, null: false
+    t.string "sourceNotes"
+    t.string "series"
+    t.string "size"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["type"], name: "index_furnitures_on_type"
+  end
 
   create_table "islands", force: :cascade do |t|
     t.string "name", null: false

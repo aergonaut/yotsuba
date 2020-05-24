@@ -1,0 +1,2 @@
+class Wallpaper < Furniture
+end

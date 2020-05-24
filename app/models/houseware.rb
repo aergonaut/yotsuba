@@ -1,0 +1,2 @@
+class Houseware < Furniture
+end

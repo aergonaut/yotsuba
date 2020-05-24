@@ -6,3 +6,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# Furniture records
+Furniture.seed_from_data(JSON.load(Rails.root.join("data", "furniture.json").read))

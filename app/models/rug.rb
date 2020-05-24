@@ -1,0 +1,2 @@
+class Rug < Furniture
+end

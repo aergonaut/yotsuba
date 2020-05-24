@@ -1,0 +1,2 @@
+class Komono < Furniture
+end

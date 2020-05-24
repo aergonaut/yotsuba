@@ -1,0 +1,2 @@
+class Fence < Furniture
+end

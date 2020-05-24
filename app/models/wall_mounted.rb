@@ -1,0 +1,2 @@
+class WallMounted < Furniture
+end
