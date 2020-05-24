@@ -10,6 +10,8 @@ class YotsubaSchema < GraphQL::Schema
   # Add built-in connections for pagination
   use GraphQL::Pagination::Connections
 
+  default_max_page_size 50
+
   def self.id_from_object(object, _type_definition, _query_context)
     object.to_sgid.to_s
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_23_183131) do
+ActiveRecord::Schema.define(version: 2020_05_24_194502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,23 @@ ActiveRecord::Schema.define(version: 2020_05_23_183131) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
+  end
+
+  create_table "variants", force: :cascade do |t|
+    t.string "image_url"
+    t.string "filename"
+    t.string "variation"
+    t.string "variant_id"
+    t.string "unique_entry_id"
+    t.integer "buy"
+    t.integer "sell"
+    t.string "sources", array: true
+    t.string "colors", array: true
+    t.string "item_type"
+    t.bigint "item_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_type", "item_id"], name: "index_variants_on_item_type_and_item_id"
   end
 
 end

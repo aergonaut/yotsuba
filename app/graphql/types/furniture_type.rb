@@ -12,6 +12,10 @@ module Types
     field :series, String, "The series this item belongs to", null: true
     field :size, String, "The item's size in world", null: true
 
+    field :variants, Types::VariantType.connection_type, null: false do
+      description "This item's variants"
+    end
+
     orphan_types FenceType, FloorType, HousewareType, KomonoType, RugType, WallMountedType, WallpaperType
   end
 end
