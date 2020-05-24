@@ -8,7 +8,7 @@ class CreateFurnitures < ActiveRecord::Migration[6.0]
       t.boolean :diy, default: false, null: false
       t.boolean :catalog, default: false, null: false
 
-      t.string :sourceNotes
+      t.string :source_notes
       t.string :series
       t.string :size
 

@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2020_05_23_183131) do
     t.string "name", null: false
     t.boolean "diy", default: false, null: false
     t.boolean "catalog", default: false, null: false
-    t.string "sourceNotes"
+    t.string "source_notes"
     t.string "series"
     t.string "size"
     t.datetime "created_at", precision: 6, null: false

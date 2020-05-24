@@ -2,6 +2,8 @@ class Furniture < ApplicationRecord
   include PgSearch::Model
   pg_search_scope :search_text, against: [:name, :series]
 
+  include GraphqlObject
+
   def self.seed_from_data(data)
     data.each do |data|
       type = data["sourceSheet"].downcase.underscore.to_sym
@@ -41,7 +43,7 @@ class Furniture < ApplicationRecord
         catalog: data["catalog"] == "For sale",
         series: data["series"],
         size: data["size"],
-        sourceNotes: data["sourceNotes"]
+        source_notes: data["sourceNotes"]
       }
     record.attributes = next_attributes
     record

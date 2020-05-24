@@ -14,5 +14,14 @@ module Types
     def viewer
       context[:current_user]
     end
+
+    field :search_furniture, [FurnitureType], null: false do
+      description "Search furniture items"
+      argument :query, String, "Search query", required: true
+    end
+
+    def search_furniture(query:)
+      Furniture.search_text(query)
+    end
   end
 end

@@ -1,4 +1,4 @@
-module RelayNode
+module GraphqlObject
   extend ActiveSupport::Concern
 
   class_methods do
