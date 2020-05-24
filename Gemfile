@@ -65,3 +65,5 @@ gem "sorbet-rails"
 # GraphQL gems
 gem "graphql"
 gem "graphiql-rails", group: :development
+
+gem "pg_search"
