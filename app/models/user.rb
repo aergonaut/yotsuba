@@ -5,7 +5,8 @@ class User < ApplicationRecord
   has_many :islands
 
   validates :email, presence: true, uniqueness: true
-  validates :name, presence: true
+  validates :username, presence: true, uniqueness: true, length: { minimum: 3 }
+  validates :password, length: { minimum: 8 }
 
   def to_token
     payload =

@@ -7,11 +7,11 @@ module Types
     add_field(GraphQL::Types::Relay::NodeField)
     add_field(GraphQL::Types::Relay::NodesField)
 
-    field :viewer, UserType, null: true do
+    field :current_user, UserType, null: true do
       description "The currently authenticated user"
     end
 
-    def viewer
+    def current_user
       context[:current_user]
     end
 

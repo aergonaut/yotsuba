@@ -10,8 +10,8 @@
         = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
 
       .form-group
-        = f.label :name
-        = f.text_field :name, class: "form-control"
+        = f.label :username
+        = f.text_field :username, class: "form-control"
 
       .form-group
         = f.label :password
@@ -23,3 +23,6 @@
 
       .form-group
         = f.submit "Sign up", class: "btn btn-primary"
+
+    %ul.list-unstyled
+      %li= link_to "Already registered? Sign in.", new_session_path
