@@ -67,3 +67,5 @@ gem "graphql"
 gem "graphiql-rails", group: :development
 
 gem "pg_search"
+
+gem "devise-jwt"

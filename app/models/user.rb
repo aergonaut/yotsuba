@@ -1,12 +1,27 @@
 # typed: strict
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :validatable,
-    :confirmable
+  has_secure_password
 
   has_many :islands
 
-  validates :username, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
+  validates :name, presence: true
+
+  def to_token
+    payload =
+      {
+        sub: id,
+        exp: 1.day.from_now.to_i
+      }
+    JWT.encode(payload, Rails.application.credentials.jwt_secret_key, "HS256")
+  end
+
+  def self.from_token(token)
+    begin
+      payload, _ = JWT.decode(token, Rails.application.credentials.jwt_secret_key, algorithm: "HS256")
+      find_by(id: payload["sub"])
+    rescue JWT::DecodeError
+      nil
+    end
+  end
 end

@@ -1,0 +1,6 @@
+- if resource.errors.any?
+  .alert.alert-danger
+    %h4.alert-heading= "#{resource.class.model_name.human} not saved"
+    %ul
+      - resource.errors.full_messages.each do |message|
+        %li= message

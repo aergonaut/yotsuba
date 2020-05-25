@@ -1,0 +1,25 @@
+.row.justify-content-center
+  .col-lg-4
+    %h2 Sign up
+
+    = form_with model: @user, local: true do |f|
+      = render partial: "shared/error_messages", locals: { resource: @user }
+
+      .form-group
+        = f.label :email
+        = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+
+      .form-group
+        = f.label :name
+        = f.text_field :name, class: "form-control"
+
+      .form-group
+        = f.label :password
+        = f.password_field :password, autocomplete: "new-password", class: "form-control"
+
+      .form-group
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"
+
+      .form-group
+        = f.submit "Sign up", class: "btn btn-primary"

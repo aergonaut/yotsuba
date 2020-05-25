@@ -4,7 +4,11 @@ Rails.application.routes.draw do
     mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
   end
   post "/graphql", to: "graphql#execute"
-  devise_for :users
+
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :users, only: [:new, :create, :edit, :update]
+
+  resources :tokens, only: [:create]
 
   root to: "dashboard#index"
 end
