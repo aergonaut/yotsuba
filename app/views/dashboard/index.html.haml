@@ -1,5 +1,14 @@
+= render partial: "shared/flash_container"
+
 %h1 You're in!
 
 %p Unfortunately, there's no content here yet.
 
 %p In the meantime, feel free to use our API!
+
+%ul.list-unstyled
+  %li= link_to "Ready to wrap it up for now? Sign out.", session_path, method: :delete
+
+%footer.text-center
+  = link_to root_path do
+    = image_tag "clover.png", height: 25, width: 25

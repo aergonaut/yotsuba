@@ -1,8 +1,10 @@
 .row.justify-content-center
   .col-lg-4
+    = render partial: "shared/flash_container"
+
     %h2 Log in
 
-    = form_with scope: :session, url: sessions_path, local: true do |f|
+    = form_with scope: :session, url: session_path, local: true do |f|
       .form-group
         = f.label :email
         = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"

@@ -10,9 +10,18 @@ class SessionsController < ApplicationController
     auth = AuthenticateUser.new(email: session_params[:email], password: session_params[:password])
     if (user = auth.call)
       session[:user_id] = user.id
+      flash[:success] = "Successfully signed in."
       redirect_to root_path
     else
+      flash[:warning] = "A user with that email and password combination could not be found."
+      render :new
     end
+  end
+
+  def destroy
+    session[:user_id] = nil
+    flash[:info] = "You have been signed out."
+    redirect_to root_path
   end
 
   private
