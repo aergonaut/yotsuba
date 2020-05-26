@@ -19,7 +19,7 @@ class User < ApplicationRecord
 
   def self.from_token(token)
     begin
-      payload, _ = JWT.decode(token, Rails.application.credentials.jwt_secret_key, algorithm: "HS256")
+      payload, _ = JWT.decode(token, Rails.application.credentials.jwt_secret_key, true, algorithm: "HS256")
       find_by(id: payload["sub"])
     rescue JWT::DecodeError
       nil
