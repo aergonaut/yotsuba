@@ -1,13 +1,27 @@
 = render partial: "shared/flash_container"
 
-%h1 You're in!
+.dialog_box
+  .dialog_box_name Yotsuba
 
-%p Unfortunately, there's no content here yet.
+  %p
+    Welcome,
+    = succeed "!" do
+      %span.text-success= current_user.username
+    Looks like you're all set.
 
-%p In the meantime, feel free to use our API!
+.dialog_box
+  .dialog_box_name Yotsuba
 
-%ul.list-unstyled
-  %li= link_to "Ready to wrap it up for now? Sign out.", session_path, method: :delete
+  %p Unfortunately, there's no content here yet&#8230; But we're working hard to make this site useful.
+
+  %p In the meantime, feel free to use our API!
+
+.dialog_box
+  .dialog_box_name Yotsuba
+
+  %p Ready to wrap things up for now?
+
+  %p= link_to "Sign out.", session_path, method: :delete
 
 %footer.text-center
   = link_to root_path do

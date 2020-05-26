@@ -3,3 +3,34 @@
 #main_container {
   margin-top: 1rem;
 }
+
+$dialog_bg_color: #FFFAE4;
+$dialog_text_color: #837865;
+$dialog_name_bg_color: #FF9A40;
+$dialog_name_text_color: #BA3B1F;
+
+.dialog_box {
+  background: $dialog_bg_color;
+  padding: 1.5rem;
+  border-radius: 25px;
+  font-weight: 700;
+  position: relative;
+  margin: 2rem 0;
+
+  &_name {
+    color: $dialog_name_text_color;
+    background: $dialog_name_bg_color;
+    border-radius: 25px;
+    padding: 0.25rem 1rem;
+    position: absolute;
+    top: -12px;
+    left: -1px;
+    transform: rotate(-5deg);
+  }
+
+  p {
+    color: $dialog_text_color;
+    margin-top: 1rem;
+    margin-bottom: 0;
+  }
+}

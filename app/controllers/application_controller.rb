@@ -13,11 +13,13 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    if (user = User.find_by(id: session[:user_id]))
-      user
-    else
-      session[:user_id] = nil
-      nil
-    end
+    @current_user ||=
+      if (user = User.find_by(id: session[:user_id]))
+        user
+      else
+        session[:user_id] = nil
+        nil
+      end
   end
+  helper_method :current_user
 end
