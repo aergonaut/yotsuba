@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :authenticate_user
+  before_action :set_ratelimit_headers, if: -> { request.format.json? }
 
   protected
 
@@ -10,6 +11,15 @@ class ApplicationController < ActionController::Base
     unless current_user
       redirect_to new_session_path
     end
+  end
+
+  def set_ratelimit_headers
+    throttle_data = request.env['rack.attack.throttle_data']['req/ip']
+    now = throttle_data[:epoch_time]
+
+    response.set_header('RateLimit-Limit', throttle_data[:limit])
+    response.set_header('RateLimit-Remaining', throttle_data[:limit] - throttle_data[:count])
+    response.set_header('RateLimit-Reset', (now + (throttle_data[:period] - now % throttle_data[:period])).to_s) 
   end
 
   def current_user
