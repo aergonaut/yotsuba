@@ -69,3 +69,5 @@ gem "pg_search"
 gem "rack-attack"
 
 gem "jwt"
+
+gem "sentry-raven"

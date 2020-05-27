@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user
   before_action :set_ratelimit_headers, if: -> { request.format.json? }
+  before_action :set_raven_context
 
   protected
 
@@ -32,4 +33,9 @@ class ApplicationController < ActionController::Base
       end
   end
   helper_method :current_user
+
+  def set_raven_context
+    Raven.user_context(id: current_user.id) if current_user
+    Raven.extra_context(params: params.to_unsafe_h, url: request.url)
+  end
 end
