@@ -1,13 +1,13 @@
 @import "~bootstrap/dist/css/bootstrap";
 
 #main_container {
-  margin-top: 1rem;
+  // margin-top: 1rem;
 }
 
-$dialog_bg_color: #FFFAE4;
+$dialog_bg_color: #fffae4;
 $dialog_text_color: #837865;
-$dialog_name_bg_color: #FF9A40;
-$dialog_name_text_color: #BA3B1F;
+$dialog_name_bg_color: #ff9a40;
+$dialog_name_text_color: #ba3b1f;
 
 .dialog_box {
   background: $dialog_bg_color;

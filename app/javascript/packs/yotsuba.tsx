@@ -1,11 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import App from "yotsuba/App";
 
 const Hello = ({ name }: { name: string }) => <div>Hello {name}!!!</div>;
 
 document.addEventListener("DOMContentLoaded", () => {
-  ReactDOM.render(
-    <Hello name="React" />,
-    document.body.appendChild(document.createElement("div"))
-  );
+  ReactDOM.render(<App />, document.getElementById("main_container"));
 });
