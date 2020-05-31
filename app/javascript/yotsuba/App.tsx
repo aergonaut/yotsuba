@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ApolloProvider,
   ApolloClient,
@@ -6,25 +6,22 @@ import {
   InMemoryCache,
 } from "@apollo/client";
 import Navbar from "./components/Navbar";
+import SearchResults from "./components/SearchResults";
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink(),
 });
 
-function Greeting() {
+function App() {
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
-    <>
-      <Navbar />
-      <div className="container"></div>
-    </>
+    <ApolloProvider client={client}>
+      <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <SearchResults searchTerm={searchTerm} />
+    </ApolloProvider>
   );
 }
-
-const App = () => (
-  <ApolloProvider client={client}>
-    <Greeting />
-  </ApolloProvider>
-);
 
 export default App;

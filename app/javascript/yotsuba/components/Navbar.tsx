@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { Search, User } from "react-feather";
 
@@ -10,10 +10,15 @@ const CURRENT_USER_QUERY = gql`
   }
 `;
 
-function Navbar() {
+function Navbar({
+  searchTerm,
+  setSearchTerm,
+}: {
+  searchTerm: string;
+  setSearchTerm: (newState: string) => void;
+}) {
   const { loading, error, data } = useQuery(CURRENT_USER_QUERY);
-
-  if (loading) return <div>Loading...</div>;
+  const [inputValue, setInputValue] = useState(searchTerm);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -33,16 +38,32 @@ function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <form className="form-inline ml-lg-auto">
+          <form
+            className="form-inline ml-lg-auto"
+            onSubmit={(event) => {
+              event.preventDefault();
+              setSearchTerm(inputValue);
+            }}
+          >
             <div className="input-group">
               <input
                 className="form-control"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
+                value={inputValue}
+                onChange={(event) => {
+                  setInputValue(event.target.value);
+                }}
               />
               <div className="input-group-append">
-                <button className="btn btn-secondary" type="button">
+                <button
+                  className="btn btn-secondary"
+                  type="button"
+                  onClick={(event) => {
+                    setSearchTerm(inputValue);
+                  }}
+                >
                   <Search size={20} />
                 </button>
               </div>
@@ -51,7 +72,9 @@ function Navbar() {
           <div className="navbar-nav ml-lg-auto">
             <a className="nav-item nav-link" href="#">
               <User size={20} />
-              <span className="ml-2">{data.currentUser.username}</span>
+              {loading ? null : (
+                <span className="ml-2">{data.currentUser.username}</span>
+              )}
             </a>
           </div>
         </div>
