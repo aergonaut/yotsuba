@@ -14,6 +14,7 @@ const SEARCH_FURNITURE_QUERY = gql`
       nodes {
         id
         name
+        slug
         variants {
           nodes {
             id
@@ -36,7 +37,12 @@ function SearchResults(props: RouteComponentProps) {
     variables: { query: params.q as string },
   });
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div className="container-lg">
+        <p className="text-center w-100 p-4">Loading...</p>
+      </div>
+    );
 
   const cards = data.furnitures.nodes.map((item) => {
     return <SearchResultItem key={item.id} data={item} />;
@@ -44,9 +50,8 @@ function SearchResults(props: RouteComponentProps) {
 
   return (
     <div className="container-lg">
-      <div className="row row-cols-2 row-cols-md-3 row-cols-lg-6 p-4">
-        {cards}
-      </div>
+      <p>Showing </p>
+      <div className="row row-cols-2 row-cols-md-4 m-4">{cards}</div>
     </div>
   );
 }

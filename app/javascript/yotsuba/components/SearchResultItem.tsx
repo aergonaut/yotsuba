@@ -1,7 +1,12 @@
 import React from "react";
-import { SearchFurniture_furniture_nodes } from "./__generated__/SearchFurniture";
+import { SearchFurniture_furnitures_nodes } from "./__generated__/SearchFurniture";
+import { Link } from "@reach/router";
 
-function SearchResultItem({ data }: { data: SearchFurniture_furniture_nodes }) {
+function SearchResultItem({
+  data,
+}: {
+  data: SearchFurniture_furnitures_nodes;
+}) {
   return (
     <div className="col mb-4">
       <div className="card h-100">
@@ -10,11 +15,14 @@ function SearchResultItem({ data }: { data: SearchFurniture_furniture_nodes }) {
           alt={data.name}
           title={data.name}
           className="card-img-top"
+          height={128}
           style={{ objectFit: "contain", width: "auto" }}
         />
         <div className="card-body">
           <h6 className="card-title" style={{ textTransform: "capitalize" }}>
-            {data.name}
+            <Link to={`/items/${data.slug}`} className="card-link">
+              {data.name}
+            </Link>
           </h6>
           <p className="card-text">
             <small>

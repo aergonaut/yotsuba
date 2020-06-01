@@ -29,6 +29,10 @@ export interface SearchFurniture_furnitures_nodes {
    */
   name: string;
   /**
+   * The URL slug for this time
+   */
+  slug: string;
+  /**
    * This item's variants
    */
   variants: SearchFurniture_furnitures_nodes_variants;
