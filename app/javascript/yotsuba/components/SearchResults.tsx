@@ -50,7 +50,6 @@ function SearchResults(props: RouteComponentProps) {
 
   return (
     <div className="container-lg">
-      <p>Showing </p>
       <div className="row row-cols-2 row-cols-md-4 m-4">{cards}</div>
     </div>
   );
