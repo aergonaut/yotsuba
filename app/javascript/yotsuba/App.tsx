@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   ApolloProvider,
   ApolloClient,
@@ -15,13 +15,11 @@ const client = new ApolloClient({
 });
 
 function App() {
-  const [searchTerm, setSearchTerm] = useState("");
-
   return (
     <ApolloProvider client={client}>
       <Navbar />
       <Router>
-        <SearchResults path="/search" searchTerm={searchTerm} />
+        <SearchResults path="/search" />
       </Router>
     </ApolloProvider>
   );

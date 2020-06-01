@@ -25,9 +25,7 @@ const SEARCH_FURNITURE_QUERY = gql`
   }
 `;
 
-function SearchResults({
-  searchTerm,
-}: { searchTerm: string } & RouteComponentProps) {
+function SearchResults(props: RouteComponentProps) {
   const location = useLocation();
   const params = queryString.parse(location.search);
 
