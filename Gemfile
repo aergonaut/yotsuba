@@ -71,3 +71,5 @@ gem "rack-attack"
 gem "jwt"
 
 gem "sentry-raven"
+
+gem "rails_same_site_cookie"

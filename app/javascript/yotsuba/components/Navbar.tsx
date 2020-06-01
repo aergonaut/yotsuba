@@ -1,21 +1,9 @@
 import React, { useState } from "react";
-import { gql, useQuery } from "@apollo/client";
-import { Search, User } from "react-feather";
-import { CurrentUserQuery } from "./__generated__/CurrentUserQuery";
+import { Search, User, LogOut } from "react-feather";
 import { navigate, Link } from "@reach/router";
-
-const CURRENT_USER_QUERY = gql`
-  query CurrentUserQuery {
-    currentUser {
-      username
-    }
-  }
-`;
+import UserControls from "./UserControls";
 
 function Navbar() {
-  const { loading, error, data } = useQuery<CurrentUserQuery>(
-    CURRENT_USER_QUERY
-  );
   const [inputValue, setInputValue] = useState("");
 
   return (
@@ -37,7 +25,7 @@ function Navbar() {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <form
-            className="form-inline ml-lg-auto"
+            className="form-inline"
             onSubmit={(event) => {
               event.preventDefault();
               navigate(`/search?q=${inputValue}`);
@@ -67,14 +55,7 @@ function Navbar() {
               </div>
             </div>
           </form>
-          <div className="navbar-nav ml-lg-auto">
-            <Link to="/profile" className="nav-item nav-link">
-              <User size={20} />
-              {loading ? null : (
-                <span className="ml-2">{data.currentUser.username}</span>
-              )}
-            </Link>
-          </div>
+          <UserControls />
         </div>
       </div>
     </nav>

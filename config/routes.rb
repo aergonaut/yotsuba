@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   end
   post "/graphql", to: "graphql#execute"
 
-  resource :session, only: [:new, :create, :destroy]
+  resource :session, only: [:new, :create, :destroy] do
+    member do
+      get "logout" => "sessions#destroy"
+    end
+  end
   resources :users, only: [:new, :create, :edit, :update]
 
   resources :tokens, only: [:create]
