@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { Search, User } from "react-feather";
+import { CurrentUserQuery } from "./__generated__/CurrentUserQuery";
+import { navigate, Link } from "@reach/router";
 
 const CURRENT_USER_QUERY = gql`
   query CurrentUserQuery {
@@ -10,22 +12,18 @@ const CURRENT_USER_QUERY = gql`
   }
 `;
 
-function Navbar({
-  searchTerm,
-  setSearchTerm,
-}: {
-  searchTerm: string;
-  setSearchTerm: (newState: string) => void;
-}) {
-  const { loading, error, data } = useQuery(CURRENT_USER_QUERY);
-  const [inputValue, setInputValue] = useState(searchTerm);
+function Navbar() {
+  const { loading, error, data } = useQuery<CurrentUserQuery>(
+    CURRENT_USER_QUERY
+  );
+  const [inputValue, setInputValue] = useState("");
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div className="container">
-        <a className="navbar-brand" href="#">
+      <div className="container-lg">
+        <Link to="/" className="navbar-brand">
           Yotsuba!
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -42,7 +40,7 @@ function Navbar({
             className="form-inline ml-lg-auto"
             onSubmit={(event) => {
               event.preventDefault();
-              setSearchTerm(inputValue);
+              navigate(`/search?q=${inputValue}`);
             }}
           >
             <div className="input-group">
@@ -58,10 +56,10 @@ function Navbar({
               />
               <div className="input-group-append">
                 <button
-                  className="btn btn-secondary"
+                  className="btn btn-primary"
                   type="button"
                   onClick={(event) => {
-                    setSearchTerm(inputValue);
+                    navigate(`/search?q=${inputValue}`);
                   }}
                 >
                   <Search size={20} />
@@ -70,12 +68,12 @@ function Navbar({
             </div>
           </form>
           <div className="navbar-nav ml-lg-auto">
-            <a className="nav-item nav-link" href="#">
+            <Link to="/profile" className="nav-item nav-link">
               <User size={20} />
               {loading ? null : (
                 <span className="ml-2">{data.currentUser.username}</span>
               )}
-            </a>
+            </Link>
           </div>
         </div>
       </div>

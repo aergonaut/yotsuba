@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   resources :tokens, only: [:create]
 
   root to: "dashboard#index"
+  get "/search" => "dashboard#index"
 end

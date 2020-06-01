@@ -3,6 +3,8 @@ module Types
     include Types::BaseInterface
 
     description "A furniture item"
+    
+    global_id_field :id
 
     field :name, String, "The item's name", null: false
     field :diy, Boolean, "Is this item a DIY?", null: false

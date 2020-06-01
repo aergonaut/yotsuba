@@ -5,6 +5,7 @@ import {
   HttpLink,
   InMemoryCache,
 } from "@apollo/client";
+import { Router } from "@reach/router";
 import Navbar from "./components/Navbar";
 import SearchResults from "./components/SearchResults";
 
@@ -18,8 +19,10 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-      <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <SearchResults searchTerm={searchTerm} />
+      <Navbar />
+      <Router>
+        <SearchResults path="/search" searchTerm={searchTerm} />
+      </Router>
     </ApolloProvider>
   );
 }

@@ -2,6 +2,8 @@ module Types
   class VariantType < Types::BaseObject
     description "An item variant"
 
+    global_id_field :id
+
     field :image_url, String, null: true
     field :filename, String, null: true
     field :variation, String, null: true

@@ -15,17 +15,26 @@ module Types
       context[:current_user]
     end
 
-    field :furniture, Types::FurnitureType.connection_type, null: false do
+    field :furnitures, Types::FurnitureType.connection_type, null: false do
       description "List furniture items"
       argument :query, String, "Search query", required: false
     end
 
-    def furniture(query: nil)
+    def furnitures(query: nil)
       if query
         Furniture.search_text(query)
       else
         Furniture.all
       end
+    end
+
+    field :furniture, Types::FurnitureType, null: true do
+      description "Find a furniture item by slug"
+      argument :slug, String, "The item's slug", required: true
+    end
+
+    def furniture(slug:)
+      Furniture.find_by(slug: slug)
     end
   end
 end
