@@ -15,7 +15,7 @@ class AuthenticateUser
   end
 
   private
-  
+
   attr_reader :email
   attr_reader :password
 end

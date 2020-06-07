@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    auth = AuthenticateUser.new(email: session_params[:email], password: session_params[:password])
+    auth = build_auth
     if (user = auth.call)
       session[:user_id] = user.id
       flash[:success] = "Successfully signed in."
@@ -25,6 +25,14 @@ class SessionsController < ApplicationController
   end
 
   private
+
+  def build_auth
+    if request.env["omniauth.auth"]
+      OmniauthAuthenticate.new(auth: request.env["omniauth.auth"])
+    else
+      AuthenticateUser.new(email: session_params[:email], password: session_params[:password])
+    end
+  end
 
   def session_params
     params.require(:session).permit(:email, :password)

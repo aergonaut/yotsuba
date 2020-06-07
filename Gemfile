@@ -73,3 +73,7 @@ gem "jwt"
 gem "sentry-raven"
 
 gem "rails_same_site_cookie"
+
+gem "omniauth-discord"
+
+gem "dotenv-rails"

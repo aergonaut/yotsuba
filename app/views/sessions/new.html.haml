@@ -16,6 +16,10 @@
       .form-group
         = f.submit "Log in", class: "btn btn-primary"
 
+    .border-top.pt-3.mt-3
+      %ul.list-unstyled
+        %li= link_to "Login with Discord", "/auth/discord", class: "btn btn-primary"
+
     %ul.list-unstyled
       %li= link_to "Not registered? Sign up.", new_user_path
 

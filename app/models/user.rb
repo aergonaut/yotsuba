@@ -1,12 +1,15 @@
 # typed: strict
 class User < ApplicationRecord
-  has_secure_password
+  has_secure_password validations: false
 
   has_many :islands
 
   validates :email, presence: true, uniqueness: true
   validates :username, presence: true, uniqueness: true, length: { minimum: 3 }
-  validates :password, length: { minimum: 8 }
+
+  # user passwords are optional
+  validates_length_of :password, minimum: 8, maximum: ActiveModel::SecurePassword::MAX_PASSWORD_LENGTH_ALLOWED, allow_blank: true
+  validates_confirmation_of :password, allow_blank: true
 
   def to_token
     payload =

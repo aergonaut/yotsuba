@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   root to: "dashboard#index"
   get "/search" => "dashboard#index"
   get "/items/:slug" => "dashboard#index"
+
+  get "/auth/:provider/callback", to: "sessions#create"
 end
